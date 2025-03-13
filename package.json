@@ -1,20 +1,22 @@
 {
-  "name": "prueba_html_nextlevelbl",
+  "name": "NextLevelBL",
   "version": "1.0.0",
-  "main": "script.js",
+  "description": "Proyecto NextLevelBL - Frontend y Backend",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "concurrently": "^8.2.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.31.0",
-    "stylelint": "^13.13.1",
+    "hint": "^7.1.13",
+    "stylelint": "^15.11.0",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0"
