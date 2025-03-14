@@ -193,7 +193,7 @@ GitHub: [@cemedina04](https://github.com/cemedina04)
 
 Las contribuciones, reportes de errores y solicitudes de nuevas funcionalidades son bienvenidas.
 
-Revisa la [página de issues](https://github.com/Ridemolition/NextLevelBL-Develop/issues).
+Revisa la [página de issues](https://github.com/duartixed/NextLevelBL.git).
 
 ## ⭐ Show your Support
 
