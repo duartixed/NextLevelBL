@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Restaurante Gourmet</title>
+    <link rel="stylesheet" href="../src/assets/css/style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./assets/imagenes/logo.png" alt="Logo del Restaurante">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li><a href="signup.html">Crear Cuenta</a></li> <!-- Asegúrate de que este enlace esté presente -->
+            </ul>
+            <div class="carrito">
+                <a href="carrito.html"> <!-- Enlace que redirige al carrito de compras -->
+                    <img src="./assets/imagenes/icono-carrito.png" alt="Carrito de Compras">
+                    <span class="contador-carrito">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="reservas">
+        <h2>Reserva una Mesa</h2>
+        <form class="form-reserva">
+            <input type="text" placeholder="Nombre" required>
+            <input type="email" placeholder="Correo Electrónico" required>
+            <input type="date" required>
+            <input type="time" required>
+            <button type="submit">Reservar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Restaurante Gourmet. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Restaurante Gourmet</title>
+    <link rel="stylesheet" href="../src/assets/css/style.css">
+    <script defer src="./assets/js/menu.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./assets/imagenes/logo.png" alt="Logo del Restaurante">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li><a href="signup.html">Crear Cuenta</a></li>
+            </ul>
+            <div class="carrito">
+                <a href="carrito.html">
+                    <img src="./assets/imagenes/icono-carrito.png" alt="Carrito de Compras">
+                    <span class="contador-carrito">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <h2>Nuestro Menú</h2>
+        <div class="menu-items">
+            <div class="menu-item" data-precio="12.99">
+                <img src="./assets/imagenes/plato1.jpg" alt="Plato 1">
+                <h3>Plato 1</h3>
+                <p>Descripción del plato 1.</p>
+                <button class="btn-agregar" type="button">Agregar al Carrito</button>
+            </div>
+            <div class="menu-item" data-precio="15.50">
+                <img src="./assets/imagenes/plato2.jpg" alt="Plato 2">
+                <h3>Plato 2</h3>
+                <p>Descripción del plato 2.</p>
+                <button class="btn-agregar" type="button">Agregar al Carrito</button>
+            </div>
+            <div class="menu-item" data-precio="10.75">
+                <img src="./assets/imagenes/plato3.jpg" alt="Plato 3">
+                <h3>Plato 3</h3>
+                <p>Descripción del plato 3.</p>
+                <button class="btn-agregar" type="button">Agregar al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Restaurante Gourmet. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+
