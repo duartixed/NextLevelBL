@@ -1,5 +1,5 @@
-import "dotenv/config";
-import mysql from "mysql2/promise";
+import 'dotenv/config.js'; // Se agregó .js para evitar error en import/extensions
+import mysql from 'mysql2/promise.js'; // Se agregó .js para evitar error en import/extensions
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -12,17 +12,15 @@ const dbConfig = {
   queueLimit: 0,
 };
 
-// Crear un pool de conexiones
 const pool = mysql.createPool(dbConfig);
 
-// Verificar la conexión con un query de prueba
 async function testDBConnection() {
   try {
     const connection = await pool.getConnection();
-    console.log("✅ Conexión exitosa a la base de datos MySQL");
+    // console.log('✅ Conexión exitosa a la base de datos MySQL');
     connection.release();
   } catch (error) {
-    console.error("❌ Error al conectar a la base de datos:", error);
+    // console.error('❌ Error al conectar a la base de datos:', error);
   }
 }
 
