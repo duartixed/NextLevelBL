@@ -19,7 +19,6 @@
    - [Prerequisites](#prerequisites)
    - [Install](#install)
    - [Usage](#usage)
-   - [Run tests](#run-tests)
    - [Deployment](#deployment)
    - [🔀 Git Branching & GitHub Setup](#git-setup)
 - [👥 Authors](#authors)
@@ -41,7 +40,6 @@ Este proyecto fue construido usando:
 ### Tech Stack <a name="tech-stack"></a>
 
 <li> Node.js </li>
-<li> Docker </li>
 <li> ESLint </li>
 <li> Stylelint </li>
 <li> Git </li>
@@ -54,134 +52,110 @@ Este proyecto fue construido usando:
     </ul>
 </details>
 
-<details>
-<summary>Docker</summary>
-<ul>
-<li><a href="https://www.docker.com/">Docker</a></li>
-</ul>
-</details>
-
 ### Key Features <a name="key-features"></a>
 
 - Configuración con linters (ESLint y Stylelint)
-- Soporte para Docker
 - Buenas prácticas de desarrollo
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
 Para obtener una copia local y ejecutarla, sigue estos pasos:
 
-### Prerequisites 
+### Prerequisites
 
 Para ejecutar este proyecto necesitas tener instalados:
 
 - [Node.js](https://nodejs.org/)
-- [Docker](https://www.docker.com/)
 - [Git](https://git-scm.com/)
 
 ### Setup
 
 Clona este repositorio en tu carpeta deseada:
 
-sh
-git clone https://github.com/Ridemolition/NextLevelBL-Develop.git
+```sh
+git clone https://github.com/duartixed/NextLevelBL.git
 cd NextLevelBL-Develop
-
+```
 
 ### Install
 
 Instala las dependencias ejecutando:
 
-sh
+```sh
 npm install
-
+```
 
 Instala los linters manualmente si es necesario:
 
-sh
+```sh
 npm install --save-dev eslint stylelint
+```
 
-
-### Usage 
+### Usage
 
 Para ejecutar el proyecto, usa el siguiente comando:
 
-sh
+```sh
 npm start
-
-
-### Run Tests
-
-Para ejecutar las pruebas, usa:
-
-sh
-npm test
-
-
-### Deployment
-
-Para ejecutar el proyecto en un contenedor Docker:
-
-sh
-docker build -t nextlevelbl .
-docker run -p 3000:3000 nextlevelbl
-
+```
 
 ### 🔀 Git Branching & GitHub Setup <a name="git-setup"></a>
 
 Para configurar el flujo de trabajo en Git y GitHub:
 
 1. Inicializa el repositorio:
-   sh
+   ```sh
    git init
-   
+   ```
 
 2. Agrega el repositorio remoto:
-   sh
-   git remote add origin https://github.com/Ridemolition/NextLevelBL-Develop.git
-   
+   ```sh
+   git remote add origin https://github.com/duartixed/NextLevelBL.git
+   ```
 
-3. Crea y cambia a la rama main:
-   sh
+3. Crea y cambia a la rama `main`:
+   ```sh
    git checkout -b main
-   
+   ```
 
-4. Crea la rama develop:
-   sh
+4. Crea la rama `develop`:
+   ```sh
    git checkout -b develop
-   
+   ```
 
 5. Sube las ramas a GitHub:
-   sh
+   ```sh
    git push -u origin main
    git push -u origin develop
-   
+   ```
 
-6. Para trabajar en nuevas características, crea una rama a partir de develop:
-   sh
+6. Para trabajar en nuevas características, crea una rama a partir de `develop`:
+   ```sh
    git checkout -b feature/nueva-funcionalidad
-   
+   ```
 
 7. Una vez termines los cambios, súbelos a GitHub:
-   sh
+   ```sh
    git add .
    git commit -m "Descripción del cambio"
    git push origin feature/nueva-funcionalidad
-   
+   ```
 
-8. Abre un *Pull Request* desde la rama feature/nueva-funcionalidad hacia develop en GitHub.
+8. Abre un **Pull Request** desde la rama `feature/nueva-funcionalidad` hacia `develop` en GitHub.
 
-9. Una vez aprobado, fusiona los cambios en develop y luego en main cuando todo esté estable.
+9. Una vez aprobado, fusiona los cambios en `develop` y luego en `main` cuando todo esté estable.
 
 ## 👥 Authors <a name="authors"></a>
 
-Kevin Julián Rodríguez López
-Carlos Eduardo Medina Peña
-Daniel Camilo Mendoza Rodriguez
+Kevin Julián Rodríguez López  
+Daniel Camilo Mendoza Rodriguez  
+Carlos Eduardo Medina  
+Franchesca Vargas  
 
 - GitHub: [@Ridemolition](https://github.com/Ridemolition)
-GitHub: [@duartixed](https://github.com/duartixed)
-GitHub: [@cemedina04](https://github.com/cemedina04)
+- GitHub: [@duartixed](https://github.com/duartixed)
+- GitHub: [@cemedima04](https://github.com/cemedina)
+- GitHub: [@xxxxxx](https://github.com/Franchesca777)
 
 ## 🕹️ Future Features <a name="future-features"></a>
 
@@ -193,7 +167,7 @@ GitHub: [@cemedina04](https://github.com/cemedina04)
 
 Las contribuciones, reportes de errores y solicitudes de nuevas funcionalidades son bienvenidas.
 
-Revisa la [página de issues](https://github.com/duartixed/NextLevelBL.git).
+Revisa la [página de issues](https://github.com/Ridemolition/NextLevelBL-Develop/issues).
 
 ## ⭐ Show your Support
 
@@ -208,3 +182,5 @@ Quiero agradecer a mis compañeros y a mis instructores del SENA por su apoyo en
 Este proyecto está bajo la licencia MIT.
 
 <p align="right"><a href="#readme-top">Back to top</a></p>
+
+
