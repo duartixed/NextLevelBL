@@ -1,0 +1,12 @@
+{
+    "ci": {
+      "collect": {
+        "staticDistDir": "./frontend/public",
+        "url": ["http://localhost:3000"]
+      },
+      "upload": {
+        "target": "temporary-public-storage"
+      }
+    }
+  }
+  
