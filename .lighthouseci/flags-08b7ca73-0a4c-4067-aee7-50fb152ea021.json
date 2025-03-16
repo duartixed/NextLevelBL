@@ -1,0 +1,1 @@
+{"chromeFlags":"--headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-timer-throttling --disable-renderer-backgrounding --disable-ipc-flooding-protection --single-process --no-zygote --headless=new"}
