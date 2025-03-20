@@ -155,7 +155,7 @@ Franchesca Vargas
 - GitHub: [@Ridemolition](https://github.com/Ridemolition)
 - GitHub: [@duartixed](https://github.com/duartixed)
 - GitHub: [@cemedima04](https://github.com/cemedina)
-- GitHub: [@xxxxxx](https://github.com/Franchesca777)
+- GitHub: [@Franchesca777](https://github.com/Franchesca777)
 
 ## 🕹️ Future Features <a name="future-features"></a>
 
