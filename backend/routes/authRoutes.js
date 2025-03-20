@@ -32,8 +32,9 @@ router.post('/register', async (req, res) => {
 // Inicio de sesión
 router.post('/login', async (req, res) => {
   try {
-    const { email, contraseña } = req.body;
-    if (!email || !contraseña) {
+    const {nombre_usuario, email, contraseña } = req.body;  
+    consolelog('Hola Mundo');
+    if ( !nombre_usuario || !email || !contraseña) {
       return res.status(400).json({ error: 'Email y contraseña son obligatorios' });
     }
 

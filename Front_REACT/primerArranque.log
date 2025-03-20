@@ -1,0 +1,1110 @@
+C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front>npm start
+
+> primerproyectoreact@0.1.0 start
+> react-scripts start
+
+(node:18596) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:18596) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+One of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it may break at any time.
+
+babel-preset-react-app is part of the create-react-app project, which
+is not maintianed anymore. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.
+Failed to compile.
+
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+WARNING in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Warning (from ./node_modules/resolve-url-loader/index.js):
+resolve-url-loader: webpack misconfiguration
+  webpack or the upstream loader did not supply a source-map
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in ./src/api/axioInstance.js 3:0-26
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Cannot find module 'sass'
+Require stack:
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\utils.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\cjs.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\loadLoader.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\LoaderRunner.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModule.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-manifest-plugin\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\config\webpack.config.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\scripts\start.js
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module build failed (from ./node_modules/resolve-url-loader/index.js):
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at process (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\lib\engine\postcss.js:28:19)
+    at Object.resolveUrlLoader (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\index.js:213:14)
+
+webpack compiled with 3 errors and 2 warnings
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+WARNING in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Warning (from ./node_modules/resolve-url-loader/index.js):
+resolve-url-loader: webpack misconfiguration
+  webpack or the upstream loader did not supply a source-map
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in ./src/api/axioInstance.js 3:0-26
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Cannot find module 'sass'
+Require stack:
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\utils.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\cjs.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\loadLoader.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\LoaderRunner.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModule.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-manifest-plugin\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\config\webpack.config.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\scripts\start.js
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module build failed (from ./node_modules/resolve-url-loader/index.js):
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at process (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\lib\engine\postcss.js:28:19)
+    at Object.resolveUrlLoader (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\index.js:213:14)
+
+webpack compiled with 3 errors and 2 warnings
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+WARNING in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Warning (from ./node_modules/resolve-url-loader/index.js):
+resolve-url-loader: webpack misconfiguration
+  webpack or the upstream loader did not supply a source-map
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in ./src/api/axioInstance.js 3:0-26
+Module not found: Error: Can't resolve 'axios' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\src\api'
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Cannot find module 'sass'
+Require stack:
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\utils.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\cjs.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\loadLoader.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\LoaderRunner.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModule.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-manifest-plugin\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\config\webpack.config.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\scripts\start.js
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module build failed (from ./node_modules/resolve-url-loader/index.js):
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at process (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\lib\engine\postcss.js:28:19)
+    at Object.resolveUrlLoader (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\index.js:213:14)
+
+webpack compiled with 3 errors and 2 warnings
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+LOG from webpack.FileSystemInfo
+<w> Managed item C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 13 hidden lines
+
+WARNING in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Warning (from ./node_modules/resolve-url-loader/index.js):
+resolve-url-loader: webpack misconfiguration
+  webpack or the upstream loader did not supply a source-map
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 7:11-26
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 8:12-28
+Module not found: Error: Can't resolve 'https' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+        - install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "https": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 11:10-24
+Module not found: Error: Can't resolve 'url' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "url": require.resolve("url/") }'
+        - install 'url'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "url": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 12:11-26
+Module not found: Error: Can't resolve 'zlib' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "zlib": require.resolve("browserify-zlib") }'
+        - install 'browserify-zlib'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "zlib": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 1:10-24
+Module not found: Error: Can't resolve 'url' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "url": require.resolve("url/") }'
+        - install 'url'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "url": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 3:11-26
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 4:12-28
+Module not found: Error: Can't resolve 'https' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+Did you mean './https'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+        - install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "https": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 5:15-41
+Module not found: Error: Can't resolve 'stream' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "stream": require.resolve("stream-browserify") }'
+        - install 'stream-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "stream": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 6:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Cannot find module 'sass'
+Require stack:
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\utils.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\cjs.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\loadLoader.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\LoaderRunner.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModule.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-manifest-plugin\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\config\webpack.config.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\scripts\start.js
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module build failed (from ./node_modules/resolve-url-loader/index.js):
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at process (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\lib\engine\postcss.js:28:19)
+    at Object.resolveUrlLoader (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\index.js:213:14)
+
+webpack compiled with 11 errors and 2 warnings
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+WARNING in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Warning (from ./node_modules/resolve-url-loader/index.js):
+resolve-url-loader: webpack misconfiguration
+  webpack or the upstream loader did not supply a source-map
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 7:11-26
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 8:12-28
+Module not found: Error: Can't resolve 'https' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+        - install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "https": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 11:10-24
+Module not found: Error: Can't resolve 'url' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "url": require.resolve("url/") }'
+        - install 'url'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "url": false }
+
+ERROR in ./node_modules/axios/lib/adapters/http.js 12:11-26
+Module not found: Error: Can't resolve 'zlib' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\axios\lib\adapters'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "zlib": require.resolve("browserify-zlib") }'
+        - install 'browserify-zlib'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "zlib": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 1:10-24
+Module not found: Error: Can't resolve 'url' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "url": require.resolve("url/") }'
+        - install 'url'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "url": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 3:11-26
+Module not found: Error: Can't resolve 'http' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+Did you mean './http'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "http": require.resolve("stream-http") }'
+        - install 'stream-http'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "http": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 4:12-28
+Module not found: Error: Can't resolve 'https' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+Did you mean './https'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules, C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too.
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "https": require.resolve("https-browserify") }'
+        - install 'https-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "https": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 5:15-41
+Module not found: Error: Can't resolve 'stream' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "stream": require.resolve("stream-browserify") }'
+        - install 'stream-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "stream": false }
+
+ERROR in ./node_modules/follow-redirects/index.js 6:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\follow-redirects'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Cannot find module 'sass'
+Require stack:
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\utils.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\sass-loader\dist\cjs.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\loadLoader.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\loader-runner\lib\LoaderRunner.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModule.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-manifest-plugin\dist\index.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\config\webpack.config.js
+- C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\react-scripts\scripts\start.js
+
+ERROR in ./src/styles/styles.scss (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[1].oneOf[7].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[7].use[4]!./src/styles/styles.scss)
+Module build failed (from ./node_modules/resolve-url-loader/index.js):
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at process (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\lib\engine\postcss.js:28:19)
+    at Object.resolveUrlLoader (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\resolve-url-loader\index.js:213:14)
+
+webpack compiled with 11 errors and 2 warnings
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+LOG from webpack.FileSystemInfo
+<w> Managed item C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> Managed item C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
++ 13 hidden lines
+
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+1 ERROR in child compilations (Use 'stats.children: true' resp. '--stats-children' for more details)
+webpack compiled with 6 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: No file content
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: No file content
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: No file content
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\package.json (directory description file): Error: No file content
+
+ERROR in Module not found: Error: C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\package.json (directory description file): Error: No file content
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack-dev-server\client\index.js?protocol=ws%3A&hostname=0.0.0.0&port=3000&pathname=%2Fws&logging=none&overlay=%7B%22errors%22%3Atrue%2C%22warnings%22%3Afalse%7D&reconnect=10&hot=true&live-reload=true' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\babel-loader\lib\index.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\hot\dev-server.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Child compilation failed:
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+ModuleNotFoundError: Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\html-webpack-plugin\lib\loader.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\Compilation.js:2100:28
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:904:13
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:341:22
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:518:22
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:151:11
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:738:23
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2830:7
+    at done (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\neo-async\async.js:2925:13)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\webpack\lib\NormalModuleFactory.js:1170:10
+    at finishWithoutResolve (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:567:11)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:656:15
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:89:43
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\Resolver.js:718:5
+    at eval (eval at create (C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+    at C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+
+webpack compiled with 5 errors and 1 warning
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+WARNING in [eslint]
+src\components\FormCargo.jsx
+  Line 16:13:  'response' is assigned a value but never used  no-unused-vars
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+ERROR in main
+Module not found: Error: Can't resolve 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front\node_modules\source-map-loader\dist\cjs.js' in 'C:\Users\Usuario\Downloads\Rest_MySQL_Fastapi_React\Front'
+
+webpack compiled with 4 errors and 1 warning
+
+
