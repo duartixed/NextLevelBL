@@ -1,7 +1,8 @@
 /* eslint-disable no-console */ // Se desactiva eslint para console.log
 import 'dotenv/config.js';
 import express from 'express';
-import cors from 'cors';
+import cors from "cors";
+
 import pool from './db.js'; // Se agregó .js para evitar error en import/extensions
 
 // Importar rutas

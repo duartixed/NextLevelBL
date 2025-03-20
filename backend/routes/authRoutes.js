@@ -32,24 +32,24 @@ router.post('/register', async (req, res) => {
 // Inicio de sesión
 router.post('/login', async (req, res) => {
   try {
-    const {nombre_usuario, email, contraseña } = req.body;  
-    consolelog('Hola Mundo');
-    if ( !nombre_usuario || !email || !contraseña) {
-      return res.status(400).json({ error: 'Email y contraseña son obligatorios' });
-    }
+    const {nombre_usuario, correo, contrasena } = req.body;  
+    console.log(req.body);
+    //if ( !nombre_usuario || !email || !contrasena) {
+      //return res.status(400).json({ error: 'Email y contraseña son obligatorios' });
+    //}
 
-    const [rows] = await pool.query('SELECT * FROM Clientes WHERE email = ?', [email]);
-    if (rows.length === 0) return res.status(401).json({ error: 'Credenciales inválidas' });
+    const [rows] = await pool.query('INSERT INTO Clientes values (?, ?, ?) ', [nombre_usuario, correo, contrasena]);
+    //if (rows.length === 0) return res.status(401).json({ error: 'Credenciales inválidas' });
 
     const usuario = rows[0];
-    const isMatch = await bcrypt.compare(contraseña, usuario.contraseña);
-    if (!isMatch) return res.status(401).json({ error: 'Credenciales inválidas' });
+    //const isMatch = await bcrypt.compare(contraseña, usuario.contraseña);
+    //if (!isMatch) return res.status(401).json({ error: 'Credenciales inválidas' });
 
-    const token = jwt.sign({ idCliente: usuario.idCliente, idRol: usuario.idRol }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    //const token = jwt.sign({ idCliente: usuario.idCliente, idRol: usuario.idRol }, process.env.JWT_SECRET, {
+      //expiresIn: '1h',
+    //});
 
-    res.json({ token });
+    //res.json({ token });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
     res.status(500).json({ error: 'Error en el inicio de sesión' });

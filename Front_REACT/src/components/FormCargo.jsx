@@ -52,15 +52,15 @@ const FormCargo = () => {
         <form id="signup-form">
           <fieldset>
             <label htmlFor="nombre_usuario">Usuario:</label>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" required />
+            <input type="text" id="nombre_usuario" name="nombre_usuario"  />
           </fieldset>
           <fieldset>
             <label htmlFor="correo">Correo Electrónico:</label>
-            <input type="correo" id="correo" name="correo" required />
+            <input type="correo" id="correo" name="correo"  />
           </fieldset>
           <fieldset>
             <label htmlFor="contrasenia">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasenia" required />
+            <input type="password" id="contrasena" name="contrasenia"  />
           </fieldset>
             <button type="submit" onClick={cargarButton}>Crear Cuenta</button>
         </form>
