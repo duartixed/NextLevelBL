@@ -179,8 +179,7 @@ Quiero agradecer a mis compañeros y a mis instructores del SENA por su apoyo en
 
 ## 📃 License <a name="license"></a>
 
-Este proyecto está bajo la licencia MIT.
+Este proyecto está bajo la licencia MIT. Puedes ver el archivo de licencia completo [LICENSE.md](./LICENSE.md).
 
 <p align="right"><a href="#readme-top">Back to top</a></p>
-
 
