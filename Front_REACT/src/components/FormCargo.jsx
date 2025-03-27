@@ -8,15 +8,15 @@ const cargarButton = async (e) => {
     const correo = document.querySelector("#correo").value;
     const contrasena = document.querySelector("#contrasena").value;
 
-    const signup = {
+    const clientes = {
       nombre_usuario,
       correo,
       contrasena,
     }
-    console.log(signup)
+    console.log(clientes)
     try {
-      const response =  await axiosInstance.post("http://localhost:5000/api/auth/login", signup);
-      console.log("el nuevo registro fue un exito..." , signup)
+      const response =  await axiosInstance.post("http://localhost:5000/api/auth/login", clientes);
+      console.log("el nuevo registro fue un exito..." , clientes)
       
     } catch (error) {
       if (error.response) {
