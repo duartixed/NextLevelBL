@@ -16,7 +16,9 @@ router.get('/', async (req, res) => {
 // Agregar un producto
 router.post('/', async (req, res) => {
   try {
-    const { nombre, descripcion, precio, stock } = req.body;
+    const {
+      nombre, descripcion, precio, stock
+    } = req.body;
     const [result] = await pool.query(
       'INSERT INTO Productos (nombre, descripcion, precio, stock) VALUES (?, ?, ?, ?)',
       [nombre, descripcion, precio, stock]
@@ -31,7 +33,9 @@ router.post('/', async (req, res) => {
 // Actualizar producto
 router.put('/:id', async (req, res) => {
   try {
-    const { nombre, descripcion, precio, stock } = req.body;
+    const {
+      nombre, descripcion, precio, stock
+    } = req.body;
     await pool.query(
       'UPDATE Productos SET nombre = ?, descripcion = ?, precio = ?, stock = ? WHERE idProducto = ?',
       [nombre, descripcion, precio, stock, req.params.id]
@@ -54,4 +58,3 @@ router.delete('/:id', async (req, res) => {
 });
 
 export default router;
-

@@ -1,13 +1,13 @@
 /* eslint-disable no-console */ // Se desactiva eslint para console.log
 import 'dotenv/config.js';
 import express from 'express';
-import cors from "cors";
+import cors from 'cors';
 
 import pool from './db.js'; // Se agregó .js para evitar error en import/extensions
 
 // Importar rutas
 import authRoutes from './routes/authRoutes.js';
-import carritoRoutes from './routes/carritoRoutes.js';  // ❌ Antes estaba mal
+import carritoRoutes from './routes/carritoRoutes.js'; // ❌ Antes estaba mal
 import productosRoutes from './routes/productosRoutes.js'; // ❌ Antes estaba mal
 
 const app = express();
