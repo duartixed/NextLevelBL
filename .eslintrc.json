@@ -22,7 +22,9 @@
     "linebreak-style": 0,
     "object-shorthand": 0,
     "import/extensions": [1, { "js": "always", "json": "always" }],
-    "max-len": ["warn", { "code": 120 }]
+    "max-len": ["warn", { "code": 120 }],
+    "no-console": ["warn", { "allow": ["warn", "error", "info", "log"] }]
+
   },
   "ignorePatterns": ["dist/", "build/"]
 }

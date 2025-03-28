@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
     return res.json({ message: 'Inicio de sesión exitoso', token, usuario }); // ✅ Asegura un return siempre
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
-      console.error('Error en el inicio de sesión:', error); // ✅ Evita `console.log` innecesario
+      // console.error('Error en el inicio de sesión:', error); // ✅ Evita `console.log` innecesario
     }
     return res.status(500).json({ error: 'Error en el inicio de sesión' });
   }

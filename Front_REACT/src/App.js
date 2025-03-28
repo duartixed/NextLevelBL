@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Login from "./components/Login";
+import Login from "../components/Login";
 import FormCargo from "./components/FormCargo";
 
 function App() {
