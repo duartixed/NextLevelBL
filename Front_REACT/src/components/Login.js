@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Login as loginService } from '../services/authService'; // Usamos alias para evitar conflicto
+import {Login as loginService } from '../services/authService'; // Usamos alias para evitar conflicto
 
 const Login = ({ onLoginSuccess }) => {
   const [usuario, setUser] = useState('');

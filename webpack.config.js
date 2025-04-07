@@ -21,7 +21,7 @@ const config = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './frontend/public/index.html',
+      template: '../Front_REACT/public/index.html',
       inject: 'body',
     }),
     new MiniCssExtractPlugin({

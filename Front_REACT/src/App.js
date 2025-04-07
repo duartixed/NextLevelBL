@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Login from "../components/Login";
-import FormCargo from "./components/FormCargo";
+import Login from "./components/Login.js";
+import FormCargo from "./components/FormCargo.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
