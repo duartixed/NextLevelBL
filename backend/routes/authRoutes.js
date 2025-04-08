@@ -5,38 +5,81 @@ import pool from '../db.js';
 
 const router = express.Router();
 
-router.post('/login', async (req, res) => {
+// ✅ Registro
+router.post('/register', async (req, res) => {
   try {
-    const { email, contraseña } = req.body;
+    const { nombre, usuario, email, contraseña } = req.body;
 
-    if (!email || !contraseña) {
-      return res.status(400).json({ error: 'Email y contraseña son obligatorios' });
+    if (!nombre || !usuario || !email || !contraseña) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
-    const [rows] = await pool.query('SELECT * FROM Clientes WHERE email = ?', [email]);
+    const [existingUser] = await pool.query(
+      'SELECT * FROM Clientes WHERE email = ? OR usuario = ?',
+      [email, usuario]
+    );
+
+    if (existingUser.length > 0) {
+      return res.status(400).json({ error: 'El usuario o email ya está registrado' });
+    }
+
+    const hashedPassword = await bcrypt.hash(contraseña, 10);
+
+    await pool.query(
+      'INSERT INTO Clientes (nombre, usuario, email, contraseña, idRol) VALUES (?, ?, ?, ?, ?)',
+      [nombre, usuario, email, hashedPassword, 2]
+    );
+
+    return res.status(201).json({ message: 'Usuario registrado exitosamente' });
+  } catch (error) {
+    console.error('Error en el registro:', error);
+    return res.status(500).json({ error: 'Error al registrar el usuario' });
+  }
+});
+
+// ✅ Login
+router.post('/login', async (req, res) => {
+  try {
+    const { usuario, email, contraseña } = req.body;
+
+    if ((!usuario && !email) || !contraseña) {
+      return res.status(400).json({ error: 'Usuario o email y la contraseña son obligatorios' });
+    }
+
+    const [rows] = await pool.query(
+      'SELECT * FROM Clientes WHERE email = ? OR usuario = ?',
+      [email, usuario]
+    );
 
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    const usuario = rows[0];
-    const isMatch = await bcrypt.compare(contraseña, usuario.contraseña);
+    const user = rows[0];
+    const isMatch = await bcrypt.compare(contraseña, user.contraseña);
 
     if (!isMatch) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
     const token = jwt.sign(
-      { idCliente: usuario.idCliente, idRol: usuario.idRol },
-      process.env.JWT_SECRET,
+      { idCliente: user.idCliente, idRol: user.idRol },
+      process.env.JWT_SECRET || 'tu_secreto_seguro',
       { expiresIn: '1h' }
     );
 
-    return res.json({ message: 'Inicio de sesión exitoso', token, usuario }); // ✅ Asegura un return siempre
+    return res.json({
+      message: 'Inicio de sesión exitoso',
+      token,
+      usuario: {
+        idCliente: user.idCliente,
+        nombre: user.nombre,
+        email: user.email,
+        rol: user.idRol
+      }
+    });
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      // console.error('Error en el inicio de sesión:', error); // ✅ Evita `console.log` innecesario
-    }
+    console.error('Error en el inicio de sesión:', error);
     return res.status(500).json({ error: 'Error en el inicio de sesión' });
   }
 });
