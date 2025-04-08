@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Login as loginService } from '../services/authService'; // Usamos alias para evitar conflicto
+import { login as loginService } from '../services/authService';
 
 const Login = ({ onLoginSuccess }) => {
   const [usuario, setUser] = useState('');
@@ -10,10 +10,10 @@ const Login = ({ onLoginSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await loginService(usuario, email, contraseña); // Llamamos el servicio correctamente
+      const data = await loginService(usuario, email, contraseña);
       if (data?.token) {
-        localStorage.setItem('token', data.token); // Guarda el token en localStorage
-        onLoginSuccess(data); // Pasa los datos al componente padre
+        localStorage.setItem('token', data.token);
+        onLoginSuccess(data);
       } else {
         setError('Credenciales inválidas');
       }

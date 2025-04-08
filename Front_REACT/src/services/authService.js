@@ -2,12 +2,17 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/auth'; // Ajusta la URL según tu backend
 
-export const login = async (email, contraseña) => {
+export const login = async (usuario, email, contraseña) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, { email, contraseña });
+    const response = await axios.post(`${API_URL}/login`, { usuario, email, contraseña });
     return response.data; // Retorna el token y datos del usuario
   } catch (error) {
-    console.error('Error en el login:', error.response?.data || error.message);
+    console.error("Error en el login:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status
+  });
+  
     throw error;
   }
 };
