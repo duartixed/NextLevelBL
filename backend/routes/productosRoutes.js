@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Obtener todos los productos
 router.get('/', async (req, res) => {
+  console.log('Ingresando a get-productos')
   try {
     const [rows] = await pool.query('SELECT * FROM Productos');
     res.json(rows);

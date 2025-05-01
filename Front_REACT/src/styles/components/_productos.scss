@@ -1,0 +1,49 @@
+.menu {
+    background-color: $color-menu;
+    color: white;
+    padding: 3rem 2rem;
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .producto {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+  
+      img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        margin-right: 1.5rem;
+      }
+  
+      .info {
+        flex-grow: 1;
+  
+        h3 {
+          font-size: 1.2rem;
+          margin: 0;
+        }
+  
+        .precio {
+          font-weight: bold;
+        }
+      }
+  
+      .btn-add {
+        background-color: $color-secundario;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: darken($color-secundario, 10%);
+        }
+      }
+    }
+  }

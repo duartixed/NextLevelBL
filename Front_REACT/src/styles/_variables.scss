@@ -2,9 +2,9 @@
 
 
 $font-family: "Roboto", sans-serif ; 
-$color-primary: #fffcf2; 
-$color-secondary: #564787 ;
-$color-font: #252422;
+$color-primary: #95948f; 
+$color-secondary: #fce303 ;
+$color-font: #91908f;
 
 * {
  padding: 0;
@@ -17,6 +17,6 @@ body {
     font-family: $font-family;
 }
 .container {
-    width: 90%;
+    width: 95%;
     margin: auto;
 }

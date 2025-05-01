@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:5000/api/auth'; // Asegúrate que esta URL sea
 // 🟢 Login
 export const login = async (usuario, email, contraseña) => {
   try {
-    const response = await axios.post(`${API_URL}/login`, {
+    const response = await axios.get(`${API_URL}/login`, {
       usuario,
       email,
       contraseña
@@ -13,11 +13,12 @@ export const login = async (usuario, email, contraseña) => {
 
     return response.data; // Retorna el token y datos del usuario
   } catch (error) {
-    console.error("Error en el login:", {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status
-    });
+    console.error("Error en el login:"//, {
+      //message: error.message,
+      //response: error.response?.data,
+      //status: error.response?.status
+    //}
+  );
 
     throw error;
   }

@@ -26,8 +26,8 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(contraseña, 10);
 
     await pool.query(
-      'INSERT INTO Clientes (nombre, usuario, email, contraseña, idRol) VALUES (?, ?, ?, ?, ?)',
-      [nombre, usuario, email, hashedPassword, 2]
+      'INSERT INTO Clientes (nombre, usuario, email, contraseña) VALUES (?, ?, ?, ?)',
+      [nombre, usuario, email, hashedPassword, ]
     );
 
     return res.status(201).json({ message: 'Usuario registrado exitosamente' });
@@ -38,18 +38,27 @@ router.post('/register', async (req, res) => {
 });
 
 // ✅ Login
-router.post('/login', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    const { usuario, email, contraseña } = req.body;
+    const { correo, contraseña } = req.body;
 
-    if ((!usuario && !email) || !contraseña) {
-      return res.status(400).json({ error: 'Usuario o email y la contraseña son obligatorios' });
+    if ((!correo) || !contraseña) {
+      return res.status(400).json({ error: 'email y la contraseña son obligatorios' });
     }
 
-    const [rows] = await pool.query(
-      'SELECT * FROM Clientes WHERE email = ? OR usuario = ?',
-      [email, usuario]
-    );
+    // 🔧 Corrección: seleccionar según el campo enviado
+    let query = '';
+    let values = [];
+
+    if (correo) {
+      query = 'SELECT * FROM Clientes WHERE correo = ?';
+      values = [email];
+    } else {
+      /*query = 'SELECT * FROM Clientes WHERE usuario = ?';
+      values = [nombre_usuario];*/
+    }
+
+    const [rows] = await pool.query(query, values);
 
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
@@ -75,7 +84,6 @@ router.post('/login', async (req, res) => {
         idCliente: user.idCliente,
         nombre: user.nombre,
         email: user.email,
-        rol: user.idRol
       }
     });
   } catch (error) {

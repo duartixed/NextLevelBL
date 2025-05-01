@@ -1,0 +1,42 @@
+.hero {
+    background-color: $color-hero;
+    color: #222;
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .text {
+      max-width: 600px;
+  
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+  
+      p {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+      }
+  
+      .btn {
+        background-color: $color-principal;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: darken($color-principal, 10%);
+        }
+      }
+    }
+  
+    .image {
+      max-width: 300px;
+  
+      img {
+        width: 100%;
+      }
+    }
+  }
