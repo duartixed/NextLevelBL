@@ -12,10 +12,11 @@ const FormSignup = ({ setUser }) => {
     const correo = document.querySelector("#correo").value;
     const contraseña = document.querySelector("#contraseña").value;
 
-    const signup = { correo, contraseña };
+    const signup = { correo, contraseña,  };
 
     try {
-      const response = await axiosInstance.post("http://localhost:5000/api/auth/login", signup);
+      console.log(signup, correo, contraseña);
+      const response = await axiosInstance.post("http://localhost:5000/api/auth/signup", signup);
 
       console.log("Inicio de sesión exitoso:", response.data);
 

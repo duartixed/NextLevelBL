@@ -42,39 +42,33 @@ router.post('/signup', async (req, res) => {
   try {
     const { correo, contraseña } = req.body;
 
-    if ((!correo) || !contraseña) {
-      return res.status(400).json({ error: 'email y la contraseña son obligatorios' });
+    if (!correo || !contraseña) {
+      return res.status(400).json({ error: 'correo y la contraseña son obligatorios' });
     }
 
-    // 🔧 Corrección: seleccionar según el campo enviado
-    let query = '';
-    let values = [];
-
-    if (correo) {
-      query = 'SELECT * FROM Clientes WHERE correo = ?';
-      values = [email];
-    } else {
-      /*query = 'SELECT * FROM Clientes WHERE usuario = ?';
-      values = [nombre_usuario];*/
-    }
-
-    const [rows] = await pool.query(query, values);
+    const [rows] = await pool.query('SELECT * FROM Clientes WHERE email = ?', [correo]);
 
     if (rows.length === 0) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
+      return res.status(401).json({ error: 'Credenciales inválidas1' });
     }
 
     const user = rows[0];
-    const isMatch = await bcrypt.compare(contraseña, user.contraseña);
 
+    const isMatch = await bcrypt.compare(contraseña, user.contraseña);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
+      return res.status(401).json({ error: 'Credenciales inválidas2' });
     }
 
     const token = jwt.sign(
       { idCliente: user.idCliente, idRol: user.idRol },
       process.env.JWT_SECRET || 'tu_secreto_seguro',
       { expiresIn: '1h' }
+    );
+
+    // 🟡 Inserta correo y contraseña en la tabla signup (solo para registro simple)
+    await pool.query(
+      'INSERT INTO signup (correo, contraseña) VALUES (?, ?)',
+      [correo, contraseña]
     );
 
     return res.json({
