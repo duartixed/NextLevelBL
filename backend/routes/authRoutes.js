@@ -82,7 +82,7 @@ router.post('/signup', async (req, res) => {
     });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
-    return res.status(500).json({ error: 'Error en el inicio de sesión' });
+    return res.status(500).json({ error: 'Error en el inicio de sesion' });
   }
 });
 
