@@ -1,42 +1,43 @@
+@use "../variables" as v;
+
 .hero {
-    background-color: $color-hero;
-    color: #222;
-    padding: 4rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    .text {
-      max-width: 600px;
-  
-      h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-      }
-  
-      p {
-        font-size: 1.2rem;
-        margin: 1rem 0;
-      }
-  
-      .btn {
-        background-color: $color-principal;
-        border: none;
-        padding: 0.7rem 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: darken($color-principal, 10%);
-        }
-      }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: v.$color-hero;
+
+  .hero-content {
+    max-width: 50%;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-  
-    .image {
-      max-width: 300px;
-  
-      img {
-        width: 100%;
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-reserva {
+      background-color: v.$color-secondary;
+      color: v.$color-primary;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken(v.$color-secondary, 10%);
       }
     }
   }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}

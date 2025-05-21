@@ -1,44 +1,39 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import FormCargo from "./pages/FormCargo.jsx";
-import FormSignup from "./pages/signup.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/home"; // Página principal
+import Register from "./pages/register"; // Página de registro
+import Login from "./pages/login"; // Página de inicio de sesión // Página de inicio de sesión
+
+// Vista para usuarios no autenticados
+function LoggedOutView({ setUser }) {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login setUser={setUser} />} />
+    </Routes>
+  );
+}
+
+// Vista para usuarios autenticados
+const LoggedInView = ({ user }) => (
+  <>
+    <h2>Bienvenido, {user.nombre}</h2>
+    <p>Esta es la página principal de tu aplicación.</p>
+    {/* Aquí podrías cargar el componente principal de tu app */}
+  </>
+);
 
 function App() {
-  const [user, setUser] = useState(null); // Estado del usuario logueado
+  const [user, setUser] = useState(null); // Estado para manejar el usuario autenticado
 
   return (
     <Router>
       <div className="App">
         {!user ? (
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <FormCargo />
-                  <Link to="/signup">
-                    <button>¿No tienes cuenta? Regístrate</button>
-                  </Link>
-                </>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <>
-                  <FormSignup setUser={setUser} />
-                  <Link to="/">
-                    <button>¿Ya tienes cuenta? Iniciar sesión</button>
-                  </Link>
-                </>
-              }
-            />
-          </Routes>
+          <LoggedOutView setUser={setUser} />
         ) : (
-          <>
-            <h2>Bienvenido, {user.nombre}</h2>
-            {/* Aquí podrías cargar el componente principal de tu app */}
-          </>
+          <LoggedInView user={user} />
         )}
       </div>
     </Router>

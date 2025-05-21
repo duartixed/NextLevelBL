@@ -1,0 +1,72 @@
+@use "../variables" as v;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: v.$color-fondo;
+
+  .containerForm {
+    background-color: v.$color-menu;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: v.$color-texto;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      fieldset {
+        border: none;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-bottom: 0.5rem;
+          font-weight: bold;
+          color: v.$color-font;
+        }
+
+        input {
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid rgba(v.$color-font, 0.5);
+          border-radius: 6px;
+          transition: border-color 0.3s;
+
+          &:focus {
+            border-color: v.$color-secondary;
+            outline: none;
+          }
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: v.$color-secondary;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken(v.$color-secondary, 10%);
+        }
+      }
+    }
+  }
+}

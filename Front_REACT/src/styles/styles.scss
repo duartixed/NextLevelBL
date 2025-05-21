@@ -1,4 +1,3 @@
 @import "./variables";    // Primero las variables
-@import "./components/formCargo.scss";   // Importa components.scss, que ya incluye todos los componentes
-@import "./components/signup.scss";   // Importa components.scss, que ya incluye todos los componentes
-/*@import './pages';*/
+@import "./components.scss";   // Importa todos los componentes
+//@import "./pages";        // Estilos específicos de páginas (si los tienes)

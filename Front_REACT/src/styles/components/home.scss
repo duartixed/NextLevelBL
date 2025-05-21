@@ -1,0 +1,94 @@
+@use "../variables" as v;
+
+.home {
+  /* Header */
+  .header {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo img {
+      height: 60px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+
+      li {
+        a {
+          text-decoration: none;
+          color: #000; /* Texto negro */
+          background-color: #fce303; /* Fondo amarillo */
+          padding: 10px 15px;
+          border-radius: 5px;
+          font-weight: bold;
+          border: 2px solid #fce303; /* Borde amarillo */
+
+          &:hover {
+            background-color: #000; /* Fondo negro */
+            color: #fce303; /* Texto amarillo */
+          }
+        }
+      }
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+
+      a {
+        img {
+          height: 30px;
+          cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1); /* Efecto de zoom */
+          }
+        }
+      }
+    }
+  }
+
+  /* Línea amarilla debajo del encabezado */
+  .header-border {
+    height: 5px;
+    background-color: #fce303; /* Amarillo */
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .hero {
+    background-image: url("../../assets/images/burgers.png"); /* Imagen de hamburguesas */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* La sección ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+
+    .hero-text {
+      h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #fce303; /* Texto amarillo */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+
+      p {
+        font-size: 1.5rem;
+        color: #fff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}

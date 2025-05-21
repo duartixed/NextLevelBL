@@ -1,49 +1,40 @@
-.menu {
+@import '../variables'; // Importa las variables
+
+.productos {
     background-color: $color-menu;
-    color: white;
-    padding: 3rem 2rem;
-  
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-  
+    color: $color-texto;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
     .producto {
-      display: flex;
-      align-items: center;
-      margin-bottom: 2rem;
-  
-      img {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        margin-right: 1.5rem;
-      }
-  
-      .info {
-        flex-grow: 1;
-  
+        background-color: $color-fondo;
+        border: 1px solid $color-primary;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+
         h3 {
-          font-size: 1.2rem;
-          margin: 0;
+            color: $color-font;
         }
-  
+
         .precio {
-          font-weight: bold;
+            color: $color-principal;
+            font-weight: bold;
         }
-      }
-  
-      .btn-add {
-        background-color: $color-secundario;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: darken($color-secundario, 10%);
+
+        .btn {
+            background-color: $color-principal;
+            color: $color-fondo;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: darken($color-principal, 10%);
+            }
         }
-      }
     }
-  }
+}
