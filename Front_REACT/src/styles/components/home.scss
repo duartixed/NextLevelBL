@@ -1,10 +1,14 @@
 @use "../variables" as v;
 
 .home {
+  /* Fondo global */
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Texto blanco */
+
   /* Header */
   .header {
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Texto blanco */
+    background-color: #000;
+    color: #fff;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -22,16 +26,16 @@
       li {
         a {
           text-decoration: none;
-          color: #000; /* Texto negro */
-          background-color: #fce303; /* Fondo amarillo */
+          color: #000;
+          background-color: #fce303;
           padding: 10px 15px;
           border-radius: 5px;
           font-weight: bold;
-          border: 2px solid #fce303; /* Borde amarillo */
+          border: 2px solid #fce303;
 
           &:hover {
-            background-color: #000; /* Fondo negro */
-            color: #fce303; /* Texto amarillo */
+            background-color: #000;
+            color: #fce303;
           }
         }
       }
@@ -41,34 +45,31 @@
       display: flex;
       gap: 15px;
 
-      a {
-        img {
-          height: 30px;
-          cursor: pointer;
-          transition: transform 0.2s;
+      a img {
+        height: 30px;
+        cursor: pointer;
+        transition: transform 0.2s;
 
-          &:hover {
-            transform: scale(1.1); /* Efecto de zoom */
-          }
+        &:hover {
+          transform: scale(1.1);
         }
       }
     }
   }
 
-  /* Línea amarilla debajo del encabezado */
   .header-border {
     height: 5px;
-    background-color: #fce303; /* Amarillo */
+    background-color: #fce303;
     width: 100%;
   }
 
   /* Hero Section */
   .hero {
-    background-image: url("../../assets/images/burgers.png"); /* Imagen de hamburguesas */
-    background-size: cover; /* La imagen cubre toda la pantalla */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    height: 100vh; /* La sección ocupa toda la altura de la pantalla */
+    background-image: url("../../assets/images/hero-background.jpg"); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,7 +81,7 @@
       h1 {
         font-size: 3rem;
         font-weight: bold;
-        color: #fce303; /* Texto amarillo */
+        color: #fce303;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
       }
 
@@ -88,6 +89,60 @@
         font-size: 1.5rem;
         color: #fff;
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+
+  .promotions,
+  .menu,
+  .location,
+  .reviews {
+    padding: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fce303;
+    }
+
+    .promotions-grid,
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+
+      .promotion-item,
+      .menu-item {
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          border-radius: 10px;
+        }
+
+        p {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .location .map {
+    margin-top: 1rem;
+    iframe {
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  .reviews {
+    text-align: center;
+
+    .reviews-content {
+      margin-top: 1rem;
+
+      p {
+        margin: 0.5rem 0;
       }
     }
   }
