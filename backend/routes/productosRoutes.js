@@ -1,5 +1,6 @@
 import express from 'express';
 import pool from '../db.js';
+import { authenticateUser, isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 // Agregar un producto
-router.post('/', async (req, res) => {
+router.post('/', authenticateUser, isAdmin, async (req, res) => {
   try {
     const {
       nombre, descripcion, precio, stock
@@ -32,7 +33,7 @@ router.post('/', async (req, res) => {
 });
 
 // Actualizar producto
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticateUser, isAdmin, async (req, res) => {
   try {
     const {
       nombre, descripcion, precio, stock
@@ -49,7 +50,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Eliminar producto
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateUser, isAdmin, async (req, res) => {
   try {
     await pool.query('DELETE FROM Productos WHERE idProducto = ?', [req.params.id]);
     res.json({ message: 'Producto eliminado' });

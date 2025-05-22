@@ -1,167 +1,124 @@
-/*import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/imagenes/logo.png';
-import carritoIcon from '../assets/imagenes/icono-carrito.png';
-import './Carrito.css'; // Estilos específicos del carrito
+import '../styles/components/carrito.scss';
 
+// Ajusta la interfaz Producto para soportar datos del backend
 interface Producto {
-  id: number;
+  id?: number;
+  idCarrito?: number;
   nombre: string;
   precio: number;
-  cantidad: number;
   imagen: string;
+  descripcion: string;
+  cantidad?: number;
 }
 
-const CarritoPage: React.FC = () => {
-  const [carrito, setCarrito] = useState<Producto[]>(() => {
-    // Cargar carrito desde localStorage al inicializar
-    const carritoGuardado = localStorage.getItem('carrito');
-    return carritoGuardado ? JSON.parse(carritoGuardado) : [];
-  });
+interface CarritoProps {
+  productos: Producto[];
+  onRemoveFromCart: (id: number) => void;
+  onUpdateQuantity: (id: number, quantity: number) => void;
+}
 
-  // Actualizar localStorage cuando cambia el carrito
+// Corrige el mapeo de productos para soportar datos del backend
+const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdateQuantity }) => {
+  const [cantidades, setCantidades] = useState<{ [key: number]: number }>({});
+  const [total, setTotal] = useState(0);
+
+  const getProductoKey = (producto: Producto) => producto.idCarrito ?? producto.id ?? 0;
+
   useEffect(() => {
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-  }, [carrito]);
+    // Inicializar cantidades
+    const initialCantidades = productos.reduce((acc, producto) => {
+      const key = getProductoKey(producto);
+      acc[key] = producto.cantidad || 1;
+      return acc;
+    }, {} as { [key: number]: number });
+    setCantidades(initialCantidades);
+  }, [productos]);
 
-  // Calcular total
-  const calcularTotal = () => {
-    return carrito.reduce((total, producto) => {
-      return total + (producto.precio * producto.cantidad);
+  useEffect(() => {
+    // Calcular total
+    const nuevoTotal = productos.reduce((sum, producto) => {
+      const key = getProductoKey(producto);
+      const precio = producto.precio || 0;
+      const cantidad = producto.cantidad || cantidades[key] || 1;
+      return sum + precio * cantidad;
     }, 0);
+    setTotal(nuevoTotal);
+  }, [productos, cantidades]);
+
+  const actualizarCantidad = (productoKey: number, nuevaCantidad: number) => {
+    if (nuevaCantidad > 0) {
+      setCantidades(prev => ({
+        ...prev,
+        [productoKey]: nuevaCantidad
+      }));
+      onUpdateQuantity(productoKey, nuevaCantidad); // productoKey ahora es idCarrito
+    }
   };
 
-  // Aumentar cantidad de un producto
-  const aumentarCantidad = (id: number) => {
-    setCarrito(carrito.map(producto => 
-      producto.id === id 
-        ? { ...producto, cantidad: producto.cantidad + 1 } 
-        : producto
-    ));
-  };
-
-  // Disminuir cantidad de un producto
-  const disminuirCantidad = (id: number) => {
-    setCarrito(carrito.map(producto => 
-      producto.id === id && producto.cantidad > 1
-        ? { ...producto, cantidad: producto.cantidad - 1 } 
-        : producto
-    ));
-  };
-
-  // Eliminar producto del carrito
-  const eliminarProducto = (id: number) => {
-    setCarrito(carrito.filter(producto => producto.id !== id));
-  };
-
-  // Vaciar todo el carrito
-  const vaciarCarrito = () => {
-    setCarrito([]);
+  const eliminarDelCarrito = (productoKey: number) => {
+    onRemoveFromCart(productoKey); // productoKey ahora es idCarrito
   };
 
   return (
-    <div className="carrito-page">
-      {/* Header }
-      <header>
-        <div className="logo">
-          <Link to="/">
-            <img src={logo} alt="Logo" />
-          </Link>
+    <div className="carrito-container">
+      <h2>Tu Carrito</h2>
+      {productos.length === 0 ? (
+        <div className="carrito-vacio">
+          <p>Tu carrito está vacío</p>
+          <Link to="/menu" className="btn btn-primary">Ver Menú</Link>
         </div>
-        <nav>
-          <ul className="nav-links">
-            <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/menu">Menú</Link></li>
-            <li><Link to="/reservas">Reservas</Link></li>
-            <li><Link to="/contacto">Contacto</Link></li>
-            <li><Link to="/login">Iniciar Sesión</Link></li>
-            <li><Link to="/signup">Crear Cuenta</Link></li>
-          </ul>
-        </nav>
-        <div className="carrito">
-          <Link to="/carrito">
-            <img src={carritoIcon} alt="Carrito" />
-            <span className="contador-carrito">
-              {carrito.reduce((total, prod) => total + prod.cantidad, 0)}
-            </span>
-          </Link>
-        </div>
-      </header>
-
-      {/* Contenido del Carrito }
-      <main className="carrito-contenido">
-        <h1>Tu Carrito de Compras</h1>
-        
-        {carrito.length === 0 ? (
-          <div className="carrito-vacio">
-            <p>Tu carrito está vacío</p>
-            <Link to="/menu" className="btn-volver-menu">Ver Menú</Link>
-          </div>
-        ) : (
-          <>
-            <div className="lista-carrito">
-              {carrito.map((producto) => (
-                <div key={producto.id} className="item-carrito">
-                  <div className="item-info">
-                    <img 
-                      src={producto.imagen} 
-                      alt={producto.nombre} 
-                      className="item-imagen"
-                    />
-                    <div>
-                      <h3>{producto.nombre}</h3>
-                      <p>${producto.precio.toFixed(2)} c/u</p>
-                    </div>
+      ) : (
+        <>
+          <div className="productos-carrito">
+            {productos.map((producto) => {
+              const key = getProductoKey(producto);
+              return (
+                <div key={key} className="producto-carrito">
+                  <img src={producto.imagen} alt={producto.nombre} />
+                  <div className="producto-info">
+                    <h3>{producto.nombre}</h3>
+                    <p className="precio">${(producto.precio || 0).toFixed(2)}</p>
                   </div>
-                  <div className="item-cantidad">
+                  <div className="cantidad-controles">
                     <button 
-                      onClick={() => disminuirCantidad(producto.id)}
-                      disabled={producto.cantidad <= 1}
+                      onClick={() => actualizarCantidad(key, (cantidades[key] || 1) - 1)}
+                      className="btn-cantidad"
                     >
                       -
                     </button>
-                    <span>{producto.cantidad}</span>
-                    <button onClick={() => aumentarCantidad(producto.id)}>+</button>
-                  </div>
-                  <div className="item-subtotal">
-                    ${(producto.precio * producto.cantidad).toFixed(2)}
+                    <span>{cantidades[key] || producto.cantidad || 1}</span>
+                    <button 
+                      onClick={() => actualizarCantidad(key, (cantidades[key] || 1) + 1)}
+                      className="btn-cantidad"
+                    >
+                      +
+                    </button>
                   </div>
                   <button 
-                    onClick={() => eliminarProducto(producto.id)}
+                    onClick={() => eliminarDelCarrito(key)}
                     className="btn-eliminar"
                   >
                     ×
                   </button>
                 </div>
-              ))}
-            </div>
-            
+              );
+            })}
+          </div>
+          <div className="carrito-footer">
             <div className="total">
-              <p>
-                Total: <span className="total-precio">${calcularTotal().toFixed(2)}</span>
-              </p>
-              <div className="acciones-carrito">
-                <button 
-                  onClick={vaciarCarrito}
-                  className="btn-vaciar"
-                >
-                  Vaciar Carrito
-                </button>
-                <Link to="/checkout" className="btn-pagar">
-                  Proceder al Pago
-                </Link>
-              </div>
+              <span>Total:</span>
+              <span className="precio-total">${total.toFixed(2)}</span>
             </div>
-          </>
-        )}
-      </main>
-
-      {/* Footer }
-      <footer>
-        <p>&copy; 2024 Restaurante Gourmet. Todos los derechos reservados.</p>
-      </footer>
+            <button className="btn btn-primary btn-pagar">
+              Proceder al Pago
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
-export default CarritoPage;*/
+export default Carrito;

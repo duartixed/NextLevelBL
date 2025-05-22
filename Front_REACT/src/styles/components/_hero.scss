@@ -1,43 +1,69 @@
-@use "../variables" as v;
+@use '../variables' as v;
 
 .hero {
+  min-height: 100vh;
+  background-color: #000;
+  padding-top: 80px; // Espacio para el header fijo
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 2rem;
-  background-color: v.$color-hero;
 
   .hero-content {
-    max-width: 50%;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .hero-text {
+      flex: 1;
+      color: #fff;
+
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #fce303;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #fff;
+      }
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
+    .hero-image {
+      flex: 1;
 
-    .btn-reserva {
-      background-color: v.$color-secondary;
-      color: v.$color-primary;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-
-      &:hover {
-        background-color: darken(v.$color-secondary, 10%);
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(252, 227, 3, 0.2);
       }
     }
   }
+}
 
-  .hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+// Media queries para responsive
+@media (max-width: 768px) {
+  .hero {
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
+
+      .hero-text {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
   }
 }

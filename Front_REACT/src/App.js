@@ -1,40 +1,118 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/home"; // Página principal
-import Register from "./pages/register"; // Página de registro
-import Login from "./pages/login"; // Página de inicio de sesión // Página de inicio de sesión
-
-// Vista para usuarios no autenticados
-function LoggedOutView({ setUser }) {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login setUser={setUser} />} />
-    </Routes>
-  );
-}
-
-// Vista para usuarios autenticados
-const LoggedInView = ({ user }) => (
-  <>
-    <h2>Bienvenido, {user.nombre}</h2>
-    <p>Esta es la página principal de tu aplicación.</p>
-    {/* Aquí podrías cargar el componente principal de tu app */}
-  </>
-);
+import Home from "./pages/home";
+import Register from "./pages/register";
+import Login from "./pages/login";
+import Menu from "./pages/menu";
+import Nosotros from "./pages/nosotros";
+import Promociones from "./pages/promociones";
+import Ubicacion from "./pages/ubicacion";
+import Contacto from "./pages/contacto";
+import CarritoPage from "./pages/carrito";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import axios from "axios";
+import AdminLogin from './pages/adminLogin';
+import AdminPanel from './pages/adminPanel';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
-  const [user, setUser] = useState(null); // Estado para manejar el usuario autenticado
+  const [user, setUser] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+  const idCliente = user?.idCliente || 1;
+
+  // Mantener usuario autenticado en localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) setUser(JSON.parse(storedUser));
+  }, []);
+
+  // Actualiza el contador del carrito cada vez que cambia
+  const fetchCartCount = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/carrito/${idCliente}`);
+      let total = 0;
+      res.data.forEach(item => {
+        total += item.cantidad;
+      });
+      setCartCount(total);
+    } catch (err) {
+      setCartCount(0);
+    }
+  };
+
+  useEffect(() => {
+    fetchCartCount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idCliente]);
+
+  // Función para actualizar el contador desde hijos
+  const handleAddToCart = () => {
+    fetchCartCount();
+  };
 
   return (
     <Router>
       <div className="App">
-        {!user ? (
-          <LoggedOutView setUser={setUser} />
-        ) : (
-          <LoggedInView user={user} />
-        )}
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Home user={user} onAddToCart={handleAddToCart} />
+              <Footer />
+            </>
+          } />
+          <Route path="/nosotros" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Nosotros />
+              <Footer />
+            </>
+          } />
+          <Route path="/promociones" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Promociones />
+              <Footer />
+            </>
+          } />
+          <Route path="/menu" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Menu />
+              <Footer />
+            </>
+          } />
+          <Route path="/ubicacion" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Ubicacion />
+              <Footer />
+            </>
+          } />
+          <Route path="/contacto" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <Contacto />
+              <Footer />
+            </>
+          } />
+          <Route path="/register" element={<Register setUser={setUser} />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/carrito" element={
+            <>
+              <Header user={user} cartCount={cartCount} />
+              <CarritoPage />
+              <Footer />
+            </>
+          } />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin" element={
+            <AdminRoute>
+              <AdminPanel />
+            </AdminRoute>
+          } />
+        </Routes>
       </div>
     </Router>
   );

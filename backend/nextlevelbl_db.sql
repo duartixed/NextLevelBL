@@ -85,15 +85,32 @@ CREATE TABLE IF NOT EXISTS ProcesoPago (
 -- =============================
 INSERT INTO Roles (nombre_rol) VALUES ('Cliente'), ('Administrador');
 
+-- Usuarios de prueba: uno cliente, uno admin
 INSERT INTO Clientes (nombre, email, contraseña, usuario, telefono, direccion, idRol)
 VALUES 
   ('María Gómez', 'maria.gomez@email.com', 'clave_segura_123', 'mariag', '123456789', 'Calle 1', 1),
-  ('Carlos Ruiz', 'carlos.ruiz@email.com', 'password_carlos', 'carlosr', '987654321', 'Calle 2', 1);
+  ('Carlos Ruiz', 'carlos.ruiz@email.com', 'password_carlos', 'carlosr', '987654321', 'Calle 2', 2);
 
 INSERT INTO Productos (nombre, descripcion, precio, stock, imagen)
 VALUES 
-    ('Laptop', 'Laptop de última generación', 2500.00, 10, 'laptop.jpg'),
-    ('Mouse', 'Mouse inalámbrico', 20.00, 50, 'mouse.jpg');
+    ('Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 20, ''),
+    ('Hamburguesa Doble', 'Doble carne, doble queso, bacon y salsa BBQ', 15.00, 20, ''),
+    ('Hamburguesa Especial', 'Carne premium, champiñones, queso suizo', 12.00, 20, ''),
+    ('Papas Clásicas', 'Papas fritas crujientes con sal', 5.00, 30, ''),
+    ('Papas con Queso', 'Papas con queso cheddar derretido', 7.00, 30, ''),
+    ('Papas Supreme', 'Papas con queso, bacon y jalapeños', 8.00, 30, ''),
+    ('Coca-Cola', 'Bebida refrescante 500ml', 3.00, 50, ''),
+    ('Limonada', 'Limonada natural con hierbabuena', 4.00, 50, ''),
+    ('Cerveza', 'Cerveza artesanal', 5.00, 50, ''),
+    ('Alitas BBQ', '8 piezas en salsa BBQ', 12.00, 25, ''),
+    ('Alitas Picantes', '8 piezas en salsa buffalo', 12.00, 25, ''),
+    ('Alitas Teriyaki', '8 piezas en salsa teriyaki', 12.00, 25, ''),
+    ('Hot Dog Clásico', 'Salchicha, mostaza y ketchup', 7.00, 20, ''),
+    ('Hot Dog Especial', 'Salchicha, bacon, queso y cebolla', 9.00, 20, ''),
+    ('Nachos', 'Con guacamole y pico de gallo', 8.00, 15, ''),
+    ('Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 15, ''),
+    ('Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 10, ''),
+    ('Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 10, '');
 
 INSERT INTO DetalleProductos (idProducto, especificacion) VALUES 
     (1, '8GB RAM, 512GB SSD'),
@@ -118,6 +135,18 @@ INSERT INTO MetodosPago (metodo) VALUES
 INSERT INTO ProcesoPago (idVenta, idMetodoPago, estado) VALUES 
     (1, 1, 'Completado'),
     (2, 2, 'Pendiente');
+
+-- Limpia el carrito y agrega productos válidos para pruebas
+DELETE FROM Carrito_de_Compras;
+
+-- Agrega productos reales al carrito del cliente 1
+INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES
+    (1, 1, 2),  -- Hamburguesa Clásica
+    (1, 4, 1),  -- Papas Clásicas
+    (1, 7, 2),  -- Coca-Cola
+    (1, 10, 1), -- Alitas BBQ
+    (1, 13, 1), -- Hot Dog Clásico
+    (1, 17, 1); -- Combo Familiar
 
 -- =============================
 -- PROCEDIMIENTOS ALMACENADOS
@@ -172,3 +201,10 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+-- Índices para optimización de consultas
+CREATE INDEX idx_carrito_cliente ON Carrito_de_Compras(idCliente);
+CREATE INDEX idx_ventas_cliente ON Ventas(idCliente);
+CREATE INDEX idx_detalleventas_venta ON DetalleVentas(idVenta);
+CREATE INDEX idx_detalleventas_producto ON DetalleVentas(idProducto);
+CREATE INDEX idx_productos_nombre ON Productos(nombre);

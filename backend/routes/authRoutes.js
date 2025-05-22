@@ -80,11 +80,28 @@ router.post('/login', async (req, res) => {
         idCliente: user.idCliente,
         nombre: user.nombre,
         email: user.email,
+        idRol: user.idRol,
+        isAdmin: user.isAdmin === 1 || user.idRol === 2 // Soporte para ambos campos
       },
     });
   } catch (error) {
     console.error('Error en el inicio de sesión:', error);
     return res.status(500).json({ error: 'Error en el inicio de sesión' });
+  }
+});
+
+// Obtener usuario actual (requiere token)
+router.get('/me', async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) return res.status(401).json({ error: 'Token requerido' });
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'tu_secreto_seguro');
+    const [rows] = await pool.query('SELECT idCliente, nombre, email, usuario, isAdmin FROM Clientes WHERE idCliente = ?', [decoded.idCliente]);
+    if (rows.length === 0) return res.status(404).json({ error: 'Usuario no encontrado' });
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(401).json({ error: 'Token inválido' });
   }
 });
 
