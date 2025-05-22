@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/components/home.scss";
 
-// Importa las imágenes
+// Importa las imagenes
 import logo from "../assets/images/logo.png";
 import userIcon from "../assets/images/user-icon.png";
 import createAccountIcon from "../assets/images/create-account-icon.png";

@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS nextlevelbl;
 USE nextlevelbl;
 
 -- =============================
--- TABLAS PRINCIPALES
+-- TABLAS PRINCIPALEs
 -- =============================
 CREATE TABLE IF NOT EXISTS Roles (
     idRol INT AUTO_INCREMENT PRIMARY KEY,
