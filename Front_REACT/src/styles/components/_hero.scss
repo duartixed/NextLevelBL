@@ -2,19 +2,20 @@
 
 @use '../variables' as v;
 
+
 .hero-horizontal-gallery {
-  width: 100vw;
-  min-width: 100vw;
-  height: 60vh;
+  width: 100%;
+  min-width: 0;
+  height: 32vh;
   display: flex;
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
-  gap: 2vw;
-  padding: 0;
-  border-radius: 24px;
+  gap: 2.5vw;
+  padding: 1.2vw 2vw;
+  border-radius: 18px;
   background: #111;
-  box-shadow: 0 2px 16px #0006;
+  box-shadow: 0 2px 12px #0005;
   scroll-behavior: smooth;
   scrollbar-width: none;
 
@@ -23,26 +24,43 @@
   }
 }
 
+// Corregido: selector correcto para las imágenes
 .horizontal-scroll-image {
-  width: 50vw;
-  max-width: 600px;
-  min-width: 260px;
-  height: 55vh;
+  width: 30vw;
+  max-width: 320px;
+  min-width: 120px;
+  height: 28vh;
   object-fit: cover;
   display: block;
-  flex: 0 0 50vw;
-  border-radius: 24px;
-  box-shadow: 0 2px 16px #0006;
-  margin: 0;
+  flex: 0 0 30vw;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px #0005;
+  margin: 0 1vw;
   background: #111;
   transition: transform 0.3s;
+  max-width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 900px) {
+  .hero-horizontal-gallery {
+    height: 22vh;
+  }
   .horizontal-scroll-image {
-    width: 80vw;
-    flex: 0 0 80vw;
-    height: 35vh;
+    width: 30vw;
+    max-width: 320px;
+    min-width: 120px;
+    height: 28vh;
+    object-fit: cover;
+    display: block;
+    flex: 0 0 30vw;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px #0005;
+    margin: 0 1vw;
+    background: #111;
+    transition: transform 0.3s;
+    max-width: 100%;
+    min-width: 0;
   }
 }
 
@@ -72,7 +90,7 @@
       justify-content: center;
       align-items: center;
       width: 100vw;
-      min-height: 60vh;
+      min-height: 32vh;
       padding: 0;
       margin: 0;
       background: none;
@@ -184,7 +202,7 @@
       }
 
       .hero-content.hero-center {
-        min-height: 35vh;
+        min-height: 22vh;
       }
       .hero-main-image {
         max-width: 90vw;

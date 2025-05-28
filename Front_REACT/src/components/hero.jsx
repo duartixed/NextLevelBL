@@ -4,62 +4,56 @@ import burgersImage from '../assets/images/burgers.png';
 import cokeImage from '../assets/images/coke-coca-cola-glass-bottle 1.png';
 import friesImage from '../assets/Img_front/best fries.png';
 
-const images = [
-  burgersImage, cokeImage, friesImage,
-  burgersImage, cokeImage, friesImage,
-  burgersImage, cokeImage, friesImage
-];
+// Duplicar imágenes para forzar scroll si no hay suficiente contenido
+const baseImages = [burgersImage, cokeImage, friesImage];
+const images = [...baseImages, ...baseImages, ...baseImages];
+
 
 const Hero = () => {
   const galleryRef = useRef(null);
   const animationRef = useRef();
-  const directionRef = useRef(1);
-
+  // Movimiento infinito: cuando llega al final, vuelve a empezar (efecto carrusel)
+  const speed = 1.2; // velocidad más notoria
   useEffect(() => {
     const gallery = galleryRef.current;
     let pos = 0;
-    let max = 0;
-    let min = 0;
-    let speed = 0.7; // velocidad de movimiento horizontal
+    let frame;
+    let galleryWidth = 0;
+    let parentWidth = 0;
 
-    const updateMax = () => {
+    const updateSizes = () => {
       if (gallery) {
-        const galleryWidth = gallery.scrollWidth;
-        const parentWidth = gallery.offsetWidth;
-        max = Math.max(0, galleryWidth - parentWidth);
-        min = 0;
+        galleryWidth = gallery.scrollWidth;
+        parentWidth = gallery.clientWidth;
       }
     };
-    updateMax();
-    window.addEventListener('resize', updateMax);
+    updateSizes();
+    window.addEventListener('resize', updateSizes);
 
     const animate = () => {
       if (gallery) {
-        pos += speed * directionRef.current;
-        if (pos > max) {
-          pos = max;
-          directionRef.current = -1;
-        } else if (pos < min) {
-          pos = min;
-          directionRef.current = 1;
+        pos += speed;
+        if (pos >= galleryWidth - parentWidth) {
+          pos = 0; // reinicia para efecto infinito
         }
         gallery.scrollLeft = pos;
       }
-      animationRef.current = requestAnimationFrame(animate);
+      frame = requestAnimationFrame(animate);
     };
-    animationRef.current = requestAnimationFrame(animate);
+    frame = requestAnimationFrame(animate);
     return () => {
-      cancelAnimationFrame(animationRef.current);
-      window.removeEventListener('resize', updateMax);
+      cancelAnimationFrame(frame);
+      window.removeEventListener('resize', updateSizes);
     };
   }, []);
 
   return (
-    <section className="hero">
-      <div className="hero-content hero-center">
+    <section className="hero" style={{ width: '100vw', minWidth: 0, margin: 0, padding: 0, left: 0, position: 'relative' }}>
+      <div className="hero-content hero-center" style={{ width: '100vw', minWidth: 0, margin: 0, padding: 0, left: 0 }}>
         <div
           className="hero-horizontal-gallery hero-glow"
           ref={galleryRef}
+          style={{ width: '100vw', minWidth: 0, overflow: 'hidden', margin: 0, padding: 0, left: 0 }}
         >
           {images.map((img, idx) => (
             <img
@@ -67,11 +61,11 @@ const Hero = () => {
               src={img}
               alt={`Hero ${idx}`}
               className="horizontal-scroll-image"
+              style={{ maxWidth: '100%', minWidth: 0 }}
             />
           ))}
         </div>
       </div>
-      {/* Puedes agregar la galería horizontal aquí si lo deseas */}
     </section>
   );
 };

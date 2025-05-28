@@ -103,8 +103,9 @@
 
       .productos-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.7rem 2.5rem;
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem;
 
         .producto-card {
           background: rgba(255, 255, 255, 0.05);
