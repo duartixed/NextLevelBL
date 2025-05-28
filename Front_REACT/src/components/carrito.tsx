@@ -85,6 +85,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                     <button 
                       onClick={() => actualizarCantidad(key, (cantidades[key] || 1) - 1)}
                       className="btn-cantidad"
+                      style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0'}}
                     >
                       -
                     </button>
@@ -92,6 +93,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                     <button 
                       onClick={() => actualizarCantidad(key, (cantidades[key] || 1) + 1)}
                       className="btn-cantidad"
+                      style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0'}}
                     >
                       +
                     </button>
@@ -99,6 +101,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                   <button 
                     onClick={() => eliminarDelCarrito(key)}
                     className="btn-eliminar"
+                    style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0', marginLeft: '6px'}}
                   >
                     ×
                   </button>
@@ -111,7 +114,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
               <span>Total:</span>
               <span className="precio-total">${total.toFixed(2)}</span>
             </div>
-            <button className="btn btn-primary btn-pagar">
+            <button className="btn btn-primary btn-pagar" style={{fontSize: '1rem', padding: '6px 18px', borderRadius: '8px'}}>
               Proceder al Pago
             </button>
           </div>

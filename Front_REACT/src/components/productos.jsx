@@ -58,23 +58,7 @@ const Productos = ({ user, onAddToCart }) => {
     { id: 'especiales', nombre: 'Especiales', imagen: especiales }
   ];
 
-  const agregarAlCarrito = async (producto) => {
-    if (!user) {
-      alert('Debes iniciar sesión para agregar productos al carrito');
-      return;
-    }
-    try {
-      await axios.post('http://localhost:5000/api/carrito', {
-        idCliente: user.idCliente,
-        idProducto: producto.id,
-        cantidad: 1
-      });
-      alert('Producto agregado al carrito');
-      if (onAddToCart) onAddToCart();
-    } catch (err) {
-      alert('Error al agregar al carrito');
-    }
-  };
+  // Función agregarAlCarrito eliminada porque ya no se usa
 
   const scrollToSeccion = (categoriaId) => {
     setCategoriaActiva(categoriaId);
@@ -117,12 +101,7 @@ const Productos = ({ user, onAddToCart }) => {
                     <h3>{producto.nombre}</h3>
                     <p className="descripcion">{producto.descripcion}</p>
                     <p className="precio">${producto.precio.toFixed(2)}</p>
-                    <button 
-                      className="btn btn-primary" 
-                      onClick={() => agregarAlCarrito(producto)}
-                    >
-                      Agregar al Carrito
-                    </button>
+                    {/* Botón eliminado para que solo aparezca en el carrito */}
                   </div>
                 </div>
               ))}

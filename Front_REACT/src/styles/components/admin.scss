@@ -1,0 +1,86 @@
+@use "../variables" as v;
+
+.admin-panel {
+  background: #181818;
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem 1rem 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1, h2 {
+    color: v.$color-secondary;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .admin-section {
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    background: #fff;
+    color: #222;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    th, td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    th {
+      background: v.$color-secondary;
+      color: #000;
+    }
+    tr:nth-child(even) {
+      background: #f7f7f7;
+    }
+    img {
+      border-radius: 6px;
+      max-width: 50px;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    input, button {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: v.$color-secondary;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      &:hover {
+        background: darken(v.$color-secondary, 10%);
+      }
+    }
+  }
+
+  .admin-btn {
+    background: v.$color-secondary;
+    color: #000;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s;
+    &:hover {
+      background: darken(v.$color-secondary, 10%);
+    }
+  }
+}

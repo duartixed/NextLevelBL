@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Header from '../components/header.jsx';
+import Footer from '../components/footer.jsx';
 import "../styles/components/auth.scss";
 
 const Register = () => {
@@ -46,45 +48,58 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h2>Create Account</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button type="submit">Register</button>
-        </form>
-        <button onClick={() => navigate("/login")}>
-          Already have an account? Log In
-        </button>
+    <>
+      <Header />
+      <div className="auth-container">
+        <div className="auth-box">
+          <button
+            className="boton-flecha-home"
+            style={{ position: 'absolute', top: 30, left: 30, zIndex: 10 }}
+            onClick={() => navigate('/')}
+            title="Volver al inicio"
+          >
+            &#8592;
+          </button>
+          <h2>Create Account</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <button type="submit">Register</button>
+            <Link to="/" className="btn-volver-home">Volver a Home</Link>
+          </form>
+          <button onClick={() => navigate("/login")}>
+            Already have an account? Log In
+          </button>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

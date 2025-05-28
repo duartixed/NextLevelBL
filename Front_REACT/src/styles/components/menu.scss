@@ -1,0 +1,90 @@
+// Estilos profesionales para la página de menú
+// Fondo profesional con gradiente y detalles
+.menu-page {
+  min-height: 80vh;
+  width: 100%;
+  padding: 2.5rem 1rem 3rem 1rem;
+  background: linear-gradient(135deg, #181818 60%, #232323 100%);
+  box-shadow: 0 2px 32px #0006;
+  border-radius: 24px;
+  max-width: 1300px;
+  margin: 2rem auto 2rem auto;
+  position: relative;
+  h1 {
+    color: #fce303;
+    font-size: 2.3rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-weight: 800;
+    text-shadow: 0 2px 8px #000a;
+  }
+  .categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem 2rem;
+    justify-items: center;
+    width: 100%;
+  }
+  .categoria-card {
+    background: linear-gradient(135deg, #232323 70%, #181818 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #0005, 0 0 0 2px #fce30322;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.22s, box-shadow 0.22s, border 0.22s;
+    border: 2px solid transparent;
+    &:hover {
+      transform: translateY(-8px) scale(1.045);
+      box-shadow: 0 8px 32px #fce30344, 0 0 0 2px #fce303;
+      border: 2px solid #fce303;
+    }
+    .categoria-image {
+      width: 100%;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 18px 18px 0 0;
+      img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin: 0.5rem auto;
+        display: block;
+        filter: drop-shadow(0 2px 8px #fce30333);
+      }
+    }
+    h3 {
+      color: #fce303;
+      font-size: 1.25rem;
+      margin: 1.2rem 0 1.5rem 0;
+      text-align: center;
+      font-family: 'Montserrat', 'Arial', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px #000a;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .menu-page {
+    padding: 1rem 0.2rem;
+    h1 { font-size: 1.3rem; }
+    .categoria-card h3 { font-size: 0.9rem; }
+    .categoria-card .categoria-image img { width: 60px; height: 60px; }
+  }
+}
+@media (max-width: 600px) {
+  .menu-page {
+    padding: 1rem 0.2rem;
+    h1 { font-size: 1.3rem; }
+    .categoria-card h3 { font-size: 0.9rem; }
+    .categoria-card .categoria-image img { width: 60px; height: 60px; }
+  }
+}

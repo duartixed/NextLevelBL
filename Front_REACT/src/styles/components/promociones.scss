@@ -1,1 +1,104 @@
+// Estilos profesionales para la página de promociones
+.promociones-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: #111;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  h1 {
+    color: #fce303;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .promociones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .promo-card {
+    background: #222;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(252, 227, 3, 0.10);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .promo-image {
+      width: 100%;
+      position: relative;
+      img {
+        width: 100%;
+        max-width: 320px;
+        height: 180px;
+        object-fit: contain;
+        background: #fff;
+        border-radius: 12px 12px 0 0;
+        margin: 0 auto;
+        display: block;
+      }
+      .descuento {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #fce303;
+        color: #000;
+        font-weight: bold;
+        padding: 0.3rem 0.7rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        box-shadow: 0 2px 8px #0002;
+      }
+    }
+    .promo-info {
+      padding: 1.2rem;
+      text-align: center;
+      h3 {
+        color: #fce303;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      .precios {
+        margin-bottom: 1rem;
+        .precio-original {
+          color: #bbb;
+          text-decoration: line-through;
+          margin-right: 0.7rem;
+        }
+        .precio-final {
+          color: #fce303;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+      .btn-ordenar {
+        background: #fce303;
+        color: #000;
+        font-weight: 600;
+        padding: 0.5rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        &:hover {
+          background: #ffe066;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .promociones-page {
+    padding: 1rem 0.2rem;
+    h1 { font-size: 1.3rem; }
+    .promo-card .promo-info { padding: 0.7rem; }
+  }
+}
 // Archivo de estilos para promociones

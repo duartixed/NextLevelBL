@@ -207,4 +207,6 @@ CREATE INDEX idx_carrito_cliente ON Carrito_de_Compras(idCliente);
 CREATE INDEX idx_ventas_cliente ON Ventas(idCliente);
 CREATE INDEX idx_detalleventas_venta ON DetalleVentas(idVenta);
 CREATE INDEX idx_detalleventas_producto ON DetalleVentas(idProducto);
+-- Elimina el índice duplicado si existe antes de crearlo (sólo si existe)
+DROP INDEX IF EXISTS idx_productos_nombre ON Productos;
 CREATE INDEX idx_productos_nombre ON Productos(nombre);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/components/menu.scss';
 import burgers from '../assets/images/burgers.png';
 import drinks from '../assets/Img_front/drinks.png';
@@ -24,16 +25,16 @@ const Menu = () => {
       <h1>Nuestro Menú</h1>
       <div className="categorias-grid">
         {categorias.map((categoria) => (
-          <a 
+          <Link 
             key={categoria.id} 
-            href={categoria.ruta}
+            to={categoria.ruta}
             className="categoria-card"
           >
             <div className="categoria-image">
               <img src={categoria.imagen} alt={categoria.nombre} />
             </div>
             <h3>{categoria.nombre}</h3>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

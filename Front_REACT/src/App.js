@@ -4,10 +4,10 @@ import Home from "./pages/home";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import Menu from "./pages/menu";
+import ProductosCategoria from "./pages/productosCategoria";
 import Nosotros from "./pages/nosotros";
 import Promociones from "./pages/promociones";
-import Ubicacion from "./pages/ubicacion";
-import Contacto from "./pages/contacto";
+import Contacto from "./pages/contacto.jsx";
 import CarritoPage from "./pages/carrito";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -83,20 +83,14 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/ubicacion" element={
+          <Route path="/menu/:categoriaId" element={
             <>
               <Header user={user} cartCount={cartCount} />
-              <Ubicacion />
+              <ProductosCategoria />
               <Footer />
             </>
           } />
-          <Route path="/contacto" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <Contacto />
-              <Footer />
-            </>
-          } />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/carrito" element={
@@ -106,7 +100,7 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/adminLogin" element={<AdminLogin />} />
           <Route path="/admin" element={
             <AdminRoute>
               <AdminPanel />

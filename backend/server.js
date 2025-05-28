@@ -2,8 +2,10 @@
 import 'dotenv/config.js';
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 
 import pool from './db.js'; // Se agregó .js para evitar error en import/extensions
+import { runSqlScript } from './runSqlScript.js';
 
 // Importar rutas
 import authRoutes from './routes/authRoutes.js';
@@ -48,6 +50,10 @@ app.use('/api/productos', productosRoutes); // CRUD de productos
 // 🔹 INICIAR EL SERVIDOR
 // ==========================
 async function startServer() {
+  // Ejecuta el script SQL al iniciar si la BD está vacía
+  const sqlPath = path.resolve('./nextlevelbl_db.sql');
+  await runSqlScript(sqlPath);
+
   try {
     await pool.query('SELECT 1');
     console.log('✅ Conexión a la base de datos establecida.');
