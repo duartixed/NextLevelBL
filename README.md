@@ -29,157 +29,149 @@
 - [❓ FAQ ](#faq)
 - [📃 License](#license)
 
-# 📖 NextLevelBL-Develop <a name="about-project"></a>
 
-NextLevelBL-Develop es un proyecto basado en Node.js que incluye herramientas como ESLint y Stylelint para mejorar la calidad del código.
+# 🚀 NextLevelBL-Develop <a name="about-project"></a>
 
-## ⚒️ Build With <a name="built-with"></a>
+NextLevelBL-Develop es una plataforma de gestión y ventas desarrollada con Node.js para el backend y React para el frontend. El proyecto está estructurado en dos carpetas principales:
 
-Este proyecto fue construido usando:
+- 📦 **backend/**: API RESTful con Node.js y Express.
+- 💻 **Front_REACT/**: Interfaz de usuario moderna con React.
 
-### Tech Stack <a name="tech-stack"></a>
+Incluye integración de linters (ESLint y Stylelint), pruebas automáticas y flujos de trabajo con GitHub Actions para asegurar calidad y despliegue continuo.
 
-<li> Node.js </li>
-<li> ESLint </li>
-<li> Stylelint </li>
-<li> Git </li>
-<li> GitHub </li>
 
-<details>
-<summary> Node.js </summary>
-    <ul>
-    <li><a href="https://nodejs.org/">Node.js</a></li>    
-    </ul>
-</details>
+## ⚒️ Tecnologías y Herramientas <a name="built-with"></a>
 
-### Key Features <a name="key-features"></a>
+### 🛠️ Tech Stack <a name="tech-stack"></a>
 
-- Configuración con linters (ESLint y Stylelint)
-- Buenas prácticas de desarrollo
+- 🟩 **Node.js** (backend)
+- ⚛️ **React** (frontend)
+- 🧹 **ESLint** y **Stylelint** (calidad de código)
+- 🧪 **Jest** y **React Testing Library** (pruebas)
+- 🐙 **Git** y **GitHub** (control de versiones y CI/CD)
 
-## 💻 Getting Started <a name="getting-started"></a>
+### ✨ Características principales <a name="key-features"></a>
 
-Para obtener una copia local y ejecutarla, sigue estos pasos:
+- 🔒 Autenticación y rutas protegidas
+- 🛒 Gestión de productos y carrito
+- 📦 API RESTful
+- 🧹 Linters y buenas prácticas
+- 🤖 Workflows automáticos con GitHub Actions
 
-### Prerequisites
 
-Para ejecutar este proyecto necesitas tener instalados:
+## 💻 Cómo empezar <a name="getting-started"></a>
 
-- [Node.js](https://nodejs.org/)
+Sigue estos pasos para clonar y ejecutar el proyecto:
+
+### 📋 Prerrequisitos
+
+- [Node.js](https://nodejs.org/)  
 - [Git](https://git-scm.com/)
 
-### Setup
+### 📦 Instalación y estructura
 
-Clona este repositorio en tu carpeta deseada:
+1. Clona el repositorio:
+   ```sh
+   git clone https://github.com/duartixed/NextLevelBL.git
+   cd NextLevelBL
+   ```
+2. Instala dependencias en cada subproyecto:
+   ```sh
+   cd backend
+   npm install
+   cd ../Front_REACT
+   npm install
+   ```
 
-```sh
-git clone https://github.com/duartixed/NextLevelBL.git
-cd NextLevelBL-Develop
-```
+### ▶️ Uso
 
-### Install
+- Para iniciar el backend:
+  ```sh
+  cd backend
+  npm start
+  ```
+- Para iniciar el frontend:
+  ```sh
+  cd ../Front_REACT
+  npm start
+  ```
 
-Instala las dependencias ejecutando:
 
-```sh
-npm install
-```
+### 🧪 Pruebas y linters
 
-Instala los linters manualmente si es necesario:
+- Ejecuta linters en backend:
+  ```sh
+  cd backend
+  npm run lint
+  ```
+- Ejecuta linters en frontend:
+  ```sh
+  cd Front_REACT
+  npm run lint
+  ```
+- Ejecuta tests en backend:
+  ```sh
+  cd backend
+  npm test
+  ```
+- Ejecuta tests en frontend:
+  ```sh
+  cd Front_REACT
+  npm test
+  ```
 
-```sh
-npm install --save-dev eslint stylelint
-```
 
-### Usage
+### 🔀 Flujo de trabajo con Git y GitHub <a name="git-setup"></a>
 
-Para ejecutar el proyecto, usa el siguiente comando:
-
-```sh
-npm start
-```
-
-### 🔀 Git Branching & GitHub Setup <a name="git-setup"></a>
-
-Para configurar el flujo de trabajo en Git y GitHub:
-
-1. Inicializa el repositorio:
+1. Inicializa el repositorio y agrega el remoto:
    ```sh
    git init
-   ```
-
-2. Agrega el repositorio remoto:
-   ```sh
    git remote add origin https://github.com/duartixed/NextLevelBL.git
    ```
-
-3. Crea y cambia a la rama `main`:
-   ```sh
-   git checkout -b main
-   ```
-
-4. Crea la rama `develop`:
+2. Crea ramas para desarrollo y características:
    ```sh
    git checkout -b develop
-   ```
-
-5. Sube las ramas a GitHub:
-   ```sh
-   git push -u origin main
-   git push -u origin develop
-   ```
-
-6. Para trabajar en nuevas características, crea una rama a partir de `develop`:
-   ```sh
    git checkout -b feature/nueva-funcionalidad
    ```
+3. Sube tus ramas y abre Pull Requests en GitHub para revisión y despliegue.
 
-7. Una vez termines los cambios, súbelos a GitHub:
-   ```sh
-   git add .
-   git commit -m "Descripción del cambio"
-   git push origin feature/nueva-funcionalidad
-   ```
 
-8. Abre un **Pull Request** desde la rama `feature/nueva-funcionalidad` hacia `develop` en GitHub.
+## 👥 Autores <a name="authors"></a>
 
-9. Una vez aprobado, fusiona los cambios en `develop` y luego en `main` cuando todo esté estable.
+👤 Kevin Julián Rodríguez López  
+👤 Daniel Camilo Mendoza Rodriguez   
+👤 Franchesca Vargas  
 
-## 👥 Authors <a name="authors"></a>
+- 🐙 GitHub: [@Ridemolition](https://github.com/Ridemolition)
+- 🐙 GitHub: [@duartixed](https://github.com/duartixed)
+- 🐙 GitHub: [@Franchesca777](https://github.com/Franchesca777)
 
-Kevin Julián Rodríguez López  
-Daniel Camilo Mendoza Rodriguez  
-Carlos Eduardo Medina  
-Franchesca Vargas  
 
-- GitHub: [@Ridemolition](https://github.com/Ridemolition)
-- GitHub: [@duartixed](https://github.com/duartixed)
-- GitHub: [@cemedima04](https://github.com/cemedina)
-- GitHub: [@Franchesca777](https://github.com/Franchesca777)
+## 🕹️ Próximas características <a name="future-features"></a>
 
-## 🕹️ Future Features <a name="future-features"></a>
+- [ ] 🚦 Integración completa con CI/CD
+- [ ] 🧹 Soporte para más linters y herramientas de calidad
+- [ ] 🌎 Documentación en múltiples idiomas
 
-- [ ] Integración con CI/CD
-- [ ] Soporte para más linters
-- [ ] Documentación en múltiples idiomas
 
-## 🤝 Contributing <a name="contributing"></a>
+## 🤝 Contribuciones <a name="contributing"></a>
 
-Las contribuciones, reportes de errores y solicitudes de nuevas funcionalidades son bienvenidas.
+¡Las contribuciones, reportes de errores y sugerencias son bienvenidas! Consulta la [página de issues](https://github.com/Ridemolition/NextLevelBL-Develop/issues).
 
-Revisa la [página de issues](https://github.com/Ridemolition/NextLevelBL-Develop/issues).
 
-## ⭐ Show your Support
+## ⭐ Apoya este proyecto
 
 Si te gusta este proyecto, dale una estrella ⭐ en GitHub.
 
-## 👏 Acknowledgements <a name="acknowledgements"></a>
 
-Quiero agradecer a mis compañeros y a mis instructores del SENA por su apoyo en este aprendizaje.
+## 👏 Agradecimientos <a name="acknowledgements"></a>
 
-## 📃 License <a name="license"></a>
+Gracias a los compañeros y a los instructores del SENA por su apoyo en este aprendizaje.
 
-Este proyecto está bajo la licencia MIT. Puedes ver el archivo de licencia completo [LICENSE.md](./LICENSE.md).
 
-<p align="right"><a href="#readme-top">Back to top</a></p>
+## 📃 Licencia <a name="license"></a>
+
+Este proyecto está bajo la licencia MIT. Puedes ver el archivo de licencia completo aquí: [LICENSE.md](./LICENSE.md).
+
+<p align="right">⬆️ <a href="#readme-top">Volver arriba</a></p>
 

@@ -6,12 +6,15 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"No tests implemented\" && exit 0",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "backend": "file:",
     "bcryptjs": "^3.0.2",
     "chromedriver": "^135.0.2",
     "cors": "^2.8.5",
@@ -23,6 +26,7 @@
     "selenium-webdriver": "^4.31.0"
   },
   "devDependencies": {
+    "eslint": "^9.28.0",
     "nodemon": "^3.1.9"
   }
 }
