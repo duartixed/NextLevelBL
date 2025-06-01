@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build the project
-        run: npm run build
+        run: cd Front_REACT && npm install && npm run build
 
       # Copy the built files and server code to the VM using scp.
       - name: Copy files to VM
