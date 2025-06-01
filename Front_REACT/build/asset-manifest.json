@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0cc1dd14.css",
+    "main.js": "/static/js/main.3bc4e4f6.js",
+    "static/media/hotdogs.png": "/static/media/hotdogs.c6b038eacea8537c04a2.png",
+    "static/media/best fries.png": "/static/media/best fries.ab10aa5176d2bcc4d2ad.png",
+    "static/media/entradas.png": "/static/media/entradas.740f160f18389f2d736e.png",
+    "static/media/wings.png": "/static/media/wings.c0e65f7c6fd598b05007.png",
+    "static/media/especiales.png": "/static/media/especiales.1d7442798b79ea553dfb.png",
+    "static/media/drinks.png": "/static/media/drinks.2c07a288a8146a20a2e8.png",
+    "static/media/burgers.png": "/static/media/burgers.493b4dad0c970f58296e.png",
+    "static/media/logo.png": "/static/media/logo.6e83e51cf1172a571976.png",
+    "static/media/coke-coca-cola-glass-bottle 1.png": "/static/media/coke-coca-cola-glass-bottle 1.3440f2204a9f8f77423a.png",
+    "index.html": "/index.html",
+    "main.0cc1dd14.css.map": "/static/css/main.0cc1dd14.css.map",
+    "main.3bc4e4f6.js.map": "/static/js/main.3bc4e4f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0cc1dd14.css",
+    "static/js/main.3bc4e4f6.js"
+  ]
+}
