@@ -29,7 +29,7 @@ jobs:
           cd backend && npm install || true
       - name: Lint backend
         run: |
-          cd backend && npx eslint .
+          cd backend && npx eslint . -c .eslintrc.json
       - name: Instalar dependencias Front_REACT
         run: |
           cd Front_REACT && npm install || true
@@ -42,3 +42,6 @@ jobs:
       - name: Test Front_REACT
         run: |
           cd Front_REACT && npm test || echo "No tests"
+      - name: Build Front_REACT
+        run: |
+          cd Front_REACT && npm run build
