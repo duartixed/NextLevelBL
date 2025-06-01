@@ -5,7 +5,7 @@ export async function runSqlScript(filePath) {
   const sql = fs.readFileSync(filePath, 'utf8');
   // Divide en sentencias por ; y ejecuta cada una
   const statements = sql.split(/;\s*\n/).filter(Boolean);
-  for (const stmt of statements) {
+  await Promise.all(statements.map(async (stmt) => {
     try {
       await pool.query(stmt);
     } catch (err) {
@@ -14,5 +14,5 @@ export async function runSqlScript(filePath) {
         console.error('Error ejecutando sentencia:', stmt, err);
       }
     }
-  }
+  }));
 }

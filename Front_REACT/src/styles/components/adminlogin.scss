@@ -10,7 +10,7 @@
 .admin-login-form {
   background: #111;
   border-radius: 18px;
-  box-shadow: 0 0 32px 0 #FFD600, 0 0 0 4px #FFD600 inset;
+  box-shadow: 0 0 32px 0 #ffd600, 0 0 0 4px #ffd600 inset;
   padding: 2.5rem 2.5rem 2rem 2.5rem;
   display: flex;
   flex-direction: column;
@@ -34,21 +34,21 @@
   border: none;
   border-radius: 8px;
   background: #222;
-  color: #FFD600;
+  color: #ffd600;
   font-size: 1rem;
   outline: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: border 0.2s;
 }
 
 .admin-login-form input:focus {
-  border: 2px solid #FFD600;
+  border: 2px solid #ffd600;
   background: #181818;
 }
 
 .admin-login-form button {
   width: 100%;
-  background: #FFD600;
+  background: #ffd600;
   color: #222;
   border: none;
   border-radius: 8px;
@@ -58,7 +58,7 @@
   cursor: pointer;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: background 0.2s;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .admin-login-form .error {
-  color: #FFD600;
+  color: #ffd600;
   background: #222;
   border-radius: 6px;
   padding: 0.5rem 1rem;

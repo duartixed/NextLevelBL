@@ -8,7 +8,9 @@ const router = express.Router();
 // ✅ Registro
 router.post('/register', async (req, res) => {
   try {
-    const { nombre, usuario, email, contraseña } = req.body;
+    const {
+      nombre, usuario, email, contraseña
+    } = req.body;
 
     // Validar que todos los campos estén presentes
     if (!nombre || !usuario || !email || !contraseña) {
@@ -97,11 +99,14 @@ router.get('/me', async (req, res) => {
     if (!authHeader) return res.status(401).json({ error: 'Token requerido' });
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'tu_secreto_seguro');
-    const [rows] = await pool.query('SELECT idCliente, nombre, email, usuario, isAdmin FROM Clientes WHERE idCliente = ?', [decoded.idCliente]);
+    const [rows] = await pool.query(
+      'SELECT idCliente, nombre, email, usuario, isAdmin FROM Clientes WHERE idCliente = ?',
+      [decoded.idCliente]
+    );
     if (rows.length === 0) return res.status(404).json({ error: 'Usuario no encontrado' });
-    res.json(rows[0]);
+    return res.json(rows[0]);
   } catch (error) {
-    res.status(401).json({ error: 'Token inválido' });
+    return res.status(401).json({ error: 'Token inválido' });
   }
 });
 

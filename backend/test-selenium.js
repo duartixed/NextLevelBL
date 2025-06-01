@@ -29,7 +29,6 @@ async function testReactApp() {
 
     console.log('⏳ Esperando 5 segundos antes de cerrar...');
     await driver.sleep(50000000);
-
   } catch (err) {
     console.error('❌ Error durante el test:', err);
   } finally {
@@ -39,4 +38,3 @@ async function testReactApp() {
 }
 
 testReactApp();
-

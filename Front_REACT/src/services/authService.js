@@ -13,12 +13,7 @@ export const login = async (usuario, email, contraseña) => {
 
     return response.data; // Retorna el token y datos del usuario
   } catch (error) {
-    console.error("Error en el login:"//, {
-      //message: error.message,
-      //response: error.response?.data,
-      //status: error.response?.status
-    //}
-  );
+    console.error('Error en el login:');
 
     throw error;
   }

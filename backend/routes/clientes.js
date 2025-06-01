@@ -1,10 +1,13 @@
 const express = require('express');
+
 const router = express.Router();
-const pool = require('../db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const pool = require('../db.js');
 
 router.post('/registrar', async (req, res) => {
-  const { nombre, correo, contraseña, telefono, direccion, idRol } = req.body;
+  const {
+    nombre, correo, contraseña, telefono, direccion, idRol
+  } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(contraseña, 10);

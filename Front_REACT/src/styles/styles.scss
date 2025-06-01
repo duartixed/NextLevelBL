@@ -11,6 +11,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -32,7 +33,12 @@ a {
 }
 
 // Tipografía
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
@@ -57,6 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -75,7 +82,6 @@ h1, h2, h3, h4, h5, h6 {
 @import "./components/ubicacion";
 @import "./components/contacto";
 
-
 // Botones
 .btn {
   display: inline-block;
@@ -86,21 +92,21 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
-  
+
   &-primary {
     background-color: v.$color-secondary; // Usando variable
     color: v.$color-black; // Usando variable
-    
+
     &:hover {
       background-color: color.adjust(v.$color-secondary, $lightness: -10%);
     }
   }
-  
+
   &-secondary {
     background-color: transparent;
     border: 2px solid v.$color-secondary; // Usando variable
     color: v.$color-secondary; // Usando variable
-    
+
     &:hover {
       background-color: v.$color-secondary; // Usando variable
       color: v.$color-black; // Usando variable

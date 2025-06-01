@@ -1,96 +1,96 @@
 .auth-container {
-    background-color: #000; /* Fondo negro */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: #000; /* Fondo negro */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-box {
+  background-color: #000; /* Fondo negro */
+  border: 3px solid #fce303; /* Borde amarillo */
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 2rem; /* Espaciado interno */
+  width: 90%; /* Ancho del contenedor */
+  max-width: 400px; /* Ancho máximo */
+  text-align: center; /* Centrar texto */
+  box-shadow: 0 0 20px 5px #fce303; /* Sombra amarilla */
+
+  h2 {
+    color: #fff; /* Texto blanco */
+    margin-bottom: 1rem; /* Espaciado inferior */
+  }
+
+  p {
+    color: #fff; /* Texto blanco */
+    margin-bottom: 1.5rem; /* Espaciado inferior */
+  }
+
+  form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .auth-box {
-    background-color: #000; /* Fondo negro */
-    border: 3px solid #fce303; /* Borde amarillo */
-    border-radius: 15px; /* Bordes redondeados */
-    padding: 2rem; /* Espaciado interno */
-    width: 90%; /* Ancho del contenedor */
-    max-width: 400px; /* Ancho máximo */
-    text-align: center; /* Centrar texto */
-    box-shadow: 0 0 20px 5px #fce303; /* Sombra amarilla */
-  
-    h2 {
+    flex-direction: column; /* Colocar los elementos en columna */
+    gap: 1rem; /* Espaciado entre los elementos */
+
+    input {
+      padding: 0.8rem; /* Espaciado interno */
+      border: none; /* Sin bordes */
+      border-radius: 5px; /* Bordes redondeados */
+      background-color: #333; /* Fondo gris oscuro */
       color: #fff; /* Texto blanco */
-      margin-bottom: 1rem; /* Espaciado inferior */
     }
-  
-    p {
-      color: #fff; /* Texto blanco */
-      margin-bottom: 1.5rem; /* Espaciado inferior */
-    }
-  
-    form {
-      display: flex;
-      flex-direction: column; /* Colocar los elementos en columna */
-      gap: 1rem; /* Espaciado entre los elementos */
-  
-      input {
-        padding: 0.8rem; /* Espaciado interno */
-        border: none; /* Sin bordes */
-        border-radius: 5px; /* Bordes redondeados */
-        background-color: #333; /* Fondo gris oscuro */
-        color: #fff; /* Texto blanco */
-      }
-  
-      button {
-        padding: 0.8rem; /* Espaciado interno */
-        background-color: #fce303; /* Fondo amarillo */
-        color: #000; /* Texto negro */
-        border: none; /* Sin bordes */
-        border-radius: 5px; /* Bordes redondeados */
-        font-weight: bold; /* Texto en negrita */
-        cursor: pointer; /* Cambiar cursor al pasar el mouse */
-  
-        &:hover {
-          background-color: #e6c800; /* Amarillo más oscuro al pasar el mouse */
-        }
-      }
-    }
-  
-    .auth-links {
-      margin-top: 1rem; /* Espaciado superior */
-  
-      a {
-        color: #fce303; /* Texto amarillo */
-        text-decoration: none; /* Sin subrayado */
-        margin: 0 1rem; /* Espaciado horizontal */
-  
-        &:hover {
-          text-decoration: underline; /* Subrayado al pasar el mouse */
-        }
-      }
-    }
-  
-    .back-arrow {
-      position: absolute;
-      top: 20px; /* Posición desde arriba */
-      left: 20px; /* Posición desde la izquierda */
-      color: #fce303; /* Color amarillo */
-      font-size: 1.5rem; /* Tamaño del texto */
+
+    button {
+      padding: 0.8rem; /* Espaciado interno */
+      background-color: #fce303; /* Fondo amarillo */
+      color: #000; /* Texto negro */
+      border: none; /* Sin bordes */
+      border-radius: 5px; /* Bordes redondeados */
+      font-weight: bold; /* Texto en negrita */
       cursor: pointer; /* Cambiar cursor al pasar el mouse */
+
+      &:hover {
+        background-color: #e6c800; /* Amarillo más oscuro al pasar el mouse */
+      }
     }
   }
-  
-  .btn-volver-home {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1.2rem;
-    background: #fce303;
-    color: #000;
-    border-radius: 6px;
-    font-weight: bold;
-    text-decoration: none;
-    border: none;
-    transition: background 0.2s;
-  
-    &:hover {
-      background: #d9c202;
+
+  .auth-links {
+    margin-top: 1rem; /* Espaciado superior */
+
+    a {
+      color: #fce303; /* Texto amarillo */
+      text-decoration: none; /* Sin subrayado */
+      margin: 0 1rem; /* Espaciado horizontal */
+
+      &:hover {
+        text-decoration: underline; /* Subrayado al pasar el mouse */
+      }
     }
   }
+
+  .back-arrow {
+    position: absolute;
+    top: 20px; /* Posición desde arriba */
+    left: 20px; /* Posición desde la izquierda */
+    color: #fce303; /* Color amarillo */
+    font-size: 1.5rem; /* Tamaño del texto */
+    cursor: pointer; /* Cambiar cursor al pasar el mouse */
+  }
+}
+
+.btn-volver-home {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: #fce303;
+  color: #000;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #d9c202;
+  }
+}

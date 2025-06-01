@@ -40,9 +40,9 @@ router.post('/', async (req, res) => {
       'INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES (?, ?, ?)',
       [idCliente, idProducto, cantidad]
     );
-    res.status(201).json({ message: 'Producto agregado al carrito', idCarrito: result.insertId });
+    return res.status(201).json({ message: 'Producto agregado al carrito', idCarrito: result.insertId });
   } catch (error) {
-    res.status(500).json({ error: 'Error al agregar al carrito' });
+    return res.status(500).json({ error: 'Error al agregar al carrito' });
   }
 });
 

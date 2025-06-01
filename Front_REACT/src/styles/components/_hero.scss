@@ -1,7 +1,5 @@
 
-
 @use '../variables' as v;
-
 
 .hero-horizontal-gallery {
   width: 100%;
@@ -27,8 +25,8 @@
 // Corregido: selector correcto para las imágenes
 .horizontal-scroll-image {
   width: 30vw;
-  max-width: 320px;
-  min-width: 120px;
+  max-width: 320px; // solo una vez
+  min-width: 120px; // solo una vez
   height: 28vh;
   object-fit: cover;
   display: block;
@@ -38,18 +36,19 @@
   margin: 0 1vw;
   background: #111;
   transition: transform 0.3s;
-  max-width: 100%;
-  min-width: 0;
+  // max-width: 100%; // eliminado duplicado
+  // min-width: 0;    // eliminado duplicado
 }
 
 @media (max-width: 900px) {
   .hero-horizontal-gallery {
     height: 22vh;
   }
+
   .horizontal-scroll-image {
     width: 30vw;
-    max-width: 320px;
-    min-width: 120px;
+    max-width: 320px; // solo una vez
+    min-width: 120px; // solo una vez
     height: 28vh;
     object-fit: cover;
     display: block;
@@ -59,8 +58,8 @@
     margin: 0 1vw;
     background: #111;
     transition: transform 0.3s;
-    max-width: 100%;
-    min-width: 0;
+    // max-width: 100%; // eliminado duplicado
+    // min-width: 0;    // eliminado duplicado
   }
 }
 
@@ -204,10 +203,12 @@
       .hero-content.hero-center {
         min-height: 22vh;
       }
+
       .hero-main-image {
         max-width: 90vw;
         padding: 0.5rem;
       }
+
       .hero-scroll-gallery {
         min-height: 80px;
         gap: 0.7rem;

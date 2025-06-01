@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
-import Register from "./pages/register";
-import Login from "./pages/login";
-import Menu from "./pages/menu";
-import ProductosCategoria from "./pages/productosCategoria";
-import Nosotros from "./pages/nosotros";
-import Promociones from "./pages/promociones";
-import Contacto from "./pages/contacto.jsx";
-import CarritoPage from "./pages/carrito";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import axios from "axios";
-import AdminLogin from './pages/adminLogin';
-import AdminPanel from './pages/adminPanel';
-import AdminRoute from './components/AdminRoute';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
+import Home from './pages/home.jsx';
+import Register from './pages/register.jsx';
+import Login from './pages/login.jsx';
+import Menu from './pages/menu.jsx';
+import ProductosCategoria from './pages/productosCategoria.jsx';
+import Nosotros from './pages/nosotros.jsx';
+import Promociones from './pages/promociones.jsx';
+import Contacto from './pages/contacto.jsx';
+import CarritoPage from './pages/carrito.jsx';
+import Header from './components/header.jsx';
+import Footer from './components/footer.jsx';
+import AdminLogin from './pages/adminLogin.jsx';
+import AdminPanel from './pages/adminPanel.jsx';
+import AdminRoute from './components/AdminRoute.jsx';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,7 +32,7 @@ function App() {
     try {
       const res = await axios.get(`http://localhost:5000/api/carrito/${idCliente}`);
       let total = 0;
-      res.data.forEach(item => {
+      res.data.forEach((item) => {
         total += item.cantidad;
       });
       setCartCount(total);
