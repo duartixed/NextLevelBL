@@ -19,10 +19,10 @@ jobs:
           node-version: '14'  # use your desired Node.js version
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build the project
-        run: cd Front_REACT && npm install && npm run build
+        run: cd Front_REACT && npm install --legacy-peer-deps && npm run build
 
       # Copy the built files and server code to the VM using scp.
       - name: Copy files to VM

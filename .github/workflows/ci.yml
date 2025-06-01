@@ -20,19 +20,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Instalar dependencias raíz
         run: |
-          npm install || true
+          npm install --legacy-peer-deps || true
       - name: Lint raíz
         run: |
           npx eslint .
       - name: Instalar dependencias backend
         run: |
-          cd backend && npm install || true
+          cd backend && npm install --legacy-peer-deps || true
       - name: Lint backend
         run: |
           cd backend && npx eslint . -c .eslintrc.json
       - name: Instalar dependencias Front_REACT
         run: |
-          cd Front_REACT && npm install || true
+          cd Front_REACT && npm install --legacy-peer-deps || true
       - name: Lint Front_REACT
         run: |
           cd Front_REACT && npx eslint .

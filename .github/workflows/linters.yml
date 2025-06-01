@@ -18,7 +18,7 @@ jobs:
         run: npm install -g @lhci/cli@0.11.x
       - name: Build Front_REACT
         run: |
-          cd Front_REACT && npm install && npm run build
+          cd Front_REACT && npm install --legacy-peer-deps && npm run build
       - name: Lighthouse Report
         run: lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=Front_REACT/build
   
