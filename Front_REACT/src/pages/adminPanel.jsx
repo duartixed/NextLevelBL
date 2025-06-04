@@ -1,8 +1,13 @@
-import React from 'react';
+
+import React, { useContext } from 'react';
 import AdminProductos from '../components/AdminProductos';
 import '../styles/components/admin.scss';
+import { AuthContext } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const AdminPanel = () => {
+  const { user } = useContext(AuthContext);
+  if (!user || user.rol !== 'admin') return <Navigate to="/" />;
   return (
     <div className="admin-panel">
       <h1>Panel de Administración</h1>

@@ -5,7 +5,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../api/axioInstance';
 import "../styles/components/auth.scss";
 
-const Login = ({ setUser }) => {
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+
+const Login = () => {
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -21,11 +25,12 @@ const Login = ({ setUser }) => {
 
       console.log("Inicio de sesión exitoso:", response.data);
 
-      // Guardar el usuario en el estado global
+      // Guardar el usuario en el estado global y en localStorage
       setUser(response.data.usuario);
+      localStorage.setItem('user', JSON.stringify(response.data.usuario));
 
       // Redirigir al usuario a la página principal
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       if (error.response) {
         console.error("Error del servidor:", error.response.data);

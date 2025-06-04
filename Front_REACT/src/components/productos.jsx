@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { CarritoContext } from '../context/CarritoContext';
 import '../styles/components/_productos.scss';
 import burgers from '../assets/images/burgers.png';
 import drinks from '../assets/Img_front/drinks.png';
@@ -12,6 +14,7 @@ import especiales from '../assets/Img_front/especiales.png';
 const Productos = ({ user, onAddToCart }) => {
   const [categoriaActiva, setCategoriaActiva] = useState('todas');
   const seccionesRef = useRef({});
+  const { agregarAlCarrito } = useContext(CarritoContext);
 
   const productosData = {
     hamburguesas: [
@@ -49,16 +52,32 @@ const Productos = ({ user, onAddToCart }) => {
   };
 
   const categorias = [
-    { id: 'hamburguesas', nombre: 'Hamburguesas', imagen: burgers },
-    { id: 'papas', nombre: 'Papas Fritas', imagen: fries },
-    { id: 'bebidas', nombre: 'Bebidas', imagen: drinks },
-    { id: 'alitas', nombre: 'Alitas', imagen: wings },
-    { id: 'hotdogs', nombre: 'Hot Dogs', imagen: hotdogs },
-    { id: 'entradas', nombre: 'Entradas', imagen: entradas },
-    { id: 'especiales', nombre: 'Especiales', imagen: especiales }
+    { id: 'hamburguesas', nombre: 'Hamburguesas', ruta: '/menu/hamburguesas', imagen: burgers },
+    { id: 'papas', nombre: 'Papas Fritas', ruta: '/menu/papas', imagen: fries },
+    { id: 'bebidas', nombre: 'Bebidas', ruta: '/menu/bebidas', imagen: drinks },
+    { id: 'alitas', nombre: 'Alitas', ruta: '/menu/alitas', imagen: wings },
+    { id: 'hotdogs', nombre: 'Hot Dogs', ruta: '/menu/hotdogs', imagen: hotdogs },
+    { id: 'entradas', nombre: 'Entradas', ruta: '/menu/entradas', imagen: entradas },
+    { id: 'especiales', nombre: 'Especiales', ruta: '/menu/especiales', imagen: especiales }
   ];
 
-  // Función agregarAlCarrito eliminada porque ya no se usa
+
+  // Lógica real para agregar producto al carrito y actualizar contador
+  const handleAddToCart = async (producto) => {
+    try {
+      // Aquí debes ajustar el endpoint y el idCliente según tu backend
+      const idCliente = user?.idCliente || 1;
+      await axios.post(`http://localhost:5000/api/carrito`, {
+        idCliente,
+        idProducto: producto.id,
+        cantidad: 1
+      });
+      if (onAddToCart) onAddToCart(); // Actualiza el contador en el header
+      alert(`Producto agregado al carrito: ${producto.nombre}`);
+    } catch (err) {
+      alert('Error al agregar al carrito');
+    }
+  };
 
   const scrollToSeccion = (categoriaId) => {
     setCategoriaActiva(categoriaId);
@@ -101,12 +120,30 @@ const Productos = ({ user, onAddToCart }) => {
                     <h3>{producto.nombre}</h3>
                     <p className="descripcion">{producto.descripcion}</p>
                     <p className="precio">${producto.precio.toFixed(2)}</p>
-                    {/* Botón eliminado para que solo aparezca en el carrito */}
+                    <button
+                      className="btn-agregar-carrito"
+                      onClick={() => {
+                        handleAddToCart(producto);
+                        agregarAlCarrito({ id: producto.id, nombre: producto.nombre });
+                      }}
+                    >
+                      Agregar al carrito
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
           </section>
+        ))}
+      </div>
+
+      <div className="productos-home">
+        {categorias.map((categoria) => (
+          <div key={categoria.id} className="categoria-card">
+            <Link to={categoria.ruta} className="categoria-frame">
+              <img src={categoria.imagen} alt={categoria.nombre} />
+            </Link>
+          </div>
         ))}
       </div>
     </div>

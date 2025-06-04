@@ -1,3 +1,75 @@
+## Uso de Docker, Docker Compose y Docker Hub
+
+### 1. Requisitos previos
+
+- Tener instalado Docker y Docker Compose.
+- Acceso a Docker Hub (usuario: `dcmendozar`).
+
+### 2. Levantar los servicios
+
+Desde la raíz del proyecto:
+
+```powershell
+docker-compose pull         # Descarga las imágenes más recientes desde Docker Hub
+docker-compose up -d       # Levanta los servicios en segundo plano
+```
+
+Esto inicia:
+- Frontend React (`front_react`) en http://localhost:3000
+- Backend Node.js (`backend`) en http://localhost:4000
+- Base de datos MySQL (`db`) en el puerto 3307
+
+### 3. Monitorear servicios
+
+Ver contenedores activos:
+```powershell
+docker ps
+```
+
+Ver logs de un servicio (ejemplo frontend):
+```powershell
+docker logs front_react
+```
+
+Ver logs del backend:
+```powershell
+docker logs backend
+```
+
+Ver logs de la base de datos:
+```powershell
+docker logs db
+```
+
+### 4. Acceso a los servicios
+
+- **Frontend:** http://localhost:3000
+- **Backend (API):** http://localhost:4000
+- **MySQL:** localhost:3307 (usuario, contraseña y base según `.env`)
+
+### 5. Cambiar variables de entorno
+
+En la carpeta `backend/` puedes alternar entre entornos con:
+
+```powershell
+.\switch-env.ps1 .env.docker   # Para entorno Docker
+.\switch-env.ps1 .env.local    # Para entorno local
+```
+
+### 6. Actualizar imágenes desde Docker Hub
+
+Si hay una nueva versión en Docker Hub:
+```powershell
+docker-compose pull
+docker-compose up -d
+```
+
+### 7. Limpiar contenedores antiguos (opcional)
+
+```powershell
+docker container prune
+docker image prune
+```
 <a name="readme-top"></a>
 
 <div align="center">

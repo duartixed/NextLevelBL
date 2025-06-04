@@ -40,7 +40,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
     // Calcular total
     const nuevoTotal = productos.reduce((sum, producto) => {
       const key = getProductoKey(producto);
-      const precio = producto.precio || 0;
+      const precio = typeof producto.precio === 'number' ? producto.precio : 0;
       const cantidad = producto.cantidad || cantidades[key] || 1;
       return sum + precio * cantidad;
     }, 0);
@@ -79,7 +79,7 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                   <img src={producto.imagen} alt={producto.nombre} />
                   <div className="producto-info">
                     <h3>{producto.nombre}</h3>
-                    <p className="precio">${(producto.precio || 0).toFixed(2)}</p>
+                    <p className="precio">${(typeof producto.precio === 'number' ? producto.precio : 0).toFixed(2)}</p>
                   </div>
                   <div className="cantidad-controles">
                     <button 
@@ -114,7 +114,17 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
               <span>Total:</span>
               <span className="precio-total">${total.toFixed(2)}</span>
             </div>
-            <button className="btn btn-primary btn-pagar" style={{fontSize: '1rem', padding: '6px 18px', borderRadius: '8px'}}>
+            <button
+              className="btn btn-primary btn-pagar"
+              style={{fontSize: '1rem', padding: '6px 18px', borderRadius: '8px'}}
+              onClick={() => {
+                window.open(
+                  '/pago-nequi-info',
+                  '_blank',
+                  'noopener,noreferrer'
+                );
+              }}
+            >
               Proceder al Pago
             </button>
           </div>

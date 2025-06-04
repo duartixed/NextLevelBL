@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { CarritoContext } from '../context/CarritoContext';
 import '../styles/components/_productos.scss';
 
 const categorias = [
@@ -45,41 +46,33 @@ const productosDemo = {
 
 const ProductosCategoria = () => {
   const { categoriaId } = useParams();
+  const { agregarAlCarrito } = useContext(CarritoContext);
   const categoria = categorias.find(c => c.id === categoriaId);
-  const productos = productosDemo[categoriaId] || [];
 
   if (!categoria) {
-    return (
-      <div className="productos-container">
-        <h2>Categoría no encontrada</h2>
-        <Link to="/menu">Volver al menú</Link>
-      </div>
-    );
+    return <p>Categoría no encontrada</p>;
   }
+
+  const productos = productosDemo[categoriaId] || [];
 
   return (
     <div className="productos-container">
-      <h2>{categoria.nombre}</h2>
+      <h1>{categoria.nombre}</h1>
       <div className="productos-grid">
-        {productos.length === 0 ? (
-          <p>No hay productos en esta categoría.</p>
-        ) : (
-          productos.map(producto => (
-            <div key={producto.id} className="producto-card">
-              <div className="producto-imagen">
-                {producto.imagen ? <img src={producto.imagen} alt={producto.nombre} /> : <div className="img-placeholder" />}
-              </div>
-              <div className="producto-info">
-                <h3>{producto.nombre}</h3>
-                <p className="descripcion">{producto.descripcion}</p>
-                <p className="precio">${producto.precio.toLocaleString()}</p>
-                <button className="btn">Agregar al carrito</button>
-              </div>
+        {productos.map(producto => (
+          <div key={producto.id} className="producto-card">
+            <div className="producto-image">
+              <img src={producto.imagen || require('../assets/images/burgers.png')} alt={producto.nombre} />
             </div>
-          ))
-        )}
+            <h3>{producto.nombre}</h3>
+            <p>{producto.descripcion}</p>
+            <p className="producto-precio">${producto.precio.toLocaleString()}</p>
+            <button onClick={() => agregarAlCarrito(producto)} className="btn-agregar-carrito">
+              Agregar al carrito
+            </button>
+          </div>
+        ))}
       </div>
-      <Link to="/menu" className="btn" style={{marginTop: '2rem'}}>Volver al menú</Link>
     </div>
   );
 };

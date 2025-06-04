@@ -1,0 +1,42 @@
+// Estilo para la sección de pagos con Nequi
+.nequi-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.nequi-header {
+  color: #7b1fa2;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.nequi-info {
+  font-size: 1.2rem;
+  max-width: 400px;
+  text-align: center;
+  color: #333;
+}
+
+.nequi-logo {
+  width: 120px;
+  margin-top: 32px;
+}
+
+.nequi-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nequi-button:hover {
+  background-color: #9c27b0;
+}

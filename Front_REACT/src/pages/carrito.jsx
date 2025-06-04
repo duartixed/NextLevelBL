@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api';
 
-const CarritoPage = () => {
+const CarritoPage = ({ fetchCartCount }) => {
   const [productos, setProductos] = useState([]);
   const idCliente = 1; // Simulación, luego conectar con auth
 
@@ -26,6 +26,7 @@ const CarritoPage = () => {
   const handleRemoveFromCart = async (idCarrito) => {
     await axios.delete(`${API_URL}/carrito/${idCarrito}`);
     fetchCarrito();
+    fetchCartCount(); // Actualizar el contador del carrito
   };
 
   // Actualizar cantidad de producto en el carrito

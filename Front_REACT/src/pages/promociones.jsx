@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../styles/components/promociones.scss';
+import { CarritoContext } from '../context/CarritoContext';
 import especiales from '../assets/Img_front/especiales.png';
 
 const Promociones = () => {
+  const { agregarAlCarrito } = useContext(CarritoContext);
+
   const promociones = [
     {
       id: 1,
@@ -41,7 +44,9 @@ const Promociones = () => {
                 <span className="precio-original">${promo.precioOriginal.toFixed(2)}</span>
                 <span className="precio-final">${promo.precio.toFixed(2)}</span>
               </div>
-              <button className="btn-ordenar">Ordenar Ahora</button>
+              <button onClick={() => agregarAlCarrito(promo)} className="btn-agregar-carrito">
+                Agregar al carrito
+              </button>
             </div>
           </div>
         ))}

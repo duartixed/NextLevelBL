@@ -2,7 +2,7 @@
 
 .header {
   background-color: #000;
-  padding: 0.5rem 1.2rem;
+  padding: 0.3rem 1rem; /* Reducir el padding para ajustar la altura */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +15,7 @@
 
   .logo {
     img {
-      height: 44px;
+      height: 36px; /* Reducir el tamaño del logo */
       width: auto;
     }
   }
@@ -25,18 +25,37 @@
     gap: 0.5rem;
     align-items: center;
 
+    button {
+      background: none; /* Eliminar fondo */
+      border: none; /* Eliminar bordes */
+      padding: 0; /* Eliminar padding */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-icon img,
+    .cart-icon img {
+      height: 20px; /* Reducir el tamaño de los iconos */
+      width: 20px;
+      background-color: transparent; /* Fondo transparente */
+      border-radius: 0; /* Eliminar bordes redondeados */
+      box-shadow: none; /* Eliminar cualquier sombra */
+      transition: transform 0.2s ease;
+    }
+
     .cart-icon {
       position: relative;
 
       .cart-count {
         position: absolute;
-        top: -8px;
-        right: -8px;
+        top: -6px;
+        right: -6px;
         background-color: #fce303;
         color: #000;
         border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
+        padding: 2px 5px;
+        font-size: 10px; /* Reducir el tamaño del contador */
         font-weight: bold;
       }
     }
@@ -61,27 +80,24 @@
   .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem; /* Reducir el espacio entre los enlaces */
     margin: 0 auto;
     padding: 0;
     justify-content: center;
-    width: 60%;
-    min-width: 400px;
-    max-width: 900px;
 
     li {
       a {
         text-decoration: none;
         color: #000;
         background-color: #fce303;
-        padding: 0.18rem 0.55rem;
+        padding: 0.15rem 0.5rem; /* Reducir el padding de los enlaces */
         border-radius: 3px;
         font-weight: 600;
-        font-size: 0.91rem;
-        border: 1.2px solid #fce303;
+        font-size: 0.85rem; /* Reducir el tamaño de la fuente */
+        border: 1px solid #fce303;
         transition: all 0.3s ease;
-        min-width: 70px;
-        min-height: 28px;
+        min-width: 60px;
+        min-height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;

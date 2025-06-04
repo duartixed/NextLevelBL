@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"No tests implemented\" && exit 0",
+    "test": "mocha --require esm test/productos.test.mjs",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -26,7 +26,11 @@
     "selenium-webdriver": "^4.31.0"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.2",
     "eslint": "^9.28.0",
+    "esm": "^3.2.25",
+    "mocha": "^11.5.0",
     "nodemon": "^3.1.9"
   }
 }

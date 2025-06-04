@@ -15,6 +15,9 @@ import Footer from './components/footer.jsx';
 import AdminLogin from './pages/adminLogin.jsx';
 import AdminPanel from './pages/adminPanel.jsx';
 import AdminRoute from './components/AdminRoute.jsx';
+import { CarritoProvider } from './context/CarritoContext';
+import PagoNequi from './pages/pagoNequi.jsx';
+import Recibo from './pages/Recibo.jsx';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -49,66 +52,72 @@ function App() {
   // Función para actualizar el contador desde hijos
   const handleAddToCart = () => {
     fetchCartCount();
+    alert('Producto agregado al carrito!');
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <Home user={user} onAddToCart={handleAddToCart} />
-              <Footer />
-            </>
-          } />
-          <Route path="/nosotros" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <Nosotros />
-              <Footer />
-            </>
-          } />
-          <Route path="/promociones" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <Promociones />
-              <Footer />
-            </>
-          } />
-          <Route path="/menu" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <Menu />
-              <Footer />
-            </>
-          } />
-          <Route path="/menu/:categoriaId" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <ProductosCategoria />
-              <Footer />
-            </>
-          } />
-          <Route path="/contacto" element={<Contacto />} />
-          <Route path="/register" element={<Register setUser={setUser} />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/carrito" element={
-            <>
-              <Header user={user} cartCount={cartCount} />
-              <CarritoPage />
-              <Footer />
-            </>
-          } />
-          <Route path="/adminLogin" element={<AdminLogin />} />
-          <Route path="/admin" element={
-            <AdminRoute>
-              <AdminPanel />
-            </AdminRoute>
-          } />
-        </Routes>
-      </div>
-    </Router>
+    <CarritoProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <Home user={user} onAddToCart={handleAddToCart} />
+                <Footer />
+              </>
+            } />
+            <Route path="/nosotros" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <Nosotros />
+                <Footer />
+              </>
+            } />
+            <Route path="/promociones" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <Promociones />
+                <Footer />
+              </>
+            } />
+            <Route path="/menu" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <Menu />
+                <Footer />
+              </>
+            } />
+            <Route path="/menu/:categoriaId" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <ProductosCategoria />
+                <Footer />
+              </>
+            } />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/register" element={<Register setUser={setUser} />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/carrito" element={
+              <>
+                <Header user={user} cartCount={cartCount} />
+                <CarritoPage fetchCartCount={fetchCartCount} />
+                <Footer />
+              </>
+            } />
+            <Route path="/adminLogin" element={<AdminLogin />} />
+            <Route path="/admin" element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>
+            } />
+            <Route path="/pago-nequi" element={<PagoNequi />} />
+            <Route path="/recibo/:idCliente" element={<Recibo />} />
+            <Route path="/pago-nequi-info" element={<PagoNequi />} />
+          </Routes>
+        </div>
+      </Router>
+    </CarritoProvider>
   );
 }
 

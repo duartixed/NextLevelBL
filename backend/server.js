@@ -12,7 +12,7 @@ import carritoRoutes from './routes/carritoRoutes.js'; // ❌ Antes estaba mal
 import productosRoutes from './routes/productosRoutes.js'; // ❌ Antes estaba mal
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Configuración de Middlewares
 app.use(express.json());
@@ -37,6 +37,55 @@ app.get('/test-db', async (req, res) => {
   } catch (error) {
     console.error('❌ Error en la conexión a la base de datos:', error);
     return res.status(500).json({ success: false, message: 'Error en la conexión a la base de datos' });
+  }
+});
+
+// Ruta temporal para inspeccionar datos de la base de datos
+app.get('/inspect-db', async (req, res) => {
+  try {
+    const [productos] = await pool.query('SELECT * FROM Productos');
+    const [carrito] = await pool.query('SELECT * FROM Carrito_de_Compras');
+    res.json({ productos, carrito });
+  } catch (error) {
+    console.error('Error al inspeccionar la base de datos:', error);
+    res.status(500).json({ error: 'Error al inspeccionar la base de datos' });
+  }
+});
+
+// Ruta temporal para eliminar productos incorrectos del carrito
+app.delete('/clean-carrito', async (req, res) => {
+  console.log('Ruta /clean-carrito llamada');
+  try {
+    await pool.query(
+      `DELETE FROM Carrito_de_Compras WHERE idProducto NOT IN (
+        SELECT idProducto FROM Productos
+      )`
+    );
+    res.json({ message: 'Productos incorrectos eliminados del carrito' });
+  } catch (error) {
+    console.error('Error al limpiar el carrito:', error);
+    res.status(500).json({ error: 'Error al limpiar el carrito' });
+  }
+});
+
+// Ruta para generar recibo
+app.get('/generate-receipt/:idCliente', async (req, res) => {
+  try {
+    const { idCliente } = req.params;
+    const [productos] = await pool.query(
+      `SELECT p.nombre, p.precio, c.cantidad
+       FROM Carrito_de_Compras c
+       JOIN Productos p ON c.idProducto = p.idProducto
+       WHERE c.idCliente = ?`,
+      [idCliente]
+    );
+
+    const total = productos.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
+
+    res.json({ productos, total });
+  } catch (error) {
+    console.error('Error al generar el recibo:', error);
+    res.status(500).json({ error: 'Error al generar el recibo' });
   }
 });
 
