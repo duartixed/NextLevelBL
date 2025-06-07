@@ -36,13 +36,13 @@ const Register = () => {
       const data = await response.json();
 
       if (data.success) {
-        alert('✅ Registration successful!');
+        alert('✅ Registro exitoso!');
         navigate("/login");
       } else {
         alert(`❌ Error: ${data.message}`);
       }
     } catch (error) {
-      alert('❌ Error while registering user');
+      alert('❌ Error al registrar el usuario');
       console.error(error);
     }
   };
@@ -52,50 +52,39 @@ const Register = () => {
       <Header />
       <div className="auth-container">
         <div className="auth-box">
-          <button
-            className="boton-flecha-home"
-            style={{ position: 'absolute', top: 30, left: 30, zIndex: 10 }}
-            onClick={() => navigate('/')}
-            title="Volver al inicio"
-          >
-            &#8592;
-          </button>
-          <h2>Create Account</h2>
+          <h2>Crear cuenta</h2>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Nombre completo"
               value={formData.name}
               onChange={handleChange}
             />
             <input
               type="text"
               name="username"
-              placeholder="Username"
+              placeholder="Usuario"
               value={formData.username}
               onChange={handleChange}
             />
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Correo electrónico"
               value={formData.email}
               onChange={handleChange}
             />
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               value={formData.password}
               onChange={handleChange}
             />
-            <button type="submit">Register</button>
-            <Link to="/" className="btn-volver-home">Volver a Home</Link>
+            <button type="submit">Registrarse</button>
           </form>
-          <button onClick={() => navigate("/login")}>
-            Already have an account? Log In
-          </button>
+          <button onClick={() => navigate("/login")}>¿Ya tienes cuenta? Inicia sesión</button>
         </div>
       </div>
       <Footer />

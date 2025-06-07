@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { CarritoContext } from '../context/CarritoContext';
 import '../styles/components/_productos.scss';
 
+
 const categorias = [
   { id: 'hamburguesas', nombre: 'Hamburguesas' },
   { id: 'papas', nombre: 'Papas Fritas' },
@@ -44,16 +45,42 @@ const productosDemo = {
   ]
 };
 
+// Mapeo de nombre demo a idProducto real
+const nombreToIdProducto = {
+  'Clásica': 1,
+  'Doble Queso': 2,
+  'Papas Fritas': 4,
+  'Papas con Queso': 5,
+  'Coca-Cola': 7,
+  'Limonada': 8,
+  'Alitas BBQ': 10,
+  'Alitas Picantes': 11,
+  'Hot Dog Clásico': 13,
+  'Hot Dog Especial': 14,
+  'Nachos': 15,
+  'Aros de Cebolla': 16,
+  'Combo Familiar': 17,
+  'Combo Amigos': 18
+};
+
+
+
 const ProductosCategoria = () => {
+
   const { categoriaId } = useParams();
   const { agregarAlCarrito } = useContext(CarritoContext);
   const categoria = categorias.find(c => c.id === categoriaId);
-
   if (!categoria) {
     return <p>Categoría no encontrada</p>;
   }
+  let productos = productosDemo[categoriaId] || [];
 
-  const productos = productosDemo[categoriaId] || [];
+  function handleAgregarAlCarrito(productoDemo) {
+    // Buscar el idProducto real por nombre demo
+    const idProducto = nombreToIdProducto[productoDemo.nombre] || productoDemo.id;
+    const productoReal = { ...productoDemo, idProducto };
+    agregarAlCarrito(productoReal);
+  }
 
   return (
     <div className="productos-container">
@@ -66,8 +93,8 @@ const ProductosCategoria = () => {
             </div>
             <h3>{producto.nombre}</h3>
             <p>{producto.descripcion}</p>
-            <p className="producto-precio">${producto.precio.toLocaleString()}</p>
-            <button onClick={() => agregarAlCarrito(producto)} className="btn-agregar-carrito">
+            <p className="producto-precio">${producto.precio?.toLocaleString()}</p>
+            <button onClick={() => handleAgregarAlCarrito(producto)} className="btn-agregar-carrito">
               Agregar al carrito
             </button>
           </div>

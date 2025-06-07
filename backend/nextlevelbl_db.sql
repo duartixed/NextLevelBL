@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS Productos (
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL,
-    imagen VARCHAR(255)
+    imagen VARCHAR(255),
+    categoria VARCHAR(50) NOT NULL DEFAULT 'General'
 );
 
 CREATE TABLE IF NOT EXISTS DetalleProductos (
@@ -91,26 +92,26 @@ VALUES
   ('María Gómez', 'maria.gomez@email.com', 'clave_segura_123', 'mariag', '123456789', 'Calle 1', 1),
   ('Carlos Ruiz', 'carlos.ruiz@email.com', 'password_carlos', 'carlosr', '987654321', 'Calle 2', 2);
 
-INSERT INTO Productos (nombre, descripcion, precio, stock, imagen)
+INSERT INTO Productos (nombre, descripcion, precio, stock, imagen, categoria)
 VALUES 
-    ('Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 20, ''),
-    ('Hamburguesa Doble', 'Doble carne, doble queso, bacon y salsa BBQ', 15.00, 20, ''),
-    ('Hamburguesa Especial', 'Carne premium, champiñones, queso suizo', 12.00, 20, ''),
-    ('Papas Clásicas', 'Papas fritas crujientes con sal', 5.00, 30, ''),
-    ('Papas con Queso', 'Papas con queso cheddar derretido', 7.00, 30, ''),
-    ('Papas Supreme', 'Papas con queso, bacon y jalapeños', 8.00, 30, ''),
-    ('Coca-Cola', 'Bebida refrescante 500ml', 3.00, 50, ''),
-    ('Limonada', 'Limonada natural con hierbabuena', 4.00, 50, ''),
-    ('Cerveza', 'Cerveza artesanal', 5.00, 50, ''),
-    ('Alitas BBQ', '8 piezas en salsa BBQ', 12.00, 25, ''),
-    ('Alitas Picantes', '8 piezas en salsa buffalo', 12.00, 25, ''),
-    ('Alitas Teriyaki', '8 piezas en salsa teriyaki', 12.00, 25, ''),
-    ('Hot Dog Clásico', 'Salchicha, mostaza y ketchup', 7.00, 20, ''),
-    ('Hot Dog Especial', 'Salchicha, bacon, queso y cebolla', 9.00, 20, ''),
-    ('Nachos', 'Con guacamole y pico de gallo', 8.00, 15, ''),
-    ('Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 15, ''),
-    ('Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 10, ''),
-    ('Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 10, '');
+    ('Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 20, '', 'hamburguesas'),
+    ('Hamburguesa Doble', 'Doble carne, doble queso, bacon y salsa BBQ', 15.00, 20, '', 'hamburguesas'),
+    ('Hamburguesa Especial', 'Carne premium, champiñones, queso suizo', 12.00, 20, '', 'hamburguesas'),
+    ('Papas Clásicas', 'Papas fritas crujientes con sal', 5.00, 30, '', 'papas'),
+    ('Papas con Queso', 'Papas con queso cheddar derretido', 7.00, 30, '', 'papas'),
+    ('Papas Supreme', 'Papas con queso, bacon y jalapeños', 8.00, 30, '', 'papas'),
+    ('Coca-Cola', 'Bebida refrescante 500ml', 3.00, 50, '', 'bebidas'),
+    ('Limonada', 'Limonada natural con hierbabuena', 4.00, 50, '', 'bebidas'),
+    ('Cerveza', 'Cerveza artesanal', 5.00, 50, '', 'bebidas'),
+    ('Alitas BBQ', '8 piezas en salsa BBQ', 12.00, 25, '', 'alitas'),
+    ('Alitas Picantes', '8 piezas en salsa buffalo', 12.00, 25, '', 'alitas'),
+    ('Alitas Teriyaki', '8 piezas en salsa teriyaki', 12.00, 25, '', 'alitas'),
+    ('Hot Dog Clásico', 'Salchicha, mostaza y ketchup', 7.00, 20, '', 'hotdogs'),
+    ('Hot Dog Especial', 'Salchicha, bacon, queso y cebolla', 9.00, 20, '', 'hotdogs'),
+    ('Nachos', 'Con guacamole y pico de gallo', 8.00, 15, '', 'entradas'),
+    ('Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 15, '', 'entradas'),
+    ('Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 10, '', 'especiales'),
+    ('Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 10, '', 'especiales');
 
 INSERT INTO DetalleProductos (idProducto, especificacion) VALUES 
     (1, '8GB RAM, 512GB SSD'),

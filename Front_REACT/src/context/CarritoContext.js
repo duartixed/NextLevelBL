@@ -27,30 +27,28 @@ export const CarritoProvider = ({ children }) => {
     fetchCartCount();
   }, []);
 
+  // Sincroniza el contador cada vez que el carrito cambia (por si se vacía)
+  useEffect(() => {
+    fetchCartCount();
+  }, [carrito]);
+
   // Agregar producto al carrito
   const agregarAlCarrito = async (producto) => {
     try {
+      const idProducto = producto.idProducto || producto.id;
       await fetch(`http://localhost:5000/api/carrito`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ idCliente, idProducto: producto.id, cantidad: 1 }),
+        body: JSON.stringify({ idCliente, idProducto, cantidad: 1 }),
       });
-
-      setCarrito((prevCarrito) => {
-        const productoExistente = prevCarrito.find((item) => item.id === producto.id);
-        if (productoExistente) {
-          return prevCarrito.map((item) =>
-            item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
-          );
-        } else {
-          return [...prevCarrito, { ...producto, cantidad: 1 }];
-        }
-      });
-
+      // Después de agregar, obtener el carrito real del backend
+      const res = await fetch(`http://localhost:5000/api/carrito/${idCliente}`);
+      const data = await res.json();
+      setCarrito(data);
+      setCartCount(data.reduce((acc, item) => acc + item.cantidad, 0));
       alert(`${producto.nombre} agregado al carrito!`);
-      fetchCartCount(); // Actualizar el contador del carrito en tiempo real
     } catch (error) {
       console.error('Error al agregar al carrito:', error);
     }

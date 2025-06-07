@@ -15,6 +15,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Obtener productos por categoría
+router.get('/categoria/:categoria', async (req, res) => {
+  try {
+    const { categoria } = req.params;
+    const [rows] = await pool.query('SELECT * FROM Productos WHERE categoria = ?', [categoria]);
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener productos por categoría' });
+  }
+});
+
 // Agregar un producto
 router.post('/', authenticateUser, isAdmin, async (req, res) => {
   try {
