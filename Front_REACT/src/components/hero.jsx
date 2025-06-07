@@ -8,61 +8,36 @@ import friesImage from '../assets/Img_front/best fries.png';
 const baseImages = [burgersImage, cokeImage, friesImage];
 const images = [...baseImages, ...baseImages, ...baseImages];
 
-
 const Hero = () => {
   const galleryRef = useRef(null);
-  const animationRef = useRef();
-  // Movimiento infinito: cuando llega al final, vuelve a empezar (efecto carrusel)
   const speed = 1.2; // velocidad más notoria
+
   useEffect(() => {
     const gallery = galleryRef.current;
     let pos = 0;
     let frame;
-    let galleryWidth = 0;
-    let parentWidth = 0;
-
-    const updateSizes = () => {
-      if (gallery) {
-        galleryWidth = gallery.scrollWidth;
-        parentWidth = gallery.clientWidth;
-      }
-    };
-    updateSizes();
-    window.addEventListener('resize', updateSizes);
 
     const animate = () => {
       if (gallery) {
         pos += speed;
-        if (pos >= galleryWidth - parentWidth) {
+        if (pos >= gallery.scrollWidth - gallery.clientWidth) {
           pos = 0; // reinicia para efecto infinito
         }
         gallery.scrollLeft = pos;
       }
       frame = requestAnimationFrame(animate);
     };
+
     frame = requestAnimationFrame(animate);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('resize', updateSizes);
-    };
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
-    <section className="hero" style={{ width: '100vw', minWidth: 0, margin: 0, padding: 0, left: 0, position: 'relative' }}>
-      <div className="hero-content hero-center" style={{ width: '100vw', minWidth: 0, margin: 0, padding: 0, left: 0 }}>
-        <div
-          className="hero-horizontal-gallery hero-glow"
-          ref={galleryRef}
-          style={{ width: '100vw', minWidth: 0, overflow: 'hidden', margin: 0, padding: 0, left: 0 }}
-        >
+    <section className="hero">
+      <div className="hero-content">
+        <div className="hero-horizontal-gallery" ref={galleryRef}>
           {images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`Hero ${idx}`}
-              className="horizontal-scroll-image"
-              style={{ maxWidth: '100%', minWidth: 0 }}
-            />
+            <img key={idx} src={img} alt={`Hero ${idx}`} className="horizontal-scroll-image" />
           ))}
         </div>
       </div>

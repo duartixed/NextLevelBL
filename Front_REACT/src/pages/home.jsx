@@ -1,26 +1,35 @@
 import React from "react";
 import "../styles/components/home.scss";
-
-// Importar componentes
+import { Link } from "react-router-dom";
 import Hero from "../components/hero";
-import Productos from "../components/productos";
 
-import PropTypes from "prop-types";
+const Home = () => {
+  const categorias = [
+    { id: "hamburguesas", nombre: "Hamburguesas", imagen: require("../assets/images/burgers.png") },
+    { id: "papas", nombre: "Papas Fritas", imagen: require("../assets/Img_front/best fries.png") },
+    { id: "bebidas", nombre: "Bebidas", imagen: require("../assets/Img_front/drinks.png") },
+    { id: "alitas", nombre: "Alitas", imagen: require("../assets/Img_front/wings.png") },
+    { id: "hotdogs", nombre: "Hot Dogs", imagen: require("../assets/Img_front/hotdogs.png") },
+    { id: "entradas", nombre: "Entradas", imagen: require("../assets/Img_front/entradas.png") },
+    { id: "especiales", nombre: "Especiales", imagen: require("../assets/Img_front/especiales.png") },
+  ];
 
-const Home = ({ user, onAddToCart }) => {
   return (
     <div className="home">
-      <main>
-        <Hero />
-        <Productos user={user} onAddToCart={onAddToCart} />
+      <Hero />
+
+      <main className="categorias-grid">
+        {categorias.map((categoria) => (
+          <Link to={`/menu/${categoria.id}`} key={categoria.id} className="categoria-card">
+            <div className="categoria-image">
+              <img src={categoria.imagen} alt={categoria.nombre} />
+            </div>
+            <h3>{categoria.nombre}</h3>
+          </Link>
+        ))}
       </main>
     </div>
   );
 };
 
 export default Home;
-
-Home.propTypes = {
-  user: PropTypes.object,
-  onAddToCart: PropTypes.func,
-};

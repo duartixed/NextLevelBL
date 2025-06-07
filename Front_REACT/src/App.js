@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
 import Home from './pages/home.jsx';
 import Register from './pages/register.jsx';
 import Login from './pages/login.jsx';
@@ -33,9 +32,10 @@ function App() {
   // Actualiza el contador del carrito cada vez que cambia
   const fetchCartCount = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/carrito/${idCliente}`);
+      const res = await fetch(`http://localhost:5000/api/carrito/${idCliente}`);
+      const data = await res.json();
       let total = 0;
-      res.data.forEach((item) => {
+      data.forEach((item) => {
         total += item.cantidad;
       });
       setCartCount(total);
@@ -46,75 +46,30 @@ function App() {
 
   useEffect(() => {
     fetchCartCount();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idCliente]);
-
-  // Función para actualizar el contador desde hijos
-  const handleAddToCart = () => {
-    fetchCartCount();
-    alert('Producto agregado al carrito!');
-  };
 
   return (
     <CarritoProvider>
       <Router>
         <div className="App">
+          <Header user={user} cartCount={cartCount} />
           <Routes>
-            <Route path="/" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <Home user={user} onAddToCart={handleAddToCart} />
-                <Footer />
-              </>
-            } />
-            <Route path="/nosotros" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <Nosotros />
-                <Footer />
-              </>
-            } />
-            <Route path="/promociones" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <Promociones />
-                <Footer />
-              </>
-            } />
-            <Route path="/menu" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <Menu />
-                <Footer />
-              </>
-            } />
-            <Route path="/menu/:categoriaId" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <ProductosCategoria />
-                <Footer />
-              </>
-            } />
+            <Route path="/" element={<Home user={user} />} />
+            <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/promociones" element={<Promociones />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/menu/:categoriaId" element={<ProductosCategoria />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/register" element={<Register setUser={setUser} />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/carrito" element={
-              <>
-                <Header user={user} cartCount={cartCount} />
-                <CarritoPage fetchCartCount={fetchCartCount} />
-                <Footer />
-              </>
-            } />
+            <Route path="/carrito" element={<CarritoPage fetchCartCount={fetchCartCount} />} />
             <Route path="/adminLogin" element={<AdminLogin />} />
-            <Route path="/admin" element={
-              <AdminRoute>
-                <AdminPanel />
-              </AdminRoute>
-            } />
+            <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
             <Route path="/pago-nequi" element={<PagoNequi />} />
             <Route path="/recibo/:idCliente" element={<Recibo />} />
             <Route path="/pago-nequi-info" element={<PagoNequi />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </CarritoProvider>

@@ -7,9 +7,11 @@ import createAccountIcon from '../assets/images/create-account-icon.png';
 import cartIcon from '../assets/images/cart-icon.png';
 import adminLoginIcon from '../assets/images/adminlogin.png.png';
 import { AuthContext } from '../context/AuthContext';
+import { CarritoContext } from '../context/CarritoContext';
 
-const Header = ({ cartCount }) => {
+const Header = () => {
   const { user, logout } = useContext(AuthContext);
+  const { cartCount } = useContext(CarritoContext);
   const navigate = useNavigate();
 
   return (

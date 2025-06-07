@@ -1,10 +1,31 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 // Crear el contexto del carrito
 export const CarritoContext = createContext();
 
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const idCliente = 1; // Cambiar según la lógica de autenticación
+
+  // Actualiza el contador del carrito
+  const fetchCartCount = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/carrito/${idCliente}`);
+      const data = await res.json();
+      let total = 0;
+      data.forEach((item) => {
+        total += item.cantidad;
+      });
+      setCartCount(total);
+    } catch (err) {
+      setCartCount(0);
+    }
+  };
+
+  useEffect(() => {
+    fetchCartCount();
+  }, []);
 
   // Agregar producto al carrito
   const agregarAlCarrito = async (producto) => {
@@ -14,7 +35,7 @@ export const CarritoProvider = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ idCliente: 1, idProducto: producto.id, cantidad: 1 }),
+        body: JSON.stringify({ idCliente, idProducto: producto.id, cantidad: 1 }),
       });
 
       setCarrito((prevCarrito) => {
@@ -29,27 +50,14 @@ export const CarritoProvider = ({ children }) => {
       });
 
       alert(`${producto.nombre} agregado al carrito!`);
+      fetchCartCount(); // Actualizar el contador del carrito en tiempo real
     } catch (error) {
       console.error('Error al agregar al carrito:', error);
     }
   };
 
-  // Eliminar producto del carrito
-  const eliminarDelCarrito = (id) => {
-    setCarrito((prevCarrito) => prevCarrito.filter((item) => item.id !== id));
-  };
-
-  // Actualizar cantidad de un producto
-  const actualizarCantidad = (id, cantidad) => {
-    setCarrito((prevCarrito) =>
-      prevCarrito.map((item) =>
-        item.id === id ? { ...item, cantidad } : item
-      )
-    );
-  };
-
   return (
-    <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarDelCarrito, actualizarCantidad }}>
+    <CarritoContext.Provider value={{ carrito, cartCount, agregarAlCarrito, fetchCartCount }}>
       {children}
     </CarritoContext.Provider>
   );

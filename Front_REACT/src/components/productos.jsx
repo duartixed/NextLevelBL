@@ -1,6 +1,5 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { CarritoContext } from '../context/CarritoContext';
 import '../styles/components/_productos.scss';
 import burgers from '../assets/images/burgers.png';
@@ -12,8 +11,6 @@ import entradas from '../assets/Img_front/entradas.png';
 import especiales from '../assets/Img_front/especiales.png';
 
 const Productos = ({ user, onAddToCart }) => {
-  const [categoriaActiva, setCategoriaActiva] = useState('todas');
-  const seccionesRef = useRef({});
   const { agregarAlCarrito } = useContext(CarritoContext);
 
   const productosData = {
@@ -51,101 +48,26 @@ const Productos = ({ user, onAddToCart }) => {
     ]
   };
 
-  const categorias = [
-    { id: 'hamburguesas', nombre: 'Hamburguesas', ruta: '/menu/hamburguesas', imagen: burgers },
-    { id: 'papas', nombre: 'Papas Fritas', ruta: '/menu/papas', imagen: fries },
-    { id: 'bebidas', nombre: 'Bebidas', ruta: '/menu/bebidas', imagen: drinks },
-    { id: 'alitas', nombre: 'Alitas', ruta: '/menu/alitas', imagen: wings },
-    { id: 'hotdogs', nombre: 'Hot Dogs', ruta: '/menu/hotdogs', imagen: hotdogs },
-    { id: 'entradas', nombre: 'Entradas', ruta: '/menu/entradas', imagen: entradas },
-    { id: 'especiales', nombre: 'Especiales', ruta: '/menu/especiales', imagen: especiales }
-  ];
-
-
-  // Lógica real para agregar producto al carrito y actualizar contador
-  const handleAddToCart = async (producto) => {
-    try {
-      // Aquí debes ajustar el endpoint y el idCliente según tu backend
-      const idCliente = user?.idCliente || 1;
-      await axios.post(`http://localhost:5000/api/carrito`, {
-        idCliente,
-        idProducto: producto.id,
-        cantidad: 1
-      });
-      if (onAddToCart) onAddToCart(); // Actualiza el contador en el header
-      alert(`Producto agregado al carrito: ${producto.nombre}`);
-    } catch (err) {
-      alert('Error al agregar al carrito');
-    }
-  };
-
-  const scrollToSeccion = (categoriaId) => {
-    setCategoriaActiva(categoriaId);
-    seccionesRef.current[categoriaId]?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="productos-container">
-      <nav className="categorias-nav">
-        <div className="categorias-grid">
-          {categorias.map((categoria) => (
-            <button
-              key={categoria.id}
-              className={`categoria-card ${categoriaActiva === categoria.id ? 'activa' : ''}`}
-              onClick={() => scrollToSeccion(categoria.id)}
-            >
-              <img src={categoria.imagen} alt={categoria.nombre} />
-              <h3>{categoria.nombre}</h3>
-            </button>
-          ))}
-        </div>
-      </nav>
-
-      <div className="secciones-productos">
-        {categorias.map((categoria) => (
-          <section
-            key={categoria.id}
-            ref={el => seccionesRef.current[categoria.id] = el}
-            className="seccion-productos"
-            id={categoria.id}
-          >
-            <h2>{categoria.nombre}</h2>
-            <div className="productos-grid">
-              {productosData[categoria.id].map((producto) => (
-                <div key={producto.id} className="producto-card">
-                  <div className="producto-imagen">
-                    <img src={producto.imagen} alt={producto.nombre} />
-                  </div>
-                  <div className="producto-info">
-                    <h3>{producto.nombre}</h3>
-                    <p className="descripcion">{producto.descripcion}</p>
-                    <p className="precio">${producto.precio.toFixed(2)}</p>
-                    <button
-                      className="btn-agregar-carrito"
-                      onClick={() => {
-                        handleAddToCart(producto);
-                        agregarAlCarrito({ id: producto.id, nombre: producto.nombre });
-                      }}
-                    >
-                      Agregar al carrito
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-
-      <div className="productos-home">
-        {categorias.map((categoria) => (
-          <div key={categoria.id} className="categoria-card">
-            <Link to={categoria.ruta} className="categoria-frame">
-              <img src={categoria.imagen} alt={categoria.nombre} />
-            </Link>
+    <div className="productos">
+      {Object.values(productosData).flat().map((producto) => (
+        <div key={producto.id} className="producto-card">
+          <div className="producto-imagen">
+            <img src={producto.imagen} alt={producto.nombre} />
           </div>
-        ))}
-      </div>
+          <div className="producto-info">
+            <h3>{producto.nombre}</h3>
+            <p className="descripcion">{producto.descripcion}</p>
+            <p className="precio">${producto.precio.toFixed(2)}</p>
+            <button
+              className="btn-agregar-carrito"
+              onClick={() => agregarAlCarrito(producto)}
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
