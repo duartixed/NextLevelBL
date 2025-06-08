@@ -8,8 +8,9 @@ import { runSqlScript } from './runSqlScript.js';
 
 // Importar rutas
 import authRoutes from './routes/authRoutes.js';
-import carritoRoutes from './routes/carritoRoutes.js'; // ❌ Antes estaba mal
-import productosRoutes from './routes/productosRoutes.js'; // ❌ Antes estaba mal
+import carritoRoutes from './routes/carritoRoutes.js';
+import productosRoutes from './routes/productosRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 const app = express();
 const PORT = 5000;
@@ -23,6 +24,12 @@ app.use(
     credentials: true,
   })
 );
+
+// Montar rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/carrito', carritoRoutes);
+app.use('/api/productos', productosRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Ruta principal
 app.get('/', (req, res) => {
@@ -93,6 +100,7 @@ app.get('/generate-receipt/:idCliente', async (req, res) => {
 app.use('/api/auth', authRoutes); // Registro e inicio de sesión
 app.use('/api/carrito', carritoRoutes); // Gestión del carrito de compras
 app.use('/api/productos', productosRoutes); // CRUD de productos
+app.use('/api/admin', adminRoutes); // Aseguramos que las rutas de admin estén configuradas
 
 // ==========================
 // 🔹 INICIAR EL SERVIDOR

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const AdminRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (!token || !user?.isAdmin) {
-    return <Navigate to="/admin-login" replace />;
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return null;
   }
+
+  if (!user || user.idRol !== 2) {
+    return <Navigate to="/adminLogin" replace />;
+  }
+
   return children;
 };
 

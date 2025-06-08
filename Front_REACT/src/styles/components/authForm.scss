@@ -1,0 +1,141 @@
+@use "../variables" as v;
+
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: calc(100vh - #{v.$header-height + v.$footer-height});
+  background-color: v.$color-black;
+  padding: v.$form-padding;
+
+  .auth-form {
+    background: v.$color-dark;
+    padding: v.$form-padding;
+    border-radius: v.$border-radius;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: v.$shadow-card;
+    border: v.$border-card;
+    position: relative;
+    margin-top: v.$spacing-xl;
+    margin-bottom: v.$spacing-xl;
+
+    h2 {
+      color: v.$color-secondary;
+      text-align: center;
+      margin-bottom: v.$spacing-lg;
+      font-size: v.$font-size-xl;
+      font-weight: bold;
+      font-family: v.$font-family-heading;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      width: 100%;
+      padding: v.$spacing-sm v.$spacing-sm;
+      margin-bottom: v.$spacing-md;
+      border: 1.5px solid v.$color-border;
+      border-radius: v.$border-radius-sm;
+      background-color: v.$color-darker;
+      color: v.$color-light;
+      font-size: v.$font-size-md;
+      font-family: v.$font-family-primary;
+      transition: border-color v.$transition-normal;
+
+      &:focus {
+        outline: none;
+        border-color: v.$color-secondary;
+      }
+
+      &::placeholder {
+        color: #888;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: v.$spacing-sm;
+      background-color: v.$color-secondary;
+      color: v.$color-black;
+      border: none;
+      border-radius: v.$border-radius-sm;
+      font-size: v.$font-size-md;
+      font-weight: bold;
+      font-family: v.$font-family-primary;
+      cursor: pointer;
+      margin-top: v.$spacing-xs;
+      transition: background-color v.$transition-normal;
+
+      &:hover {
+        background-color: v.$color-secondary-dark;
+      }
+
+      &:disabled {
+        background-color: #444;
+        cursor: not-allowed;
+      }
+    }
+
+    .error {
+      color: v.$color-error;
+      text-align: center;
+      margin-bottom: v.$spacing-sm;
+      padding: v.$spacing-xs;
+      background-color: rgba(v.$color-error, 0.1);
+      border-radius: v.$border-radius-sm;
+      font-family: v.$font-family-primary;
+    }
+  }
+
+  .auth-link {
+    margin-top: v.$spacing-lg;
+    text-align: center;
+    width: 100%;
+
+    a,
+    button {
+      display: inline-block;
+      background: v.$color-secondary;
+      color: v.$color-black;
+      font-weight: bold;
+      font-family: v.$font-family-primary;
+      border-radius: v.$border-radius-sm;
+      padding: v.$spacing-xs v.$spacing-md;
+      text-decoration: none;
+      margin: 0 auto;
+      border: none;
+      cursor: pointer;
+      transition: background v.$transition-fast;
+
+      &:hover {
+        background: v.$color-secondary-dark;
+      }
+    }
+  }
+}
+
+@media (max-width: v.$breakpoint-sm) {
+  .auth-form-container {
+    padding: v.$spacing-sm v.$spacing-xs;
+
+    .auth-form {
+      padding: v.$spacing-md v.$spacing-xs;
+
+      h2 {
+        font-size: v.$font-size-lg;
+      }
+
+      input {
+        font-size: v.$font-size-sm;
+        padding: v.$spacing-xs v.$spacing-sm;
+        margin-bottom: v.$spacing-sm;
+      }
+
+      button {
+        padding: v.$spacing-xs;
+        font-size: v.$font-size-sm;
+      }
+    }
+  }
+}

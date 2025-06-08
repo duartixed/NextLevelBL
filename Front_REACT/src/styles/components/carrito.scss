@@ -1,9 +1,44 @@
+@import "../variables";
+
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba($color-secondary, 0.3);
+  }
+  50% {
+    border-color: rgba($color-secondary, 0.8);
+  }
+}
+
+@keyframes glowingBorder {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba($color-secondary, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba($color-secondary, 0.6);
+  }
+}
+
 // --- Selectores globales primero para evitar advertencias de especificidad ---
 
 .carrito-page {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(135deg, $color-black, $color-darker);
+  padding: 2rem;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(45deg, transparent 45%, rgba($color-secondary, 0.03) 50%, transparent 55%),
+      linear-gradient(-45deg, transparent 45%, rgba($color-secondary, 0.03) 50%, transparent 55%);
+    background-size: 20px 20px;
+    opacity: 0.5;
+  }
 }
 
 header {
@@ -51,27 +86,35 @@ header {
 }
 
 .carrito-container {
-  background-color: rgba(0, 0, 0, 0.95);
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 800px;
+  background: rgba($color-darker, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: $border-radius;
+  max-width: 1000px;
   margin: 2rem auto;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba($color-secondary, 0.3);
+  animation: borderPulse 3s infinite;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   h2 {
-    color: #c2fc03;
+    color: $color-secondary;
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-  }
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba($color-secondary, 0.3);
+    position: relative;
 
-  .carrito-vacio {
-    text-align: center;
-    padding: 2rem;
-
-    p {
-      color: #fff;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
+    &::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, $color-secondary, transparent);
+      margin: 1rem auto;
     }
   }
 
@@ -79,75 +122,209 @@ header {
     .producto-carrito {
       display: flex;
       align-items: center;
-      padding: 1rem;
-      border-bottom: 1px solid rgba(252, 227, 3, 0.2);
-      gap: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      background: rgba($color-light, 0.02);
+      border: 1px solid rgba($color-secondary, 0.1);
+      border-radius: $border-radius-sm;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: rgba($color-light, 0.05);
+        border-color: rgba($color-secondary, 0.3);
+        box-shadow: 0 5px 15px rgba($color-secondary, 0.1);
+      }
 
       img {
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: $border-radius-sm;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
 
       .producto-info {
         flex: 1;
+        margin-left: 2rem;
 
         h3 {
-          color: #fff;
+          color: $color-light;
+          font-size: 1.4rem;
           margin-bottom: 0.5rem;
+          font-weight: 600;
         }
 
         .precio {
-          color: #fce303;
+          color: $color-secondary;
+          font-size: 1.3rem;
           font-weight: bold;
+          text-shadow: 0 0 10px rgba($color-secondary, 0.3);
         }
       }
 
       .cantidad-controles {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
+        margin-left: 2rem;
 
         .btn-cantidad {
-          background-color: #fce303;
-          color: #000;
+          width: 40px;
+          height: 40px;
           border: none;
-          width: 30px;
-          height: 30px;
           border-radius: 50%;
-          cursor: pointer;
+          font-size: 1.2rem;
           font-weight: bold;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          
+          // Efecto de dos colores
+          background: linear-gradient(45deg, darken($color-secondary, 15%), $color-secondary);
+          color: $color-black;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba($color-light, 0.2),
+              transparent
+            );
+            transition: 0.5s;
+          }
 
           &:hover {
-            background-color: darken(#fce303, 10%);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba($color-secondary, 0.4);
+
+            &::before {
+              left: 100%;
+            }
           }
         }
 
         span {
-          color: #fff;
-          min-width: 30px;
+          color: $color-light;
+          font-size: 1.2rem;
+          min-width: 40px;
           text-align: center;
+          font-weight: 500;
         }
       }
-
-      /* .btn-eliminar y .btn-eliminar:hover globales */
     }
   }
 
   .carrito-footer {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 2px solid #fce303;
-  }
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba($color-secondary, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  /* .total y .precio-total globales */
+    .total {
+      font-size: 1.5rem;
+      color: $color-light;
+
+      .precio-total {
+        color: $color-secondary;
+        font-weight: bold;
+        font-size: 2rem;
+        text-shadow: 0 0 10px rgba($color-secondary, 0.3);
+        margin-left: 1rem;
+      }
+    }
+  }
 }
 
-/* .btn-pagar global */
+.btn-pagar {
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Efecto de dos colores en el botón
+  background: linear-gradient(45deg, darken($color-secondary, 20%), $color-secondary);
+  color: $color-black;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-light, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba($color-secondary, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+.carrito-vacio {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $color-light;
+
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .btn-volver-menu {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, darken($color-secondary, 15%), $color-secondary);
+    color: $color-black;
+    text-decoration: none;
+    border-radius: $border-radius-sm;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba($color-secondary, 0.3);
+    }
+  }
+}
 
 .carrito-contenido {
   flex: 1;
@@ -155,16 +332,6 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-}
-
-.btn-volver-menu {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #ff5722;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
 }
 
 .lista-carrito {
@@ -282,16 +449,6 @@ header {
 .btn-vaciar:hover {
   background: #ffe066;
   color: #222;
-}
-
-.btn-pagar {
-  padding: 0.5rem 1rem;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  text-align: center;
 }
 
 footer {

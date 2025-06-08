@@ -4,67 +4,131 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: v.$color-fondo;
+  min-height: calc(100vh - #{v.$header-height + v.$footer-height});
+  background-color: v.$color-black;
+  padding: v.$spacing-sm 0;
 
   .containerForm {
-    background-color: v.$color-menu;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: v.$color-dark;
+    padding: v.$spacing-sm v.$spacing-md;
+    border-radius: v.$border-radius;
+    box-shadow: v.$shadow-card;
+    border: v.$border-card;
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
 
     h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-      color: v.$color-texto;
+      margin-bottom: v.$spacing-sm;
+      font-size: 1.5rem;
+      color: v.$color-secondary;
+      font-family: v.$font-family-heading;
+      font-weight: bold;
     }
 
     form {
       display: flex;
       flex-direction: column;
+      gap: v.$spacing-xs;
 
       fieldset {
         border: none;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
+        padding: 0;
+        margin: 0;
 
-        label {
-          margin-bottom: 0.5rem;
-          font-weight: bold;
-          color: v.$color-font;
+        legend {
+          color: v.$color-light;
+          font-size: 0.9rem;
+          margin-bottom: 0.25rem;
         }
 
         input {
-          padding: 0.5rem;
-          font-size: 1rem;
-          border: 1px solid rgba(v.$color-font, 0.5);
-          border-radius: 6px;
-          transition: border-color 0.3s;
+          width: 100%;
+          padding: 0.5rem 0.75rem;
+          margin-bottom: 0.5rem;
+          border: 1.5px solid v.$color-border;
+          border-radius: v.$border-radius-sm;
+          background-color: v.$color-darker;
+          color: v.$color-light;
+          font-size: 0.9rem;
+          font-family: v.$font-family-primary;
+          transition: border-color v.$transition-normal;
+          height: 36px;
 
           &:focus {
-            border-color: v.$color-secondary;
             outline: none;
+            border-color: v.$color-secondary;
+          }
+
+          &::placeholder {
+            color: #888;
+            font-size: 0.85rem;
           }
         }
       }
 
       button {
-        margin-top: 1rem;
-        padding: 0.75rem;
-        font-size: 1rem;
+        width: 100%;
+        padding: 0.5rem;
         background-color: v.$color-secondary;
-        color: white;
+        color: v.$color-black;
         border: none;
-        border-radius: 6px;
+        border-radius: v.$border-radius-sm;
+        font-size: 0.9rem;
+        font-weight: bold;
+        font-family: v.$font-family-primary;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color v.$transition-normal;
+        height: 36px;
+        margin-top: 0.25rem;
 
         &:hover {
-          background-color: darken(v.$color-secondary, 10%);
+          background-color: v.$color-secondary-dark;
+        }
+
+        &:disabled {
+          background-color: #444;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: v.$breakpoint-sm) {
+  .container {
+    padding: 0.5rem;
+
+    .containerForm {
+      padding: 1rem;
+      margin: 0.5rem;
+      max-width: 320px;
+
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      form {
+        gap: 0.25rem;
+
+        fieldset {
+          legend {
+            font-size: 0.85rem;
+          }
+
+          input {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 0.4rem;
+            height: 34px;
+          }
+        }
+
+        button {
+          height: 34px;
+          padding: 0.4rem;
+          font-size: 0.85rem;
         }
       }
     }

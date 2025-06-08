@@ -1,47 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Carrito from '../components/carrito.tsx';
+import Footer from '../components/footer.jsx';
 import axios from 'axios';
+import { CarritoContext } from '../context/CarritoContext';
+import { AuthContext } from '../context/AuthContext';
+import '../styles/components/carrito.scss';
 
 const API_URL = 'http://localhost:5000/api';
 
-const CarritoPage = ({ fetchCartCount }) => {
-  const [productos, setProductos] = useState([]);
-  const idCliente = 1; // Simulación, luego conectar con auth
-
-  // Obtener productos del carrito desde el backend
-  const fetchCarrito = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/carrito/${idCliente}`);
-      setProductos(res.data);
-    } catch (err) {
-      setProductos([]);
-    }
-  };
-
-  useEffect(() => {
-    fetchCarrito();
-  }, []);
+const CarritoPage = () => {
+  const { carrito, fetchCartCount } = useContext(CarritoContext);
+  const { user } = useContext(AuthContext);
+  const idCliente = user ? user.idCliente : 1;
 
   // Eliminar producto del carrito
   const handleRemoveFromCart = async (idCarrito) => {
-    await axios.delete(`${API_URL}/carrito/${idCarrito}`);
-    fetchCarrito();
-    fetchCartCount(); // Actualizar el contador del carrito
+    try {
+      await axios.delete(`${API_URL}/carrito/${idCarrito}`);
+      await fetchCartCount();
+    } catch (error) {
+      console.error('Error al eliminar del carrito:', error);
+    }
   };
 
   // Actualizar cantidad de producto en el carrito
   const handleUpdateQuantity = async (idCarrito, cantidad) => {
-    await axios.put(`${API_URL}/carrito/${idCarrito}`, { cantidad });
-    fetchCarrito();
+    try {
+      await axios.put(`${API_URL}/carrito/${idCarrito}`, { cantidad });
+      await fetchCartCount();
+    } catch (error) {
+      console.error('Error al actualizar cantidad:', error);
+    }
   };
 
   return (
-    <div className="carrito-page">
+    <div className="carrito-container">
       <Carrito 
-        productos={productos} 
-        onRemoveFromCart={handleRemoveFromCart} 
-        onUpdateQuantity={handleUpdateQuantity} 
+        productos={carrito}
+        onRemoveFromCart={handleRemoveFromCart}
+        onUpdateQuantity={handleUpdateQuantity}
       />
+      <Footer />
     </div>
   );
 };

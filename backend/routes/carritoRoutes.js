@@ -22,8 +22,17 @@ router.get('/:idCliente', async (req, res) => {
 
 // Agregar producto al carrito (si ya existe suma cantidad)
 router.post('/', async (req, res) => {
+  console.log('🛒 POST /api/carrito - Iniciando request');
   try {
+    console.log('📦 Datos recibidos:', req.body);
     const { idCliente, idProducto, cantidad } = req.body;
+
+    if (!idCliente || !idProducto || !cantidad) {
+      console.error('❌ Datos incompletos:', { idCliente, idProducto, cantidad });
+      return res.status(400).json({ error: 'Faltan datos requeridos' });
+    }
+    
+    console.log('🔍 Verificando producto existente para:', { idCliente, idProducto });
     // Verificar si ya existe ese producto en el carrito
     const [exist] = await pool.query(
       'SELECT * FROM Carrito_de_Compras WHERE idCliente = ? AND idProducto = ?',

@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
+import axiosInstance from '../api/axioInstance';
 import "../styles/components/auth.scss";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    username: '',
+    nombre: '',
+    usuario: '',
     email: '',
-    password: ''
+    contraseña: ''
   });
-
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,68 +25,78 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
+      const response = await axiosInstance.post('/api/auth/register', formData);
+      if (response.data) {
         alert('✅ Registro exitoso!');
         navigate("/login");
-      } else {
-        alert(`❌ Error: ${data.message}`);
       }
     } catch (error) {
-      alert('❌ Error al registrar el usuario');
-      console.error(error);
+      setError(error.response?.data?.error || '❌ Error al registrar el usuario');
+      console.error('Error en registro:', error.response?.data || error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
       <Header />
-      <div className="auth-container">
-        <div className="auth-box">
-          <h2>Crear cuenta</h2>
+      <div className="auth-page">
+        <div className="auth-container">
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Nombre completo"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="username"
-              placeholder="Usuario"
-              value={formData.username}
-              onChange={handleChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button type="submit">Registrarse</button>
+            <h2>Crear Cuenta</h2>
+            <div className="form-group">
+              <label>Nombre</label>
+              <input
+                type="text"
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Usuario</label>
+              <input
+                type="text"
+                name="usuario"
+                value={formData.usuario}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Correo Electrónico</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                name="contraseña"
+                value={formData.contraseña}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {error && <div className="error-message">{error}</div>}
+            <button className="submit-btn" type="submit" disabled={loading}>
+              {loading ? 'Registrando...' : 'Crear Cuenta'}
+            </button>
+            <div className="auth-links">
+              <Link to="/login">¿Ya tienes cuenta? Inicia sesión</Link>
+            </div>
           </form>
-          <button onClick={() => navigate("/login")}>¿Ya tienes cuenta? Inicia sesión</button>
         </div>
       </div>
       <Footer />

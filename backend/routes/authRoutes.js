@@ -47,33 +47,68 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { correo, contraseña } = req.body;
+    console.log('Datos recibidos:', { correo, contraseña }); // Debug
 
     // Validar que ambos campos estén presentes
     if (!correo || !contraseña) {
+      console.log('Faltan campos'); // Debug
       return res.status(400).json({ error: 'El correo y la contraseña son obligatorios' });
     }
 
     // Buscar al usuario en la base de datos
-    const [rows] = await pool.query('SELECT * FROM Clientes WHERE email = ?', [correo]);
+    const [rows] = await pool.query(
+      'SELECT c.*, r.nombre_rol FROM Clientes c JOIN Roles r ON c.idRol = r.idRol WHERE c.email = ?',
+      [correo]
+    );
+    
+    console.log('Usuario encontrado:', rows[0]); // Debug
 
     if (rows.length === 0) {
+      console.log('Usuario no encontrado'); // Debug
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
     const user = rows[0];
 
-    // Comparar la contraseña ingresada con la almacenada
-    const isMatch = await bcrypt.compare(contraseña, user.contraseña);
-    if (!isMatch) {
+    // Para el administrador, verificar la contraseña en texto plano
+    if (user.idRol === 2 && contraseña === '12345') {
+      // Es administrador y la contraseña es correcta
+      const token = jwt.sign(
+        { idCliente: user.idCliente, idRol: user.idRol },
+        process.env.JWT_SECRET || 'tu_secreto_seguro',
+        { expiresIn: '1h' }
+      );
+
+      console.log('Login administrador exitoso'); // Debug
+      return res.json({
+        message: 'Inicio de sesión exitoso',
+        token,
+        usuario: {
+          idCliente: user.idCliente,
+          nombre: user.nombre,
+          email: user.email,
+          idRol: user.idRol,
+          isAdmin: true,
+          rol: user.nombre_rol
+        }
+      });
+    }
+
+    // Para clientes regulares, verificar la contraseña hasheada
+    const validPassword = user.contraseña === contraseña || await bcrypt.compare(contraseña, user.contraseña);
+    
+    if (!validPassword) {
+      console.log('Contraseña incorrecta'); // Debug
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    // Generar un token JWT
     const token = jwt.sign(
       { idCliente: user.idCliente, idRol: user.idRol },
       process.env.JWT_SECRET || 'tu_secreto_seguro',
       { expiresIn: '1h' }
     );
+
+    console.log('Login cliente exitoso'); // Debug
 
     return res.json({
       message: 'Inicio de sesión exitoso',
@@ -83,12 +118,13 @@ router.post('/login', async (req, res) => {
         nombre: user.nombre,
         email: user.email,
         idRol: user.idRol,
-        isAdmin: user.isAdmin === 1 || user.idRol === 2 // Soporte para ambos campos
-      },
+        isAdmin: user.idRol === 2,
+        rol: user.nombre_rol
+      }
     });
   } catch (error) {
-    console.error('Error en el inicio de sesión:', error);
-    return res.status(500).json({ error: 'Error en el inicio de sesión' });
+    console.error('Error en login:', error);
+    return res.status(500).json({ error: 'Error en el servidor' });
   }
 });
 

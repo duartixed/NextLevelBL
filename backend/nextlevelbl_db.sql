@@ -1,11 +1,13 @@
--- BASE DE DATO PARA NEXTLEVELBL
+-- BASE DE DATOS PARA NEXTLEVELBL
 -- =============================
-CREATE DATABASE IF NOT EXISTS nextlevelbl;
+DROP DATABASE IF EXISTS nextlevelbl;
+CREATE DATABASE nextlevelbl;
 USE nextlevelbl;
 
 -- =============================
--- TABLAS PRINCIPALEs
+-- TABLAS PRINCIPALES
 -- =============================
+
 CREATE TABLE IF NOT EXISTS Roles (
     idRol INT AUTO_INCREMENT PRIMARY KEY,
     nombre_rol VARCHAR(50) NOT NULL
@@ -82,134 +84,129 @@ CREATE TABLE IF NOT EXISTS ProcesoPago (
 );
 
 -- =============================
--- DATOS DE PRUEBA
--- =============================
-
--- Usuarios de prueba: uno cliente, uno admin
-INSERT IGNORE INTO Roles (idRol, nombre_rol) VALUES (1, 'Cliente'), (2, 'Administrador');
--- Elimina los datos de prueba para evitar advertencias de duplicados
-DELETE FROM Clientes WHERE email IN ('maria.gomez@email.com', 'carlos.ruiz@email.com');
-INSERT IGNORE INTO Clientes (idCliente, nombre, email, contraseña, usuario, telefono, direccion, idRol)
-VALUES 
-  (1, 'María Gómez', 'maria.gomez@email.com', 'clave_segura_123', 'mariag', '123456789', 'Calle 1', 1),
-  (2, 'Carlos Ruiz', 'carlos.ruiz@email.com', 'password_carlos', 'carlosr', '987654321', 'Calle 2', 2);
-
-
--- Elimina los productos de prueba para evitar advertencias de duplicados y columna
-DELETE FROM Productos WHERE nombre IN (
-    'Hamburguesa Clásica', 'Hamburguesa Doble', 'Hamburguesa Especial',
-    'Papas Clásicas', 'Papas con Queso', 'Papas Supreme',
-    'Coca-Cola', 'Limonada', 'Cerveza',
-    'Alitas BBQ', 'Alitas Picantes', 'Alitas Teriyaki',
-    'Hot Dog Clásico', 'Hot Dog Especial',
-    'Nachos', 'Aros de Cebolla',
-    'Combo Familiar', 'Combo Amigos'
-);
-INSERT IGNORE INTO Productos (idProducto, nombre, descripcion, precio, stock, imagen, categoria)
-VALUES 
-    (1, 'Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 20, '', 'hamburguesas'),
-    (2, 'Hamburguesa Doble', 'Doble carne, doble queso, bacon y salsa BBQ', 15.00, 20, '', 'hamburguesas'),
-    (3, 'Hamburguesa Especial', 'Carne premium, champiñones, queso suizo', 12.00, 20, '', 'hamburguesas'),
-    (4, 'Papas Clásicas', 'Papas fritas crujientes con sal', 5.00, 30, '', 'papas'),
-    (5, 'Papas con Queso', 'Papas con queso cheddar derretido', 7.00, 30, '', 'papas'),
-    (6, 'Papas Supreme', 'Papas con queso, bacon y jalapeños', 8.00, 30, '', 'papas'),
-    (7, 'Coca-Cola', 'Bebida refrescante 500ml', 3.00, 50, '', 'bebidas'),
-    (8, 'Limonada', 'Limonada natural con hierbabuena', 4.00, 50, '', 'bebidas'),
-    (9, 'Cerveza', 'Cerveza artesanal', 5.00, 50, '', 'bebidas'),
-    (10, 'Alitas BBQ', '8 piezas en salsa BBQ', 12.00, 25, '', 'alitas'),
-    (11, 'Alitas Picantes', '8 piezas en salsa buffalo', 12.00, 25, '', 'alitas'),
-    (12, 'Alitas Teriyaki', '8 piezas en salsa teriyaki', 12.00, 25, '', 'alitas'),
-    (13, 'Hot Dog Clásico', 'Salchicha, mostaza y ketchup', 7.00, 20, '', 'hotdogs'),
-    (14, 'Hot Dog Especial', 'Salchicha, bacon, queso y cebolla', 9.00, 20, '', 'hotdogs'),
-    (15, 'Nachos', 'Con guacamole y pico de gallo', 8.00, 15, '', 'entradas'),
-    (16, 'Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 15, '', 'entradas'),
-    (17, 'Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 10, '', 'especiales'),
-    (18, 'Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 10, '', 'especiales');
-
-
--- (Elimina o ajusta los inserts de prueba que referencian ids inexistentes)
-
--- INSERTS DE PRUEBA SOLO SI LOS IDS EXISTEN
--- INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES (1, 1, 1);
--- INSERT INTO DetalleProductos (idProducto, especificacion) VALUES (1, 'Ejemplo');
--- INSERT INTO Ventas (idCliente, total) VALUES (1, 2500.00);
--- INSERT INTO DetalleVentas (idVenta, idProducto, cantidad, subtotal) VALUES (1, 1, 1, 2500.00);
-
-
-INSERT IGNORE INTO MetodosPago (idMetodoPago, metodo) VALUES 
-    (1, 'Tarjeta de Crédito'),
-    (2, 'PayPal'),
-    (3, 'Transferencia Bancaria');
-
-
-INSERT IGNORE INTO ProcesoPago (idPago, idVenta, idMetodoPago, estado) VALUES 
-    (1, 1, 1, 'Completado'),
-    (2, 2, 2, 'Pendiente');
-
--- Limpia el carrito y agrega productos válidos para pruebas
-DELETE FROM Carrito_de_Compras;
-
--- Agrega productos reales al carrito del cliente 1
-INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES
-    (1, 1, 2),  -- Hamburguesa Clásica
-    (1, 4, 1),  -- Papas Clásicas
-    (1, 7, 2),  -- Coca-Cola
-    (1, 10, 1), -- Alitas BBQ
-    (1, 13, 1), -- Hot Dog Clásico
-    (1, 17, 1); -- Combo Familiar
-
--- =============================
 -- PROCEDIMIENTOS ALMACENADOS
 -- =============================
 
--- Procedimientos almacenados (sin DELIMITER, solo para ejecución manual en Workbench)
--- CREATE PROCEDURE InsertarCliente(
---     IN p_nombre VARCHAR(100), 
---     IN p_email VARCHAR(100), 
---     IN p_contraseña VARCHAR(255), 
---     IN p_usuario VARCHAR(100),
---     IN p_telefono VARCHAR(20), 
---     IN p_direccion TEXT, 
---     IN p_idRol INT
--- )
--- BEGIN
---     INSERT INTO Clientes (nombre, email, contraseña, usuario, telefono, direccion, idRol)
---     VALUES (p_nombre, p_email, p_contraseña, p_usuario, p_telefono, p_direccion, p_idRol);
--- END;
+-- Procedimiento para insertar cliente
+DROP PROCEDURE IF EXISTS InsertarCliente;
+DELIMITER $$
+CREATE PROCEDURE InsertarCliente(
+    IN p_nombre VARCHAR(100), 
+    IN p_email VARCHAR(100), 
+    IN p_contraseña VARCHAR(255), 
+    IN p_usuario VARCHAR(100),
+    IN p_telefono VARCHAR(20), 
+    IN p_direccion TEXT, 
+    IN p_idRol INT
+)
+BEGIN
+    INSERT INTO Clientes (nombre, email, contraseña, usuario, telefono, direccion, idRol)
+    VALUES (p_nombre, p_email, p_contraseña, p_usuario, p_telefono, p_direccion, p_idRol);
+END$$
+DELIMITER ;
 
--- CREATE PROCEDURE EliminarProducto(IN p_idProducto INT)
--- BEGIN
---     DELETE FROM Productos WHERE idProducto = p_idProducto;
--- END;
+-- Procedimiento para eliminar producto
+DROP PROCEDURE IF EXISTS EliminarProducto;
+DELIMITER $$
+CREATE PROCEDURE EliminarProducto(IN p_idProducto INT)
+BEGIN
+    DELETE FROM Productos WHERE idProducto = p_idProducto;
+END$$
+DELIMITER ;
+
+-- Procedimiento para actualizar stock
+DROP PROCEDURE IF EXISTS ActualizarStock;
+DELIMITER $$
+CREATE PROCEDURE ActualizarStock(
+    IN p_idProducto INT,
+    IN p_cantidad INT
+)
+BEGIN
+    UPDATE Productos 
+    SET stock = stock - p_cantidad
+    WHERE idProducto = p_idProducto;
+END$$
+DELIMITER ;
 
 -- =============================
 -- TRIGGERS
 -- =============================
 
--- Triggers (sin DELIMITER, solo para ejecución manual en Workbench)
--- CREATE TRIGGER actualizar_stock
--- AFTER INSERT ON DetalleVentas
--- FOR EACH ROW
--- BEGIN
---     UPDATE Productos 
---     SET stock = stock - NEW.cantidad
---     WHERE idProducto = NEW.idProducto;
--- END;
+-- Trigger para actualizar stock después de una venta
+DROP TRIGGER IF EXISTS actualizar_stock;
+DELIMITER $$
+CREATE TRIGGER actualizar_stock
+AFTER INSERT ON DetalleVentas
+FOR EACH ROW
+BEGIN
+    CALL ActualizarStock(NEW.idProducto, NEW.cantidad);
+END$$
+DELIMITER ;
 
--- CREATE TRIGGER verificar_stock
--- BEFORE INSERT ON DetalleVentas
--- FOR EACH ROW
--- BEGIN
---     DECLARE stock_actual INT;
---     SELECT stock INTO stock_actual FROM Productos WHERE idProducto = NEW.idProducto;
---     IF stock_actual < NEW.cantidad THEN
---         SIGNAL SQLSTATE '45000'
---         SET MESSAGE_TEXT = 'Stock insuficiente';
---     END IF;
--- END;
+-- Trigger para verificar stock antes de una venta
+DROP TRIGGER IF EXISTS verificar_stock;
+DELIMITER $$
+CREATE TRIGGER verificar_stock
+BEFORE INSERT ON DetalleVentas
+FOR EACH ROW
+BEGIN
+    DECLARE stock_actual INT;
+    SELECT stock INTO stock_actual 
+    FROM Productos 
+    WHERE idProducto = NEW.idProducto;
+    
+    IF stock_actual < NEW.cantidad THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock insuficiente';
+    END IF;
+END$$
+DELIMITER ;
 
--- Índices para optimización de consultas
--- Índices (si ya existen, MySQL solo dará una advertencia, no error crítico)
+-- =============================
+-- DATOS INICIALES
+-- =============================
+
+-- 1. Insertar roles primero
+INSERT INTO Roles (nombre_rol) VALUES ('Cliente'), ('Administrador');
+
+-- 2. Insertar administradores principales con contraseñas hasheadas
+-- La contraseña '12345' hasheada con bcrypt (10 rounds)
+INSERT INTO Clientes (nombre, email, contraseña, usuario, telefono, idRol)
+VALUES 
+  ('Daniel Mendoza', 'dcmendozar@gmail.com', '$2a$10$8HXzPWR5JxEBuq0s1eHzZutxO1uL3ZpdzRp9w32f9qV0St5iXPf0y', 'dcmendozar', '3001234567', 2),
+  ('Kevin Rodriguez', 'kevinrodriguez019@hotmail.com', '$2a$10$8HXzPWR5JxEBuq0s1eHzZutxO1uL3ZpdzRp9w32f9qV0St5iXPf0y', 'kevinr', '3009876543', 2);
+
+-- 3. Insertar productos
+INSERT INTO Productos (nombre, descripcion, precio, stock, imagen, categoria)
+VALUES 
+    ('Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 20, '', 'hamburguesas'),
+    ('Hamburguesa Doble', 'Doble carne, doble queso, bacon y salsa BBQ', 15.00, 20, '', 'hamburguesas'),
+    ('Hamburguesa Especial', 'Carne premium, champiñones, queso suizo', 12.00, 20, '', 'hamburguesas'),
+    ('Papas Clásicas', 'Papas fritas crujientes con sal', 5.00, 30, '', 'papas'),
+    ('Papas con Queso', 'Papas con queso cheddar derretido', 7.00, 30, '', 'papas'),
+    ('Papas Supreme', 'Papas con queso, bacon y jalapeños', 8.00, 30, '', 'papas'),
+    ('Coca-Cola', 'Bebida refrescante 500ml', 3.00, 50, '', 'bebidas'),
+    ('Limonada', 'Limonada natural con hierbabuena', 4.00, 50, '', 'bebidas'),
+    ('Cerveza', 'Cerveza artesanal', 5.00, 50, '', 'bebidas'),
+    ('Alitas BBQ', '8 piezas en salsa BBQ', 12.00, 25, '', 'alitas'),
+    ('Alitas Picantes', '8 piezas en salsa buffalo', 12.00, 25, '', 'alitas'),
+    ('Alitas Teriyaki', '8 piezas en salsa teriyaki', 12.00, 25, '', 'alitas'),
+    ('Hot Dog Clásico', 'Salchicha, mostaza y ketchup', 7.00, 20, '', 'hotdogs'),
+    ('Hot Dog Especial', 'Salchicha, bacon, queso y cebolla', 9.00, 20, '', 'hotdogs'),
+    ('Nachos', 'Con guacamole y pico de gallo', 8.00, 15, '', 'entradas'),
+    ('Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 15, '', 'entradas'),
+    ('Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 10, '', 'especiales'),
+    ('Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 10, '', 'especiales');
+
+-- 4. Insertar métodos de pago
+INSERT INTO MetodosPago (metodo) VALUES 
+    ('Tarjeta de Crédito'),
+    ('PayPal'),
+    ('Transferencia Bancaria');
+
+-- =============================
+-- ÍNDICES PARA OPTIMIZACIÓN
+-- =============================
 CREATE INDEX idx_carrito_cliente ON Carrito_de_Compras(idCliente);
 CREATE INDEX idx_ventas_cliente ON Ventas(idCliente);
 CREATE INDEX idx_detalleventas_venta ON DetalleVentas(idVenta);

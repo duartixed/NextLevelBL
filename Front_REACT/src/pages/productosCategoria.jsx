@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { CarritoContext } from '../context/CarritoContext';
 import '../styles/components/_productos.scss';
-
 
 const categorias = [
   { id: 'hamburguesas', nombre: 'Hamburguesas' },
@@ -14,17 +13,11 @@ const categorias = [
   { id: 'especiales', nombre: 'Especiales' }
 ];
 
-
-
-
-
 const ProductosCategoria = () => {
-
-
   const { categoriaId } = useParams();
-  const { agregarAlCarrito } = useContext(CarritoContext);
   const [productos, setProductos] = useState([]);
   const [categoria, setCategoria] = useState(null);
+  const { fetchCartCount } = useContext(CarritoContext);
 
   useEffect(() => {
     const cat = categorias.find(c => c.id === categoriaId);
@@ -33,29 +26,44 @@ const ProductosCategoria = () => {
       setProductos([]);
       return;
     }
-    async function fetchProductos() {
-      try {
-        const res = await fetch(`http://localhost:5000/api/productos/categoria/${categoriaId}`);
-        const data = await res.json();
-        // Si la respuesta no es un array, setear como array vacío
+    
+    fetch(`http://localhost:5000/api/productos/categoria/${categoriaId}`)
+      .then(res => res.json())
+      .then(data => {
         if (Array.isArray(data)) {
           setProductos(data);
         } else {
           setProductos([]);
         }
-      } catch (error) {
+      })
+      .catch(() => {
         setProductos([]);
-      }
-    }
-    fetchProductos();
+      });
   }, [categoriaId]);
-
-
-
-  // Agrega el producto real directamente al carrito
-  function handleAgregarAlCarrito(producto) {
-    agregarAlCarrito(producto);
-  }
+  const handleAddToCart = (producto) => {
+    fetch('http://localhost:5000/api/carrito', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        idCliente: 1,
+        idProducto: producto.idProducto,
+        cantidad: 1
+      })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Error al agregar al carrito');
+      return res.json();
+    })
+    .then(() => {
+      fetchCartCount(); // Actualizar el contador del carrito
+      alert('✅ Producto agregado al carrito');
+    })
+    .catch(() => {
+      alert('❌ Error al agregar al carrito');
+    });
+  };
 
   if (!categoria) {
     return <p>Categoría no encontrada</p>;
@@ -71,12 +79,34 @@ const ProductosCategoria = () => {
           productos.map(producto => (
             <div key={producto.idProducto} className="producto-card">
               <div className="producto-image">
-                <img src={producto.imagen || require('../assets/images/burgers.png')} alt={producto.nombre} />
+                <img 
+                  src={producto.imagen || require('../assets/images/burgers.png')} 
+                  alt={producto.nombre} 
+                />
               </div>
               <h3>{producto.nombre}</h3>
               <p>{producto.descripcion}</p>
-              <p className="producto-precio">${producto.precio?.toLocaleString()}</p>
-              <button onClick={() => handleAgregarAlCarrito(producto)} className="btn-agregar-carrito">
+              <p className="producto-precio">${producto.precio?.toLocaleString()}</p>              <button 
+                id="btnAgregarCarrito"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const target = e.currentTarget;
+                  target.style.opacity = '0.8';
+                  setTimeout(() => {
+                    target.style.opacity = '1';
+                    handleAddToCart(producto);
+                  }, 100);
+                }}
+                className="btn-agregar-carrito"
+                style={{ 
+                  cursor: 'pointer',
+                  position: 'relative',
+                  zIndex: 999,
+                  userSelect: 'none',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+              >
                 Agregar al carrito
               </button>
             </div>

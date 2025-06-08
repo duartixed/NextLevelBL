@@ -1,10 +1,10 @@
 @use '../variables' as v;
 
-// Estilos del título hero
-.hero-title-container {
+.stylized-title-container {
   position: relative;
   width: 100%;
   padding: 2rem 0;
+  margin-top: calc(v.$header-height);
   background: linear-gradient(
     to bottom,
     #000000,
@@ -14,7 +14,7 @@
   z-index: 10;
   perspective: 1000px;
 
-  .hero-title-content {
+  .stylized-title-content {
     position: relative;
     text-align: center;
     padding: 1rem;
@@ -128,109 +128,6 @@
   }
 }
 
-// Estilos del hero actualizados
-.hero {
-  position: relative;
-  width: 100%;
-  margin-top: 0;
-  height: calc(90vh - #{v.$header-height});
-  display: flex;
-  align-items: center;
-  background: #000000;
-  overflow: hidden;
-  @include v.lateral-fade;
-
-  .dynamic-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at var(--mouse-x) var(--mouse-y),
-      rgba(252, 227, 3, 0.15) 0%,
-      transparent 50%
-    );
-    mix-blend-mode: screen;
-    pointer-events: none;
-    z-index: 3;
-  }
-
-  .hero-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    transform-style: preserve-3d;
-
-    .hero-horizontal-gallery {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      animation: slideShow 30s linear infinite;
-      will-change: transform;
-      padding: 0 5%;
-
-      .image-container {
-        position: relative;
-        flex: 0 0 auto;
-        height: 100%;
-        padding: 2rem;
-        transform-style: preserve-3d;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:hover {
-          transform: 
-            scale(1.05)
-            translateY(-5px)
-            translateZ(20px)
-            rotateY(calc(var(--mouse-x) * 0.1deg - 5deg));
-
-          .image-glow {
-            opacity: 1;
-          }
-        }
-
-        .horizontal-scroll-image {
-          height: 100%;
-          width: auto;
-          object-fit: contain;
-          filter: 
-            contrast(1.1)
-            brightness(1.2)
-            saturate(1.1);
-          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: 
-            rotate(var(--rotation))
-            translateZ(10px);
-        }
-
-        .image-glow {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(
-            circle at center,
-            rgba(252, 227, 3, 0.3) 0%,
-            transparent 70%
-          );
-          mix-blend-mode: screen;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-      }
-    }
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: 
-      linear-gradient(90deg, #000 0%, transparent 10%, transparent 90%, #000 100%),
-      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
-    pointer-events: none;
-    z-index: 4;
-  }
-}
-
 // Animaciones
 @keyframes titleFloat {
   0%, 100% {
@@ -250,11 +147,6 @@
     opacity: 1;
     transform: translateY(-5px) translateZ(10px) scale(1);
   }
-}
-
-@keyframes slideShow {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 @keyframes lineGlow {
@@ -280,8 +172,8 @@
 
 // Media queries
 @media (max-width: 768px) {
-  .hero-title-container {
-    .hero-title-content {
+  .stylized-title-container {
+    .stylized-title-content {
       .main-title {
         font-size: 2.5rem;
       }
@@ -290,23 +182,11 @@
       }
     }
   }
-
-  .hero {
-    height: 70vh;
-    
-    .hero-content {
-      .hero-horizontal-gallery {
-        .image-container {
-          padding: 1rem;
-        }
-      }
-    }
-  }
 }
 
 @media (max-width: 480px) {
-  .hero-title-container {
-    .hero-title-content {
+  .stylized-title-container {
+    .stylized-title-content {
       .main-title {
         font-size: 2rem;
       }

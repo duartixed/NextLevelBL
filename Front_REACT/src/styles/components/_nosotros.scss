@@ -1,61 +1,255 @@
-.nosotros {
-  padding: 3rem 0;
-  background: #111;
-  min-height: 80vh;
+@use '../variables' as v;
 
-  &__container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-    padding: 2.5rem 2rem;
-    animation: fadeIn 0.8s;
+.nosotros-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 7rem auto 2rem;
+  padding: 0 1rem;
+  color: white;
+
+  .historia-section {
+    margin-bottom: 4rem;
+
+    .historia-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.95));
+      border: 2px solid v.$color-secondary;
+      border-radius: v.$border-radius;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(252, 227, 3, 0.2);
+
+      .historia-text {
+        h3 {
+          color: v.$color-secondary;
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-shadow: 0 0 10px rgba(252, 227, 3, 0.3);
+        }
+
+        p {
+          font-size: 1.1rem;
+          line-height: 1.6;
+          margin-bottom: 1rem;
+          opacity: 0.9;
+        }
+      }
+
+      .historia-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: v.$border-radius;
+
+        img {
+          width: 100%;
+          height: auto;
+          filter: drop-shadow(0 0 20px rgba(252, 227, 3, 0.6)) brightness(1.2);
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
   }
 
-  &__title {
-    font-size: 2.5rem;
-    color: #fce303;
+  .valores-section {
+    margin-bottom: 4rem;
     text-align: center;
-    margin-bottom: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 1px;
+
+    .valores-titulo {
+      color: v.$color-secondary;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+
+      .valor-card {
+        background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.95));
+        border: 2px solid v.$color-secondary;
+        border-radius: v.$border-radius;
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 0 20px rgba(252, 227, 3, 0.3);
+        }
+
+        .valor-icono {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+        }
+
+        h4 {
+          color: v.$color-secondary;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.5;
+          opacity: 0.9;
+        }
+      }
+    }
   }
 
-  &__section {
-    margin-bottom: 2.5rem;
+  .compromiso-section {
+    margin-bottom: 4rem;
 
-    h2 {
-      color: #fce303;
-      font-size: 1.5rem;
-      margin-bottom: 0.7rem;
-      font-family: 'Montserrat', sans-serif;
+    .compromiso-content {
+      position: relative;
+      background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.95));
+      border: 2px solid v.$color-secondary;
+      border-radius: v.$border-radius;
+      padding: 3rem;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(252, 227, 3, 0.2);
+
+      h3 {
+        color: v.$color-secondary;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: v.$color-secondary;
+            margin-bottom: 0.5rem;
+          }
+
+          .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.95));
+    border: 2px solid v.$color-secondary;
+    border-radius: v.$border-radius;
+    margin-bottom: 2rem;
+
+    h3 {
+      color: v.$color-secondary;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     p {
-      color: #fff;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 0;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: v.$color-secondary;
+      color: black;
+      text-decoration: none;
+      border-radius: v.$border-radius-sm;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(252, 227, 3, 0.4);
+      }
     }
   }
 
-  @media (max-width: 600px) {
-    &__container {
-      padding: 1.2rem 0.5rem;
+  @media (max-width: 1024px) {
+    .historia-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+
+      .historia-image {
+        order: -1;
+      }
     }
 
-    &__title {
-      font-size: 2rem;
+    .valores-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 5rem;
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    &__section h2 {
-      font-size: 1.1rem;
+    .valores-grid {
+      grid-template-columns: 1fr;
     }
 
-    &__section p {
-      font-size: 1rem;
+    .historia-content {
+      padding: 1.5rem;
+    }
+
+    .compromiso-content {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .historia-text h3 {
+      font-size: 1.75rem;
+    }
+
+    .valores-titulo, .compromiso-content h3, .cta-section h3 {
+      font-size: 1.5rem;
+    }
+
+    .cta-button {
+      width: 100%;
     }
   }
 }

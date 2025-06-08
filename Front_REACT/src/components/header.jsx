@@ -14,6 +14,11 @@ const Header = () => {
   const { cartCount } = useContext(CarritoContext);
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <header className="header">
       <div className="logo">
@@ -28,7 +33,7 @@ const Header = () => {
         <li><Link to="/contacto">CONTÁCTANOS</Link></li>
       </ul>
       <div className="icons">
-        {!user && (
+        {!user ? (
           <>
             <button onClick={() => navigate('/login')} className="btn-icon">
               <img src={userIcon} alt="Iniciar Sesión" />
@@ -37,17 +42,21 @@ const Header = () => {
               <img src={createAccountIcon} alt="Crear Cuenta" />
             </button>
           </>
+        ) : (
+          <div className="user-info">
+            <span className="user-name">¡Hola, {user.nombre}!</span>
+            <button onClick={handleLogout} className="logout-button">
+              Cerrar sesión
+            </button>
+          </div>
         )}
         <button onClick={() => navigate('/adminLogin')} className="btn-icon">
           <img src={adminLoginIcon} alt="Admin Login" />
         </button>
-        <button onClick={() => navigate('/carrito')} className="cart-icon">
+        <button onClick={() => navigate('/carrito')} className="btn-icon">
           <img src={cartIcon} alt="Carrito de compras" />
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </button>
-        {user && (
-          <button onClick={logout} className="btn-icon">Cerrar sesión</button>
-        )}
       </div>
     </header>
   );

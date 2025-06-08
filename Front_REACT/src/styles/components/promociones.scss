@@ -1,119 +1,147 @@
 // Estilos profesionales para la página de promociones
-.promociones-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  background: #111;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+@use '../variables' as v;
 
-  h1 {
-    color: #fce303;
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+.promociones-page {
+  position: relative;
+  min-height: 100vh;
+  background-color: v.$color-background;
+  @include v.lateral-fade;
 
   .promociones-grid {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-  }
+    z-index: 2;
 
-  .promo-card {
-    background: #222;
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(252, 227, 3, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .promo-image {
-      width: 100%;
+    .promo-card {
       position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(252, 227, 3, 0.1);
+      background: transparent;
 
-      img {
+      &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(252, 227, 3, 0.3);
+        box-shadow: 0 10px 30px rgba(252, 227, 3, 0.1);
+
+        .promo-image img {
+          transform: scale(1.05);
+        }
+      }
+
+      .promo-image {
+        position: relative;
         width: 100%;
-        max-width: 320px;
-        height: 180px;
-        object-fit: contain;
-        background: #fff;
-        border-radius: 12px 12px 0 0;
-        margin: 0 auto;
-        display: block;
-      }
+        height: 250px;
+        overflow: hidden;
 
-      .descuento {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: #fce303;
-        color: #000;
-        font-weight: bold;
-        padding: 0.3rem 0.7rem;
-        border-radius: 8px;
-        font-size: 1rem;
-        box-shadow: 0 2px 8px #0002;
-      }
-    }
-
-    .promo-info {
-      padding: 1.2rem;
-      text-align: center;
-
-      h3 {
-        color: #fce303;
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-      }
-
-      p {
-        color: #fff;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .precios {
-        margin-bottom: 1rem;
-
-        .precio-original {
-          color: #bbb;
-          text-decoration: line-through;
-          margin-right: 0.7rem;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+          filter: contrast(1.1) brightness(1.1);
         }
 
-        .precio-final {
-          color: #fce303;
-          font-size: 1.2rem;
+        .descuento {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: v.$color-secondary;
+          color: black;
+          padding: 0.5rem 1rem;
+          border-radius: 25px;
           font-weight: bold;
+          font-size: 1.1rem;
+          box-shadow: 0 2px 10px rgba(252, 227, 3, 0.3);
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border: 2px solid rgba(252, 227, 3, 0.2);
+          border-radius: 15px;
+          z-index: 2;
+          pointer-events: none;
         }
       }
 
-      .btn-ordenar {
-        background: #fce303;
-        color: #000;
-        font-weight: 600;
-        padding: 0.5rem 1.2rem;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
+      .promo-info {
+        padding: 1.5rem;
+        color: white;
+        background: transparent;
 
-        &:hover {
-          background: #ffe066;
+        h3 {
+          font-size: 1.8rem;
+          margin: 0 0 1rem;
+          color: v.$color-secondary;
+          text-shadow: 0 0 15px rgba(252, 227, 3, 0.3);
+        }
+
+        p {
+          font-size: 1.1rem;
+          margin-bottom: 1.5rem;
+          opacity: 0.9;
+          line-height: 1.6;
+        }
+
+        .precios {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
+
+          .precio-original {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.1rem;
+          }
+
+          .precio-final {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: v.$color-secondary;
+            text-shadow: 0 0 10px rgba(252, 227, 3, 0.2);
+          }
+        }
+
+        .btn-agregar-carrito {
+          width: 100%;
+          padding: 1rem;
+          background: v.$color-secondary;
+          border: none;
+          border-radius: 8px;
+          color: black;
+          font-weight: bold;
+          font-size: 1.1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: darken(v.$color-secondary, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(252, 227, 3, 0.2);
+          }
         }
       }
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .promociones-page {
-    padding: 1rem 0.2rem;
-    h1 { font-size: 1.3rem; }
-    .promo-card .promo-info { padding: 0.7rem; }
+    .promociones-grid {
+      padding: 1rem;
+      gap: 1rem;
+    }
   }
 }
 // Archivo de estilos para promociones

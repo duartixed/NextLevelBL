@@ -1,59 +1,181 @@
 // Archivo de estilos para contacto
+@use '../variables' as v;
 
-.mapa-amarillo {
-  border: 4px solid #ffd600;
-  border-radius: 12px;
-  padding: 8px;
-  background: #fffbe6;
-  margin-bottom: 2rem;
-}
+.contacto-page {
+  position: relative;
+  min-height: 100vh;
+  background-color: v.$color-background;
+  @include v.lateral-fade;
 
-// Botones de inicio y crear cuenta
-.botones-inicio {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
+  .contacto-content {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    z-index: 2;
 
-.boton-flecha-home {
-  background: #ffd600;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: #222;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background 0.2s;
-}
+    .mapa-section {
+      margin-bottom: 4rem;
 
-.boton-flecha-home:hover {
-  background: #ffe066;
-}
+      .mapa-container {
+        border: 2px solid v.$color-secondary;
+        border-radius: v.$border-radius;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(252, 227, 3, 0.2);
 
-.boton-inicio,
-.boton-crear-cuenta,
-.boton-adminlog {
-  background: #ffd600;
-  color: #222;
-  border: none;
-  border-radius: 8px;
-  padding: 0.7rem 1.5rem;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  margin: 0 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background 0.2s;
-}
+        iframe {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
 
-.boton-inicio:hover,
-.boton-crear-cuenta:hover,
-.boton-adminlog:hover {
-  background: #ffe066;
+    .info-section {
+      margin-bottom: 4rem;
+
+      .info-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        .info-card {
+          background: linear-gradient(
+            145deg,
+            rgba(40, 40, 40, 0.9),
+            rgba(20, 20, 20, 0.95)
+          );
+          border: 2px solid v.$color-secondary;
+          border-radius: v.$border-radius;
+          padding: 2rem;
+          text-align: center;
+          transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(252, 227, 3, 0.3);
+          }
+
+          .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+          }
+
+          h3 {
+            color: v.$color-secondary;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+          }
+
+          p {
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+          }
+
+          .action-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: v.$color-secondary;
+            color: black;
+            text-decoration: none;
+            border-radius: v.$border-radius-sm;
+            font-weight: bold;
+            transition: all 0.3s ease;
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 0 15px rgba(252, 227, 3, 0.4);
+            }
+          }
+        }
+      }
+    }
+
+    .social-section {
+      text-align: center;
+      margin-bottom: 4rem;
+
+      h3 {
+        color: v.$color-secondary;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+
+        .social-button {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 1rem 2rem;
+          border-radius: v.$border-radius-sm;
+          text-decoration: none;
+          font-weight: bold;
+          transition: all 0.3s ease;
+
+          i {
+            font-size: 1.5rem;
+          }
+
+          &.instagram {
+            background: linear-gradient(
+              45deg,
+              #f09433,
+              #e6683c,
+              #dc2743,
+              #cc2366,
+              #bc1888
+            );
+            color: white;
+          }
+
+          &.facebook {
+            background-color: #4267b2;
+            color: white;
+          }
+
+          &.whatsapp {
+            background-color: #25d366;
+            color: white;
+          }
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .info-section .info-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 5rem;
+
+    .info-section .info-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .social-section .social-links {
+      flex-direction: column;
+      align-items: center;
+
+      .social-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
 }

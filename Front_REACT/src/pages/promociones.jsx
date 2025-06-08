@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import '../styles/components/promociones.scss';
 import { CarritoContext } from '../context/CarritoContext';
 import especiales from '../assets/Img_front/especiales.png';
+import StylizedTitle from '../components/StylizedTitle';
 
 const Promociones = () => {
   const { agregarAlCarrito } = useContext(CarritoContext);
@@ -27,7 +28,10 @@ const Promociones = () => {
 
   return (
     <div className="promociones-page">
-      <h1>Promociones Especiales</h1>
+      <StylizedTitle 
+        title="Promociones Especiales" 
+        subtitle="Las mejores ofertas para ti"
+      />
       <div className="promociones-grid">
         {promociones.map((promo) => (
           <div key={promo.id} className="promo-card">

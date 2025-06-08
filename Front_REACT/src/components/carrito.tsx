@@ -19,15 +19,28 @@ interface CarritoProps {
   onUpdateQuantity: (id: number, quantity: number) => void;
 }
 
-// Corrige el mapeo de productos para soportar datos del backend
 const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdateQuantity }) => {
   const [cantidades, setCantidades] = useState<{ [key: number]: number }>({});
   const [total, setTotal] = useState(0);
 
   const getProductoKey = (producto: Producto) => producto.idCarrito ?? producto.id ?? 0;
 
+  // Calcular el total cuando cambien los productos o las cantidades
   useEffect(() => {
-    // Inicializar cantidades
+    const calcularTotal = () => {
+      return productos.reduce((sum, producto) => {
+        const cantidad = producto.cantidad || 1;
+        const precio = Number(producto.precio) || 0;
+        return sum + (precio * cantidad);
+      }, 0);
+    };
+
+    const nuevoTotal = calcularTotal();
+    setTotal(nuevoTotal);
+  }, [productos]);
+
+  useEffect(() => {
+    // Inicializar cantidades desde el backend
     const initialCantidades = productos.reduce((acc, producto) => {
       const key = getProductoKey(producto);
       acc[key] = producto.cantidad || 1;
@@ -36,29 +49,18 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
     setCantidades(initialCantidades);
   }, [productos]);
 
-  useEffect(() => {
-    // Calcular total
-    const nuevoTotal = productos.reduce((sum, producto) => {
-      const key = getProductoKey(producto);
-      const precio = typeof producto.precio === 'number' ? producto.precio : 0;
-      const cantidad = producto.cantidad || cantidades[key] || 1;
-      return sum + precio * cantidad;
-    }, 0);
-    setTotal(nuevoTotal);
-  }, [productos, cantidades]);
-
   const actualizarCantidad = (productoKey: number, nuevaCantidad: number) => {
     if (nuevaCantidad > 0) {
       setCantidades(prev => ({
         ...prev,
         [productoKey]: nuevaCantidad
       }));
-      onUpdateQuantity(productoKey, nuevaCantidad); // productoKey ahora es idCarrito
+      onUpdateQuantity(productoKey, nuevaCantidad);
     }
   };
 
   const eliminarDelCarrito = (productoKey: number) => {
-    onRemoveFromCart(productoKey); // productoKey ahora es idCarrito
+    onRemoveFromCart(productoKey);
   };
 
   return (
@@ -74,18 +76,19 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
           <div className="productos-carrito">
             {productos.map((producto) => {
               const key = getProductoKey(producto);
+              const precioNumerico = Number(producto.precio) || 0;
               return (
                 <div key={key} className="producto-carrito">
-                  <img src={producto.imagen} alt={producto.nombre} />
+                  <img src={producto.imagen || require('../assets/images/burgers.png')} alt={producto.nombre} />
                   <div className="producto-info">
                     <h3>{producto.nombre}</h3>
-                    <p className="precio">${(typeof producto.precio === 'number' ? producto.precio : 0).toFixed(2)}</p>
+                    <p className="precio">${precioNumerico.toFixed(2)}</p>
+                    <p className="subtotal">Subtotal: ${(precioNumerico * (producto.cantidad || 1)).toFixed(2)}</p>
                   </div>
                   <div className="cantidad-controles">
                     <button 
                       onClick={() => actualizarCantidad(key, (cantidades[key] || 1) - 1)}
                       className="btn-cantidad"
-                      style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0'}}
                     >
                       -
                     </button>
@@ -93,7 +96,6 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                     <button 
                       onClick={() => actualizarCantidad(key, (cantidades[key] || 1) + 1)}
                       className="btn-cantidad"
-                      style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0'}}
                     >
                       +
                     </button>
@@ -101,7 +103,6 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
                   <button 
                     onClick={() => eliminarDelCarrito(key)}
                     className="btn-eliminar"
-                    style={{width: '28px', height: '28px', fontSize: '1.1rem', padding: '0', marginLeft: '6px'}}
                   >
                     ×
                   </button>
@@ -114,19 +115,9 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
               <span>Total:</span>
               <span className="precio-total">${total.toFixed(2)}</span>
             </div>
-            <button
-              className="btn btn-primary btn-pagar"
-              style={{fontSize: '1rem', padding: '6px 18px', borderRadius: '8px'}}
-              onClick={() => {
-                window.open(
-                  '/pago-nequi-info',
-                  '_blank',
-                  'noopener,noreferrer'
-                );
-              }}
-            >
+            <Link to="/pago-nequi-info" className="btn btn-primary btn-pagar">
               Proceder al Pago
-            </button>
+            </Link>
           </div>
         </>
       )}

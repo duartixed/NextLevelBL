@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/components/adminProductos.scss';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -10,92 +11,198 @@ const AdminProductos = () => {
   const [mensaje, setMensaje] = useState('');
 
   const fetchProductos = async () => {
-    const res = await axios.get(`${API_URL}/productos`);
-    setProductos(res.data);
+    try {
+      const res = await axios.get(`${API_URL}/productos`);
+      // Asegurar que los precios sean números
+      const productosConPreciosNumericos = res.data.map(p => ({
+        ...p,
+        precio: typeof p.precio === 'string' ? parseFloat(p.precio) : p.precio
+      }));
+      setProductos(productosConPreciosNumericos);
+    } catch (error) {
+      console.error('Error al cargar productos:', error);
+      setMensaje('Error al cargar los productos');
+    }
   };
 
-  useEffect(() => { fetchProductos(); }, []);
+  useEffect(() => { 
+    fetchProductos(); 
+  }, []);
 
   const handleChange = e => {
-    setNuevo({ ...nuevo, [e.target.name]: e.target.value });
+    const value = e.target.name === 'precio' ? 
+      parseFloat(e.target.value) || '' : 
+      e.target.value;
+    setNuevo({ ...nuevo, [e.target.name]: value });
   };
 
   const handleAdd = async e => {
     e.preventDefault();
-    await axios.post(`${API_URL}/productos`, {
-      nombre: nuevo.nombre,
-      descripcion: nuevo.descripcion,
-      precio: parseFloat(nuevo.precio),
-      stock: parseInt(nuevo.stock),
-      imagen: nuevo.imagen
-    });
-    setMensaje('Producto agregado');
-    setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
-    fetchProductos();
+    try {
+      await axios.post(`${API_URL}/productos`, {
+        nombre: nuevo.nombre,
+        descripcion: nuevo.descripcion,
+        precio: parseFloat(nuevo.precio),
+        stock: parseInt(nuevo.stock),
+        imagen: nuevo.imagen
+      });
+      setMensaje('Producto agregado exitosamente');
+      setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
+      fetchProductos();
+    } catch (error) {
+      console.error('Error al agregar producto:', error);
+      setMensaje('Error al agregar el producto');
+    }
   };
 
   const handleEdit = producto => {
     setEditando(producto);
-    setNuevo(producto);
+    setNuevo({
+      ...producto,
+      precio: typeof producto.precio === 'number' ? producto.precio : parseFloat(producto.precio)
+    });
   };
 
   const handleUpdate = async e => {
     e.preventDefault();
-    await axios.put(`${API_URL}/productos/${editando.idProducto}`, {
-      nombre: nuevo.nombre,
-      descripcion: nuevo.descripcion,
-      precio: parseFloat(nuevo.precio),
-      stock: parseInt(nuevo.stock),
-      imagen: nuevo.imagen
-    });
-    setMensaje('Producto actualizado');
-    setEditando(null);
-    setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
-    fetchProductos();
+    try {
+      await axios.put(`${API_URL}/productos/${editando.idProducto}`, {
+        nombre: nuevo.nombre,
+        descripcion: nuevo.descripcion,
+        precio: parseFloat(nuevo.precio),
+        stock: parseInt(nuevo.stock),
+        imagen: nuevo.imagen
+      });
+      setMensaje('Producto actualizado exitosamente');
+      setEditando(null);
+      setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
+      fetchProductos();
+    } catch (error) {
+      console.error('Error al actualizar producto:', error);
+      setMensaje('Error al actualizar el producto');
+    }
   };
 
   const handleDelete = async id => {
-    await axios.delete(`${API_URL}/productos/${id}`);
-    setMensaje('Producto eliminado');
-    fetchProductos();
+    try {
+      await axios.delete(`${API_URL}/productos/${id}`);
+      setMensaje('Producto eliminado exitosamente');
+      fetchProductos();
+    } catch (error) {
+      console.error('Error al eliminar producto:', error);
+      setMensaje('Error al eliminar el producto');
+    }
+  };
+
+  const formatPrice = (price) => {
+    const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+    return isNaN(numPrice) ? '0.00' : numPrice.toFixed(2);
   };
 
   return (
-    <div style={{ marginTop: '2rem' }}>
+    <div className="admin-productos">
       <h2>Gestión de Productos</h2>
-      {mensaje && <div style={{ color: 'green' }}>{mensaje}</div>}
-      <form onSubmit={editando ? handleUpdate : handleAdd} style={{ marginBottom: '1rem' }}>
-        <input name="nombre" placeholder="Nombre" value={nuevo.nombre} onChange={handleChange} required />
-        <input name="descripcion" placeholder="Descripción" value={nuevo.descripcion} onChange={handleChange} required />
-        <input name="precio" type="number" step="0.01" placeholder="Precio" value={nuevo.precio} onChange={handleChange} required />
-        <input name="stock" type="number" placeholder="Stock" value={nuevo.stock} onChange={handleChange} required />
-        <input name="imagen" placeholder="URL Imagen" value={nuevo.imagen} onChange={handleChange} />
-        <button type="submit">{editando ? 'Actualizar' : 'Agregar'}</button>
-        {editando && <button type="button" onClick={() => { setEditando(null); setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' }); }}>Cancelar</button>}
+      {mensaje && <div className={mensaje.includes('Error') ? 'error-message' : 'success-message'}>{mensaje}</div>}
+      <form onSubmit={editando ? handleUpdate : handleAdd} className="producto-form">
+        <input
+          name="nombre"
+          placeholder="Nombre"
+          value={nuevo.nombre}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="descripcion"
+          placeholder="Descripción"
+          value={nuevo.descripcion}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="precio"
+          type="number"
+          step="0.01"
+          min="0"
+          placeholder="Precio"
+          value={nuevo.precio}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="stock"
+          type="number"
+          min="0"
+          placeholder="Stock"
+          value={nuevo.stock}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="imagen"
+          placeholder="URL Imagen"
+          value={nuevo.imagen}
+          onChange={handleChange}
+        />
+        <div className="form-buttons">
+          <button type="submit" className="primary-button">
+            {editando ? 'Actualizar' : 'Agregar'}
+          </button>
+          {editando && (
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() => {
+                setEditando(null);
+                setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
+              }}
+            >
+              Cancelar
+            </button>
+          )}
+        </div>
       </form>
-      <table border="1" cellPadding="8" style={{ width: '100%', background: '#fff' }}>
-        <thead>
-          <tr>
-            <th>ID</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Stock</th><th>Imagen</th><th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map(p => (
-            <tr key={p.idProducto}>
-              <td>{p.idProducto}</td>
-              <td>{p.nombre}</td>
-              <td>{p.descripcion}</td>
-              <td>${p.precio.toFixed(2)}</td>
-              <td>{p.stock}</td>
-              <td>{p.imagen ? <img src={p.imagen} alt={p.nombre} width={40} /> : '-'}</td>
-              <td>
-                <button onClick={() => handleEdit(p)}>Editar</button>
-                <button onClick={() => handleDelete(p.idProducto)} style={{ color: 'red' }}>Eliminar</button>
-              </td>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {productos.map(p => (
+              <tr key={p.idProducto}>
+                <td>{p.idProducto}</td>
+                <td>{p.nombre}</td>
+                <td>{p.descripcion}</td>
+                <td>${formatPrice(p.precio)}</td>
+                <td>{p.stock}</td>
+                <td>
+                  {p.imagen ? (
+                    <img src={p.imagen} alt={p.nombre} width={40} height={40} style={{ objectFit: 'cover' }} />
+                  ) : '-'}
+                </td>
+                <td className="action-buttons">
+                  <button onClick={() => handleEdit(p)} className="edit-button">
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => handleDelete(p.idProducto)}
+                    className="delete-button"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

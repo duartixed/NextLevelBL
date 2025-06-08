@@ -1,43 +1,37 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axioInstance';
 import "../styles/components/auth.scss";
 
-import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-  const { setUser } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [correo, setCorreo] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const correo = document.querySelector("#correo").value;
-    const contraseña = document.querySelector("#contraseña").value;
+    setLoading(true);
+    setError('');
 
     const loginData = { correo, contraseña };
 
     try {
-      const response = await axiosInstance.post("http://localhost:5000/api/auth/login", loginData);
-
-      console.log("Inicio de sesión exitoso:", response.data);
-
-      // Guardar el usuario en el estado global y en localStorage
-      setUser(response.data.usuario);
-      localStorage.setItem('user', JSON.stringify(response.data.usuario));
-
-      // Redirigir al usuario a la página principal
+      const response = await axiosInstance.post("/api/auth/login", loginData);
+      login(response.data.usuario);
       navigate("/");
     } catch (error) {
+      setLoading(false);
       if (error.response) {
-        console.error("Error del servidor:", error.response.data);
-        alert("Correo o contraseña incorrectos");
+        setError("Correo o contraseña incorrectos");
       } else {
-        console.error("Error de la solicitud:", error.message);
-        alert("Error al conectar con el servidor");
+        setError("Error al conectar con el servidor");
       }
     }
   };
@@ -45,17 +39,36 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className="auth-container">
-        <div className="auth-box">
-          <h2>Inicia sesión</h2>
+      <div className="auth-page">
+        <div className="auth-container">
           <form onSubmit={handleLogin}>
-            <input type="email" id="correo" placeholder="Correo Electrónico" />
-            <input type="password" id="contraseña" placeholder="Contraseña" />
-            <button type="submit">Iniciar Sesión</button>
+            <h2>Iniciar Sesión</h2>
+            <div className="form-group">
+              <label>Correo Electrónico</label>
+              <input 
+                type="email" 
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Contraseña</label>
+              <input 
+                type="password" 
+                value={contraseña}
+                onChange={(e) => setContraseña(e.target.value)}
+                required
+              />
+            </div>
+            {error && <div className="error-message">{error}</div>}
+            <button className="submit-btn" type="submit" disabled={loading}>
+              {loading ? 'Ingresando...' : 'Iniciar Sesión'}
+            </button>
+            <div className="auth-links">
+              <a href="/register">¿No tienes cuenta? Crear una</a>
+            </div>
           </form>
-          <button onClick={() => navigate("/register")}>
-            ¿No tienes cuenta? Crear una
-          </button>
         </div>
       </div>
       <Footer />

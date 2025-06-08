@@ -1,27 +1,108 @@
-// Tipografía
-// $font-family: "Roboto", sans-serif; // Considerar eliminar si no se usa después de adoptar Poppins/Montserrat
-
-// Colores
-$color-primary: #95948f;
+// Colores principales
+$color-black: #181818;
+$color-dark: #202020;
+$color-darker: #232323;
+$color-light: #fff;
 $color-secondary: #fce303;
-$color-font: #91908f;
-$color-fondo: #f5f5f5; // Define el color de fondo
-$color-texto: #333;
-$color-hero: #e0e0e0; // Define el color de fondo para la sección hero
-$color-principal: #ff5722; // Define el color principal para botones y elementos destacados
-$color-menu: #fff; // Define el color del menú
-$color-black: #000; // Color negro para usar en el tema
+$color-secondary-dark: darken(#fce303, 10%);
+$color-error: #ff4444;
+$color-success: #4caf50;
+$color-border: #333;
 
-// Tamaños de fuente
-$font-size-small: 0.875rem;
-$font-size-medium: 1rem;
-$font-size-large: 1.25rem;
+// Sombras y efectos
+$shadow-card: 0 0 12px 2px rgba(255, 216, 0, 0.15);
+$shadow-card-hover: 0 0 24px 4px rgba(255, 216, 0, 0.25);
+$border-card: 2px solid $color-secondary;
+$border-radius: 16px;
+$border-radius-sm: 8px;
+
+// Tipografía
+$font-family-primary: 'Poppins', sans-serif;
+$font-family-heading: 'Montserrat', 'Arial', sans-serif;
+$font-size-xs: 0.85rem;
+$font-size-sm: 1rem;
+$font-size-md: 1.1rem;
+$font-size-lg: 1.3rem;
+$font-size-xl: 2rem;
 
 // Espaciados
-$spacing-small: 8px;
-$spacing-medium: 16px;
-$spacing-large: 24px;
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 2.5rem;
+
+// Layout
+$container-padding: $spacing-lg $spacing-sm;
+$card-padding: $spacing-lg;
+$form-padding: $spacing-xl $spacing-lg $spacing-lg;
+$header-height: 80px;
+$footer-height: 80px;
 
 // Breakpoints
-$breakpoint-mobile: 768px;
-$breakpoint-tablet: 1024px;
+$breakpoint-xs: 480px;
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.4s ease;
+
+// Colors
+$color-primary: #000000;
+$color-secondary: #fce303;
+$color-text: #ffffff;
+$color-background: #000000;
+$color-accent: #333333;
+
+// Sizes
+$header-height: 80px;
+$footer-height: 200px;
+
+// Mixins
+@mixin lateral-fade {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+}
+
+@mixin content-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  overflow: hidden;
+}

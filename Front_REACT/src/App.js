@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/home.jsx';
 import Register from './pages/register.jsx';
 import Login from './pages/login.jsx';
@@ -15,44 +15,54 @@ import AdminLogin from './pages/adminLogin.jsx';
 import AdminPanel from './pages/adminPanel.jsx';
 import AdminRoute from './components/AdminRoute.jsx';
 import { CarritoProvider } from './context/CarritoContext';
+import { AuthProvider } from './context/AuthContext';
 import PagoNequi from './pages/pagoNequi.jsx';
 import Recibo from './pages/Recibo.jsx';
 
-function App() {
-  const [user, setUser] = useState(null);
-  const idCliente = user?.idCliente || 1;
-
-  // Mantener usuario autenticado en localStorage
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) setUser(JSON.parse(storedUser));
-  }, []);
+const AppContent = () => {
+  const location = useLocation();
+  // Solo ocultar header y footer en el panel de admin, no en el login
+  const hideHeaderFooter = location.pathname === '/admin';
+  // Evitar doble footer en formularios
+  const isAuthForm = ['/login', '/register', '/carrito', '/adminLogin'].includes(location.pathname);
 
   return (
-    <CarritoProvider>
-      <Router>
-        <div className="App">
-          <Header user={user} />
-          <Routes>
-            <Route path="/" element={<Home user={user} />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/promociones" element={<Promociones />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/menu/:categoriaId" element={<ProductosCategoria />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/register" element={<Register setUser={setUser} />} />
-            <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/carrito" element={<CarritoPage />} />
-            <Route path="/adminLogin" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
-            <Route path="/pago-nequi" element={<PagoNequi />} />
-            <Route path="/recibo/:idCliente" element={<Recibo />} />
-            <Route path="/pago-nequi-info" element={<PagoNequi />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    </CarritoProvider>
+    <div className="App">
+      {!hideHeaderFooter && <Header />}
+      <main className={hideHeaderFooter ? 'admin-content' : ''}>
+        <Routes>
+          {/* Rutas de administrador */}
+          <Route path="/adminLogin" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
+          {/* Rutas regulares */}
+          <Route path="/" element={<Home />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/promociones" element={<Promociones />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/menu/:categoriaId" element={<ProductosCategoria />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/carrito" element={<CarritoPage />} />
+          <Route path="/pago-nequi" element={<PagoNequi />} />
+          <Route path="/recibo/:idCliente" element={<Recibo />} />
+          <Route path="/pago-nequi-info" element={<PagoNequi />} />
+        </Routes>
+      </main>
+      {!hideHeaderFooter && !isAuthForm && <Footer />}
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AuthProvider>
+        <CarritoProvider>
+          <AppContent />
+        </CarritoProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
