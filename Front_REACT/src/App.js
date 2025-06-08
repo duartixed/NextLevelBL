@@ -20,7 +20,6 @@ import Recibo from './pages/Recibo.jsx';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [cartCount, setCartCount] = useState(0);
   const idCliente = user?.idCliente || 1;
 
   // Mantener usuario autenticado en localStorage
@@ -29,30 +28,11 @@ function App() {
     if (storedUser) setUser(JSON.parse(storedUser));
   }, []);
 
-  // Actualiza el contador del carrito cada vez que cambia
-  const fetchCartCount = async () => {
-    try {
-      const res = await fetch(`http://localhost:5000/api/carrito/${idCliente}`);
-      const data = await res.json();
-      let total = 0;
-      data.forEach((item) => {
-        total += item.cantidad;
-      });
-      setCartCount(total);
-    } catch (err) {
-      setCartCount(0);
-    }
-  };
-
-  useEffect(() => {
-    fetchCartCount();
-  }, [idCliente]);
-
   return (
     <CarritoProvider>
       <Router>
         <div className="App">
-          <Header user={user} cartCount={cartCount} />
+          <Header user={user} />
           <Routes>
             <Route path="/" element={<Home user={user} />} />
             <Route path="/nosotros" element={<Nosotros />} />
@@ -62,7 +42,7 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/register" element={<Register setUser={setUser} />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
-            <Route path="/carrito" element={<CarritoPage fetchCartCount={fetchCartCount} />} />
+            <Route path="/carrito" element={<CarritoPage />} />
             <Route path="/adminLogin" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>} />
             <Route path="/pago-nequi" element={<PagoNequi />} />

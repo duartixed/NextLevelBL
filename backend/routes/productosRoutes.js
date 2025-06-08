@@ -4,6 +4,7 @@ import { authenticateUser, isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+
 // Obtener todos los productos
 router.get('/', async (req, res) => {
   console.log('Ingresando a get-productos');
@@ -12,6 +13,17 @@ router.get('/', async (req, res) => {
     res.json(rows);
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener productos' });
+  }
+});
+
+// Obtener todas las categorías distintas de productos
+router.get('/categorias', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT DISTINCT categoria FROM Productos');
+    const categorias = rows.map(row => row.categoria);
+    res.json(categorias);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener las categorías' });
   }
 });
 

@@ -25,15 +25,12 @@ const Menu = () => {
       <h1>Nuestro Menú</h1>
       <div className="categorias-grid">
         {categorias.map((categoria) => (
-          <div key={categoria.id} className="categoria-card">
+          <Link key={categoria.id} to={categoria.ruta} className="categoria-card" style={{ textDecoration: 'none' }}>
             <div className="categoria-image">
               <img src={categoria.imagen} alt={categoria.nombre} />
             </div>
             <h3>{categoria.nombre}</h3>
-            <Link to={categoria.ruta} className="btn-ver-categoria">
-              Ver {categoria.nombre}
-            </Link>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
