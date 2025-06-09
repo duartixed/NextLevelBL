@@ -13,11 +13,10 @@ const categorias = [
   { id: 'especiales', nombre: 'Especiales' }
 ];
 
-const ProductosCategoria = () => {
-  const { categoriaId } = useParams();
+const ProductosCategoria = () => {  const { categoriaId } = useParams();
   const [productos, setProductos] = useState([]);
   const [categoria, setCategoria] = useState(null);
-  const { fetchCartCount } = useContext(CarritoContext);
+  const { agregarAlCarrito } = useContext(CarritoContext);
 
   useEffect(() => {
     const cat = categorias.find(c => c.id === categoriaId);
@@ -39,30 +38,13 @@ const ProductosCategoria = () => {
       .catch(() => {
         setProductos([]);
       });
-  }, [categoriaId]);
-  const handleAddToCart = (producto) => {
-    fetch('http://localhost:5000/api/carrito', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        idCliente: 1,
-        idProducto: producto.idProducto,
-        cantidad: 1
-      })
-    })
-    .then(res => {
-      if (!res.ok) throw new Error('Error al agregar al carrito');
-      return res.json();
-    })
-    .then(() => {
-      fetchCartCount(); // Actualizar el contador del carrito
+  }, [categoriaId]);  const handleAddToCart = async (producto) => {
+    try {
+      await agregarAlCarrito(producto);
       alert('✅ Producto agregado al carrito');
-    })
-    .catch(() => {
+    } catch (error) {
       alert('❌ Error al agregar al carrito');
-    });
+    };
   };
 
   if (!categoria) {
