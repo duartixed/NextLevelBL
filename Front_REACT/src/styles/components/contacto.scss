@@ -153,6 +153,66 @@
         }
       }
     }
+
+    .horarios-section {
+      width: 100%;
+      max-width: 1600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+        &::before {
+          content: '';
+          display: block;
+          padding-top: 42.85%; // Proporción 21:9 para un aspecto más cinematográfico
+        }
+
+        video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(1.1);
+        }
+
+        .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: rgba(0, 0, 0, 0.4);
+          color: white;
+          text-align: center;
+          padding: 2rem;
+
+          h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: v.$color-secondary;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          }
+
+          p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+    }
   }
 
   @media (max-width: 1024px) {

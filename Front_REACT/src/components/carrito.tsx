@@ -79,7 +79,58 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
               const precioNumerico = Number(producto.precio) || 0;
               return (
                 <div key={key} className="producto-carrito">
-                  <img src={producto.imagen || require('../assets/images/burgers.png')} alt={producto.nombre} />
+                  <img src={producto.imagen || (() => {
+                    // Determinar la categoría basada en el nombre del producto
+                    const nombre = producto.nombre.toLowerCase();
+                    if (nombre.includes('hamburguesa') || nombre.includes('burger')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('next') ? 'nextlevelburguer.png' :
+                        nombre.includes('sweet') ? 'sweet borguer.png' :
+                        nombre.includes('chorizo') ? 'chorizoburguer.png' :
+                        'hangover.png'
+                      ));
+                    } else if (nombre.includes('papa') || nombre.includes('fries')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('classic') ? 'classicfries.png' :
+                        nombre.includes('sweet') ? 'sweetfies.png' :
+                        nombre.includes('poulet') ? 'pouletfries.png' :
+                        nombre.includes('cheddar') ? 'papascheddar.png' :
+                        'classicfries.png'
+                      ));
+                    } else if (nombre.includes('coca') || nombre.includes('bebida') || nombre.includes('soda')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('coca') ? 'coca-cola.png' :
+                        nombre.includes('soda') ? 'soda italiana.jpg' :
+                        nombre.includes('fresada') ? 'fresada de coco.jpg' :
+                        'coca-cola.png'
+                      ));
+                    } else if (nombre.includes('alita') || nombre.includes('wings')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('x12') ? 'personalx12alas.png' :
+                        nombre.includes('x6') ? 'personalx6alas.png' :
+                        nombre.includes('x18') ? 'paracompartirx18.png' :
+                        nombre.includes('x24') ? 'paracompartirx24.png' :
+                        'personalx12alas.png'
+                      ));
+                    } else if (nombre.includes('hot dog') || nombre.includes('perro')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('next') ? 'nextlevelhotdog.png' :
+                        nombre.includes('classic') ? 'classichotdog.png' :
+                        nombre.includes('sweet') ? 'sweethotdog.png' :
+                        nombre.includes('mexican') ? 'mexicanhotdog.png' :
+                        nombre.includes('alana') ? 'alanahotdog.png' :
+                        'nextlevelhotdog.png'
+                      ));
+                    } else if (nombre.includes('dedo') || nombre.includes('aro') || nombre.includes('entrada')) {
+                      return require('../assets/images/' + (
+                        nombre.includes('dedo') ? 'dedosqueso.png' :
+                        nombre.includes('aro') ? 'aroscebolla.png' :
+                        nombre.includes('chip') ? 'chipsplatano.png' :
+                        'dedosqueso.png'
+                      ));
+                    }
+                    return require('../assets/images/default.png');
+                  })()} alt={producto.nombre} />
                   <div className="producto-info">
                     <h3>{producto.nombre}</h3>
                     <p className="precio">${precioNumerico.toFixed(2)}</p>

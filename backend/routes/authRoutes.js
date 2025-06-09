@@ -30,10 +30,10 @@ router.post('/register', async (req, res) => {
     // Encriptar la contraseña
     const hashedPassword = await bcrypt.hash(contraseña, 10);
 
-    // Insertar el nuevo usuario en la base de datos
+    // Insertar el nuevo usuario en la base de datos con rol de cliente (idRol = 1)
     await pool.query(
-      'INSERT INTO Clientes (nombre, usuario, email, contraseña) VALUES (?, ?, ?, ?)',
-      [nombre, usuario, email, hashedPassword]
+      'INSERT INTO Clientes (nombre, usuario, email, contraseña, idRol) VALUES (?, ?, ?, ?, 1)',
+      [nombre, usuario, email, hashedPassword, 1]
     );
 
     return res.status(201).json({ message: 'Usuario registrado exitosamente' });

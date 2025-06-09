@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/components/contacto.scss';
 import StylizedTitle from '../components/StylizedTitle';
+import videoHorarios from '../assets/images/videohorarios.mp4';
 
 const Contacto = () => {
   const contactInfo = {
@@ -20,6 +21,20 @@ const Contacto = () => {
       />
 
       <div className="contacto-content">
+        <section className="horarios-section">
+          <div className="video-container">            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="horarios-video"
+            >
+              <source src={videoHorarios} type="video/mp4" />
+              Tu navegador no soporta el video.
+            </video>
+          </div>
+        </section>
+
         <section className="mapa-section">
           <div className="mapa-container">
             <iframe

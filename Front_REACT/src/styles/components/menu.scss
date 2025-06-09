@@ -80,6 +80,102 @@
       }
     }
   }
+  .video-preparacion-section {
+    width: 100%;
+    max-width: 1600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+      &::before {
+        content: '';
+        display: block;
+        padding-top: 42.85%; // Proporción 21:9 para un aspecto más cinematográfico
+      }
+
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(1.1);
+      }
+    }
+  }
+
+  .separador {
+    width: 90%;
+    max-width: 1400px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, v.$color-secondary, transparent);
+    margin: 4rem auto;
+  }
+
+  .seccion-publicidad {
+    padding: 2rem 0 4rem;
+
+    .publicidad-grid {
+      width: 100%;
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      z-index: 2;
+
+      .publicidad-card {
+        position: relative;
+        background: linear-gradient(
+          145deg,
+          rgba(40, 40, 40, 0.9),
+          rgba(20, 20, 20, 0.95)
+        );
+        border: 2px solid v.$color-secondary;
+        border-radius: v.$border-radius;
+        padding: 1rem;
+        overflow: hidden;
+        aspect-ratio: 1;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 0 20px rgba(252, 227, 3, 0.3);
+
+          .publicidad-image img {
+            transform: scale(1.05);
+          }
+        }
+
+        .publicidad-image {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          border-radius: calc(v.$border-radius - 4px);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+          }
+        }
+      }
+    }
+  }
+
+  // Asegurar que el video no interfiera con el grid de categorías
+  .categorias-menu {
+    margin-top: 2rem;
+  }
 
   // Responsive design
   @media (max-width: 1024px) {

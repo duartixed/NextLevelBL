@@ -60,9 +60,59 @@ const ProductosCategoria = () => {  const { categoriaId } = useParams();
         ) : (
           productos.map(producto => (
             <div key={producto.idProducto} className="producto-card">
-              <div className="producto-image">
-                <img 
-                  src={producto.imagen || require('../assets/images/burgers.png')} 
+              <div className="producto-image">              <img 
+                  src={producto.imagen || (() => {
+                    switch(categoriaId) {
+                      case 'hamburguesas':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('next') ? 'nextlevelburguer.png' :
+                          producto.nombre.toLowerCase().includes('sweet') ? 'sweet borguer.png' :
+                          producto.nombre.toLowerCase().includes('chorizo') ? 'chorizoburguer.png' :
+                          'hangover.png'
+                        ));
+                      case 'papas':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('classic') ? 'classicfries.png' :
+                          producto.nombre.toLowerCase().includes('sweet') ? 'sweetfies.png' :
+                          producto.nombre.toLowerCase().includes('poulet') ? 'pouletfries.png' :
+                          producto.nombre.toLowerCase().includes('cheddar') ? 'papascheddar.png' :
+                          'classicfries.png'
+                        ));
+                      case 'bebidas':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('coca') ? 'coca-cola.png' :
+                          producto.nombre.toLowerCase().includes('soda') ? 'soda italiana.jpg' :
+                          producto.nombre.toLowerCase().includes('fresada') ? 'fresada de coco.jpg' :
+                          'coca-cola.png'
+                        ));
+                      case 'alitas':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('personal x12') ? 'personalx12alas.png' :
+                          producto.nombre.toLowerCase().includes('personal x6') ? 'personalx6alas.png' :
+                          producto.nombre.toLowerCase().includes('x18') ? 'paracompartirx18.png' :
+                          producto.nombre.toLowerCase().includes('x24') ? 'paracompartirx24.png' :
+                          'personalx12alas.png'
+                        ));
+                      case 'hotdogs':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('next') ? 'nextlevelhotdog.png' :
+                          producto.nombre.toLowerCase().includes('classic') ? 'classichotdog.png' :
+                          producto.nombre.toLowerCase().includes('sweet') ? 'sweethotdog.png' :
+                          producto.nombre.toLowerCase().includes('mexican') ? 'mexicanhotdog.png' :
+                          producto.nombre.toLowerCase().includes('alana') ? 'alanahotdog.png' :
+                          'nextlevelhotdog.png'
+                        ));
+                      case 'entradas':
+                        return require('../assets/images/' + (
+                          producto.nombre.toLowerCase().includes('dedos') ? 'dedosqueso.png' :
+                          producto.nombre.toLowerCase().includes('aros') ? 'aroscebolla.png' :
+                          producto.nombre.toLowerCase().includes('chips') ? 'chipsplatano.png' :
+                          'dedosqueso.png'
+                        ));
+                      default:
+                        return require('../assets/images/default.png');
+                    }
+                  })()} 
                   alt={producto.nombre} 
                 />
               </div>

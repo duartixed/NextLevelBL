@@ -24,7 +24,7 @@ services:
       - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=1234
-      - DB_DATABASE=NextLevelBL
+      - DB_DATABASE=nextlevelbl
       - DB_PORT=3306
     depends_on:
       - db
@@ -35,12 +35,16 @@ services:
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: NextLevelBL
+      MYSQL_DATABASE: nextlevelbl
     ports:
       - "3307:3306"
     volumes:
+      - ./backend/nextlevelbl_db.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./backend/init_roles.sql:/docker-entrypoint-initdb.d/02-roles.sql
+      - ./backend/init_admin.sql:/docker-entrypoint-initdb.d/03-admin.sql
       - db_data:/var/lib/mysql
     restart: always
 
 volumes:
   db_data:
+    driver: local

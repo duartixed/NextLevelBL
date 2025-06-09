@@ -89,4 +89,57 @@ router.delete('/vaciar/:idCliente', async (req, res) => {
   }
 });
 
+// Transferir carrito entre clientes
+router.post('/transferir', async (req, res) => {
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
+    const { idClienteAnterior, idClienteNuevo } = req.body;
+
+    // Obtener items del carrito anterior
+    const [itemsAnteriores] = await connection.query(
+      'SELECT idProducto, cantidad FROM Carrito_de_Compras WHERE idCliente = ?',
+      [idClienteAnterior]
+    );
+
+    // Para cada item del carrito anterior
+    for (const item of itemsAnteriores) {
+      // Verificar si ya existe en el carrito nuevo
+      const [existente] = await connection.query(
+        'SELECT idCarrito, cantidad FROM Carrito_de_Compras WHERE idCliente = ? AND idProducto = ?',
+        [idClienteNuevo, item.idProducto]
+      );
+
+      if (existente.length > 0) {
+        // Si existe, actualizar cantidad
+        await connection.query(
+          'UPDATE Carrito_de_Compras SET cantidad = cantidad + ? WHERE idCarrito = ?',
+          [item.cantidad, existente[0].idCarrito]
+        );
+      } else {
+        // Si no existe, insertar nuevo
+        await connection.query(
+          'INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES (?, ?, ?)',
+          [idClienteNuevo, item.idProducto, item.cantidad]
+        );
+      }
+    }
+
+    // Eliminar items del carrito anterior
+    await connection.query(
+      'DELETE FROM Carrito_de_Compras WHERE idCliente = ?',
+      [idClienteAnterior]
+    );
+
+    await connection.commit();
+    res.json({ message: 'Carrito transferido exitosamente' });
+  } catch (error) {
+    await connection.rollback();
+    console.error('Error al transferir el carrito:', error);
+    res.status(500).json({ error: 'Error al transferir el carrito' });
+  } finally {
+    connection.release();
+  }
+});
+
 export default router;

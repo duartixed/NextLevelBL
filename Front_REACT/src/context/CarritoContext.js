@@ -8,11 +8,9 @@ export const CarritoProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
-  const idCliente = user ? user.idCliente : 1;
-
-  const fetchCartCount = async () => {
+  const fetchCartCount = async (clientId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/carrito/${idCliente}`);
+      const res = await fetch(`http://localhost:5000/api/carrito/${clientId}`);
       if (!res.ok) throw new Error('Error al obtener el carrito');
       const data = await res.json();
       let total = 0;
@@ -26,28 +24,24 @@ export const CarritoProvider = ({ children }) => {
       setCartCount(0);
       setCarrito([]);
     }
-  };
-
-  useEffect(() => {
-    fetchCartCount();
-  }, [idCliente]);
-
-  const agregarAlCarrito = async (producto) => {
+  };  useEffect(() => {
+    if (user) {
+      fetchCartCount(user.idCliente);
+    } else {
+      fetchCartCount(1); // Cliente anónimo
+    }
+  }, [user]);  const agregarAlCarrito = async (producto) => {
     setLoading(true);
     try {
-      console.log('Agregando al carrito:', {
-        idCliente,
-        idProducto: producto.idProducto,
-        cantidad: 1
-      });
-
+      const clientId = user ? user.idCliente : 1;
+      
       const response = await fetch('http://localhost:5000/api/carrito', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          idCliente,
+          idCliente: clientId,
           idProducto: producto.idProducto,
           cantidad: 1
         })
@@ -57,7 +51,7 @@ export const CarritoProvider = ({ children }) => {
         throw new Error('Error al agregar al carrito');
       }
 
-      await fetchCartCount();
+      await fetchCartCount(clientId);
       setLoading(false);
       return await response.json();
     } catch (error) {
@@ -105,6 +99,8 @@ export const CarritoProvider = ({ children }) => {
       cartCount,
       loading,
       agregarAlCarrito,
+      actualizarCantidad,
+      eliminarDelCarrito,
       fetchCartCount
     }}>
       {children}
