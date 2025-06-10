@@ -4,12 +4,13 @@ import mysql from 'mysql2/promise.js'; // Se agregó .js para evitar error en im
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '1234',
+  password: process.env.DB_PASSWORD || '12345',
   database: process.env.DB_DATABASE || 'nextlevelbl',
   port: process.env.DB_PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  multipleStatements: true
 };
 
 const pool = mysql.createPool(dbConfig);

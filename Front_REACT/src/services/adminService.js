@@ -48,36 +48,39 @@ const adminService = {
     return response.data;
   },
 
-  // Orders management
-  updateOrderStatus: async (orderId, status) => {
+  // Nuevas funcionalidades
+  updateOrderStatus: async (orderId, newStatus) => {
     const response = await axios.put(
-      `${API_URL}/ventas/${orderId}/status`,
-      { status },
+      `${API_URL}/admin/orden/${orderId}/estado`,
+      { estado: newStatus },
       getAuthConfig()
     );
     return response.data;
   },
 
-  // Categories management
-  getCategories: async () => {
-    const response = await axios.get(`${API_URL}/categorias`, getAuthConfig());
-    return response.data;
-  },
-
-  updateCategory: async (categoryId, categoryData) => {
-    const response = await axios.put(
-      `${API_URL}/categorias/${categoryId}`,
-      categoryData,
+  getVentaDetails: async (ventaId) => {
+    const response = await axios.get(
+      `${API_URL}/admin/venta/${ventaId}`,
       getAuthConfig()
     );
     return response.data;
   },
 
-  // User management
-  getUsers: async () => {
-    const response = await axios.get(`${API_URL}/admin/users`, getAuthConfig());
+  getClientes: async () => {
+    const response = await axios.get(
+      `${API_URL}/admin/clientes`,
+      getAuthConfig()
+    );
     return response.data;
   },
+
+  getProductosStats: async () => {
+    const response = await axios.get(
+      `${API_URL}/admin/productos/stats`,
+      getAuthConfig()
+    );
+    return response.data;
+  }
 };
 
 export default adminService;

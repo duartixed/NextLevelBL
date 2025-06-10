@@ -38,7 +38,7 @@ router.get('/stats', authenticateUser, isAdmin, async (req, res) => {
 });
 
 // Get monthly sales data
-router.get('/ventas-mensuales', async (req, res) => {
+router.get('/ventas-mensuales', authenticateUser, isAdmin, async (req, res) => {
   try {
     const [results] = await pool.query(`
       SELECT 
@@ -54,6 +54,104 @@ router.get('/ventas-mensuales', async (req, res) => {
   } catch (error) {
     console.error('Error getting monthly sales:', error);
     res.status(500).json({ error: 'Error al obtener ventas mensuales' });
+  }
+});
+
+// Actualizar estado de una orden
+router.put('/orden/:id/estado', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { estado } = req.body;
+
+    if (!['Pendiente', 'Completado', 'Cancelado'].includes(estado)) {
+      return res.status(400).json({ error: 'Estado no válido' });
+    }
+
+    await pool.query(
+      'UPDATE ProcesoPago SET estado = ? WHERE idVenta = ?',
+      [estado, id]
+    );
+
+    res.json({ message: 'Estado actualizado correctamente' });
+  } catch (error) {
+    console.error('Error al actualizar estado:', error);
+    res.status(500).json({ error: 'Error al actualizar estado de la orden' });
+  }
+});
+
+// Obtener detalles de una venta específica
+router.get('/venta/:id', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [venta] = await pool.query(`
+      SELECT v.*, c.nombre as cliente, c.email, c.telefono, c.direccion
+      FROM Ventas v
+      JOIN Clientes c ON v.idCliente = c.idCliente
+      WHERE v.idVenta = ?
+    `, [id]);
+
+    if (venta.length === 0) {
+      return res.status(404).json({ error: 'Venta no encontrada' });
+    }
+
+    const [detalles] = await pool.query(`
+      SELECT dv.*, p.nombre, p.precio
+      FROM DetalleVentas dv
+      JOIN Productos p ON dv.idProducto = p.idProducto
+      WHERE dv.idVenta = ?
+    `, [id]);
+
+    res.json({
+      venta: venta[0],
+      detalles
+    });
+  } catch (error) {
+    console.error('Error al obtener detalles de venta:', error);
+    res.status(500).json({ error: 'Error al obtener detalles de la venta' });
+  }
+});
+
+// Obtener lista de clientes
+router.get('/clientes', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const [clientes] = await pool.query(`
+      SELECT idCliente, nombre, email, telefono, direccion, 
+             (SELECT COUNT(*) FROM Ventas WHERE idCliente = c.idCliente) as totalCompras,
+             (SELECT COALESCE(SUM(total), 0) FROM Ventas WHERE idCliente = c.idCliente) as totalGastado
+      FROM Clientes c
+      WHERE idRol = 1
+      ORDER BY totalCompras DESC
+    `);
+
+    res.json(clientes);
+  } catch (error) {
+    console.error('Error al obtener lista de clientes:', error);
+    res.status(500).json({ error: 'Error al obtener lista de clientes' });
+  }
+});
+
+// Obtener estadísticas detalladas de productos
+router.get('/productos/stats', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const [stats] = await pool.query(`
+      SELECT 
+        p.idProducto,
+        p.nombre,
+        p.precio,
+        p.stock,
+        COUNT(dv.idProducto) as vecesVendido,
+        COALESCE(SUM(dv.cantidad), 0) as unidadesVendidas,
+        COALESCE(SUM(dv.subtotal), 0) as ingresosTotales
+      FROM Productos p
+      LEFT JOIN DetalleVentas dv ON p.idProducto = dv.idProducto
+      GROUP BY p.idProducto
+      ORDER BY unidadesVendidas DESC
+    `);
+
+    res.json(stats);
+  } catch (error) {
+    console.error('Error al obtener estadísticas de productos:', error);
+    res.status(500).json({ error: 'Error al obtener estadísticas de productos' });
   }
 });
 

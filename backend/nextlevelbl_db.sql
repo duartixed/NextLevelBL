@@ -1,7 +1,6 @@
 -- BASE DE DATOS PARA NEXTLEVELBL
 -- =============================
-DROP DATABASE IF EXISTS nextlevelbl;
-CREATE DATABASE nextlevelbl;
+CREATE DATABASE IF NOT EXISTS nextlevelbl;
 USE nextlevelbl;
 
 -- =============================

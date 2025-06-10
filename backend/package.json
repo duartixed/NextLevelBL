@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Backend del proyecto NextLevelBL",
   "main": "server.js",
-  "type": "module",
-  "scripts": {
+  "type": "module",  "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
+    "init-db": "node init-db.js",
     "test": "mocha --require esm test/productos.test.mjs",
     "lint": "eslint ."
   },
