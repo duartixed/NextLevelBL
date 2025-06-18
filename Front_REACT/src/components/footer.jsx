@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-section">
-          <h4>Contacto</h4>
+          <h4>Ubicación</h4>
           <ul className="contact-list">
             <li>
               <i className="fas fa-map-marker-alt"></i>
@@ -25,14 +25,6 @@ const Footer = () => {
                  rel="noopener noreferrer">
                 Cl. 9 #10 - 89, Neiva, Huila
               </a>
-            </li>
-            <li>
-              <i className="fas fa-phone"></i>
-              <a href="tel:3183336591">318 3336591</a>
-            </li>
-            <li>
-              <i className="fas fa-envelope"></i>
-              <a href="mailto:nextlevelneiva@gmail.com">nextlevelneiva@gmail.com</a>
             </li>
           </ul>
         </div>

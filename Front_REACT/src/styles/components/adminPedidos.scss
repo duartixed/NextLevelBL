@@ -1,0 +1,62 @@
+.admin-pedidos {
+  padding: 2rem;
+
+  .pedidos-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .pedido-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+
+    .pedido-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .pedido-content {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .estado {
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+
+      &.pendiente { background: #ffd700; color: black; }
+      &.en-preparacion { background: #ff9800; color: white; }
+      &.listo { background: #4caf50; color: white; }
+      &.entregado { background: #2196f3; color: white; }
+      &.cancelado { background: #f44336; color: white; }
+    }
+
+    .productos {
+      .producto-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .pedido-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      
+      select {
+        padding: 0.5rem;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}

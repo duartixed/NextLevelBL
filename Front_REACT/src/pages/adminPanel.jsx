@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import AdminProductos from '../components/AdminProductos';
+import AdminPedidos from '../components/AdminPedidos';
+import AdminClientes from '../components/AdminClientes';
 import '../styles/components/adminPanel.scss';
 
 const AdminPanel = () => {
@@ -21,10 +23,9 @@ const AdminPanel = () => {
       navigate('/admin-login');
     }
   }, [user, navigate]);
-
   const handleLogout = () => {
     logout();
-    navigate('/admin-login');
+    window.location.href = '/adminlogin';
   };
 
   return (
@@ -154,6 +155,10 @@ const AdminPanel = () => {
           </>
         ) : activeSection === 'productos' ? (
           <AdminProductos />
+        ) : activeSection === 'pedidos' ? (
+          <AdminPedidos />
+        ) : activeSection === 'clientes' ? (
+          <AdminClientes />
         ) : (
           <div className="coming-soon">
             <h2>Próximamente</h2>

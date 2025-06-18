@@ -144,3 +144,7 @@ main {
 .stylized-title-container {
   margin-top: v.$header-height;
 }
+
+@import './variables';
+@import './components';
+@import './size-adjustments';  // Agregando los ajustes de tamaño

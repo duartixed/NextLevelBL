@@ -3,8 +3,8 @@
 .stylized-title-container {
   position: relative;
   width: 100%;
-  padding: 2rem 0;
-  margin-top: calc(v.$header-height);
+  padding: 0.5rem 0; // Reducido para coincidir con "NUESTRA HISTORIA"
+  margin-top: 3.5rem; // Ajustado para coincidir con "NUESTRA HISTORIA"
   background: linear-gradient(
     to bottom,
     #000000,
@@ -17,7 +17,7 @@
   .stylized-title-content {
     position: relative;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     transform-style: preserve-3d;
 
     // Efecto de líneas doradas dinámicas
@@ -25,7 +25,7 @@
       content: '';
       position: absolute;
       height: 2px;
-      width: 30%;
+      width: 20%; // Reducido para coincidir con "NUESTRA HISTORIA"
       background: linear-gradient(
         90deg,
         transparent,
@@ -37,25 +37,25 @@
     }
 
     &::before {
-      left: 0;
+      left: 10%;
       top: 50%;
       transform: translateY(-50%) translateZ(20px);
     }
 
     &::after {
-      right: 0;
+      right: 10%;
       top: 50%;
       transform: translateY(-50%) translateZ(20px);
     }
 
     .main-title {
-      font-size: 3.5rem;
-      font-weight: 800;
+      font-size: 2rem; // Reducido para coincidir con "NUESTRA HISTORIA"
+      font-weight: 500; // Ajustado para coincidir con "NUESTRA HISTORIA"
       color: white;
       text-transform: uppercase;
       margin: 0;
       padding: 0;
-      letter-spacing: 4px;
+      letter-spacing: 1px; // Reducido para coincidir con "NUESTRA HISTORIA"
       text-shadow: 
         0 0 10px rgba(255, 255, 255, 0.3),
         0 0 20px rgba(252, 227, 3, 0.2),
@@ -66,132 +66,97 @@
     }
 
     .sub-title {
-      font-size: 2.5rem;
+      font-size: 1.1rem; // Reducido para coincidir con "NUESTRA HISTORIA"
       color: v.$color-secondary;
-      margin: 0.5rem 0 0;
-      font-weight: 600;
-      letter-spacing: 2px;
+      margin: 0.25rem 0 0;
+      font-weight: 400; // Ajustado para coincidir con "NUESTRA HISTORIA"
+      letter-spacing: 1px;
       opacity: 0.9;
-      transform: translateY(-5px) translateZ(10px);
+      transform: translateY(-3px) translateZ(10px);
       animation: subtitlePulse 4s ease-in-out infinite alternate;
     }
+  }
+}
 
-    .title-decoration {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) translateZ(-10px);
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(circle at center, rgba(252, 227, 3, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at center, rgba(252, 227, 3, 0.05) 0%, transparent 30%);
-      animation: rotateBg 20s linear infinite;
-      pointer-events: none;
-    }
-
-    .title-glow {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(
-        circle at var(--glow-x) var(--glow-y),
-        rgba(252, 227, 3, 0.2) 0%,
-        transparent 50%
-      );
-      pointer-events: none;
-      mix-blend-mode: screen;
-      z-index: 1;
-    }
-
-    .title-particles {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(circle at 50% 50%, white 1px, transparent 1px),
-          radial-gradient(circle at 40% 40%, white 1px, transparent 1px);
-        background-size: 40px 40px;
-        animation: particlesFloat 20s linear infinite;
-        opacity: 0.3;
+// Ajustes específicos para la página de contacto
+.contacto-page {
+  .stylized-title-container {
+    .stylized-title-content {
+      .main-title {
+        font-size: 2rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+      .sub-title {
+        font-size: 1.1rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
       }
     }
   }
 }
 
-// Animaciones
+// Ajustes específicos para la página de inicio
+.hero-welcome {
+  .stylized-title-container {
+    .stylized-title-content {
+      .main-title {
+        font-size: 2rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+      .sub-title {
+        font-size: 1.1rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+    }
+  }
+}
+
+// Mantener las animaciones existentes pero reducir su intensidad
 @keyframes titleFloat {
   0%, 100% {
-    transform: translateY(0) translateZ(0);
+    transform: translateY(0) translateZ(30px);
   }
   50% {
-    transform: translateY(-10px) translateZ(20px);
+    transform: translateY(-5px) translateZ(30px); // Reducido de -10px
   }
 }
 
 @keyframes subtitlePulse {
-  from {
+  0% {
     opacity: 0.7;
-    transform: translateY(-5px) translateZ(10px) scale(0.98);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(-5px) translateZ(10px) scale(1);
   }
 }
 
 @keyframes lineGlow {
-  from { 
-    opacity: 0.5;
-    transform: translateY(-50%) translateZ(20px) scale(0.95);
+  0% {
+    opacity: 0.3;
   }
-  to { 
-    opacity: 1;
-    transform: translateY(-50%) translateZ(20px) scale(1);
+  100% {
+    opacity: 0.8;
   }
 }
 
 @keyframes rotateBg {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes particlesFloat {
-  from { transform: translateY(0); }
-  to { transform: translateY(-40px); }
-}
-
-// Media queries
-@media (max-width: 768px) {
-  .stylized-title-container {
-    .stylized-title-content {
-      .main-title {
-        font-size: 2.5rem;
-      }
-      .sub-title {
-        font-size: 1.8rem;
-      }
-    }
+  0% {
+    transform: translate(-50%, -50%) translateZ(-10px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(-10px) rotate(360deg);
   }
 }
 
-@media (max-width: 480px) {
+// Responsive
+@media (max-width: 768px) {
   .stylized-title-container {
+    padding: 0.5rem 0;
+    margin-top: 3rem;
+    
     .stylized-title-content {
       .main-title {
-        font-size: 2rem;
+        font-size: 1.5rem !important;
+        letter-spacing: 1px;
       }
+      
       .sub-title {
-        font-size: 1.5rem;
+        font-size: 1rem !important;
       }
     }
   }

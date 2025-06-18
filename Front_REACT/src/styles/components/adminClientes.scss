@@ -1,0 +1,42 @@
+.admin-clientes {
+  padding: 2rem;
+
+  .clientes-list {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      th {
+        background: rgba(255, 255, 255, 0.05);
+        font-weight: 600;
+      }
+
+      tbody tr {
+        &:hover {
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        td {
+          color: rgba(255, 255, 255, 0.9);
+        }
+      }
+    }
+  }
+
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

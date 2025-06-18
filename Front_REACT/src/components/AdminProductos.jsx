@@ -4,6 +4,20 @@ import '../styles/components/adminProductos.scss';
 
 const API_URL = 'http://localhost:5000/api';
 
+// Configuración del axios para incluir el token en todas las peticiones
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 const AdminProductos = () => {
   const [productos, setProductos] = useState([]);
   const [nuevo, setNuevo] = useState({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' });
