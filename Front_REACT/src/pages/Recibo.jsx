@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/recibo.scss';
+import { CarritoContext } from '../context/CarritoContext';
+
 
 const Recibo = () => {
   const { idCliente } = useParams();
   const [productos, setProductos] = useState([]);
   const [total, setTotal] = useState(0);
+  const { vaciarCarrito, limpiarCarritoCompleto } = useContext(CarritoContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRecibo = async () => {
@@ -18,7 +23,6 @@ const Recibo = () => {
         console.error('Error al obtener el recibo:', error);
       }
     };
-
     fetchRecibo();
   }, [idCliente]);
 
@@ -35,19 +39,32 @@ const Recibo = () => {
           </tr>
         </thead>
         <tbody>
-          {productos.map((producto, index) => (
-            <tr key={index}>
-              <td>{producto.nombre}</td>
-              <td>${producto.precio.toFixed(2)}</td>
-              <td>{producto.cantidad}</td>
-              <td>${(producto.precio * producto.cantidad).toFixed(2)}</td>
-            </tr>
-          ))}
+          {productos.map((producto, index) => {
+            const precio = Number(producto.precio) || 0;
+            const cantidad = Number(producto.cantidad) || 0;
+            return (
+              <tr key={index}>
+                <td>{producto.nombre}</td>
+                <td>${precio.toFixed(2)}</td>
+                <td>{cantidad}</td>
+                <td>${(precio * cantidad).toFixed(2)}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className="recibo-total">
         <h2>Total: ${total.toFixed(2)}</h2>
       </div>
+      <button
+        onClick={async () => {
+          await limpiarCarritoCompleto();
+          navigate('/');
+        }}
+        style={{ marginTop: '2rem' }}
+      >
+        Volver al inicio
+      </button>
     </div>
   );
 };

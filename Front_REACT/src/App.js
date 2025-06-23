@@ -18,6 +18,7 @@ import { CarritoProvider } from './context/CarritoContext';
 import { AuthProvider } from './context/AuthContext';
 import PagoNequi from './pages/pagoNequi.jsx';
 import Recibo from './pages/Recibo.jsx';
+import ReciboAnonimo from './pages/ReciboAnonimo.jsx';
 
 const AppContent = () => {
   const location = useLocation();
@@ -46,6 +47,7 @@ const AppContent = () => {
           <Route path="/carrito" element={<CarritoPage />} />
           <Route path="/pago-nequi" element={<PagoNequi />} />
           <Route path="/recibo/:idCliente" element={<Recibo />} />
+          <Route path="/recibo-anonimo" element={<ReciboAnonimo />} />
           <Route path="/pago-nequi-info" element={<PagoNequi />} />
         </Routes>
       </main>

@@ -43,13 +43,17 @@ router.post('/', async (req, res) => {
         'UPDATE Carrito_de_Compras SET cantidad = cantidad + ? WHERE idCliente = ? AND idProducto = ?',
         [cantidad, idCliente, idProducto]
       );
-      return res.json({ message: 'Cantidad actualizada en el carrito' });
+      // Restar stock
+      await pool.query('UPDATE Productos SET stock = stock - ? WHERE idProducto = ?', [cantidad, idProducto]);
+      return res.json({ message: 'Cantidad actualizada en el carrito y stock actualizado' });
     }
     const [result] = await pool.query(
       'INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES (?, ?, ?)',
       [idCliente, idProducto, cantidad]
     );
-    return res.status(201).json({ message: 'Producto agregado al carrito', idCarrito: result.insertId });
+    // Restar stock
+    await pool.query('UPDATE Productos SET stock = stock - ? WHERE idProducto = ?', [cantidad, idProducto]);
+    return res.status(201).json({ message: 'Producto agregado al carrito y stock actualizado', idCarrito: result.insertId });
   } catch (error) {
     return res.status(500).json({ error: 'Error al agregar al carrito' });
   }

@@ -1,3 +1,5 @@
+// ...existing code...
+import checkoutRoutes from './routes/checkoutRoutes.js';
 import 'dotenv/config.js';
 import express from 'express';
 import cors from 'cors';
@@ -11,6 +13,8 @@ import authRoutes from './routes/authRoutes.js';
 import carritoRoutes from './routes/carritoRoutes.js';
 import productosRoutes from './routes/productosRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import carritoAnonimoRoutes from './routes/carritoAnonimoRoutes.js';
+import carritosProductosRoutes from './routes/carritosProductosRoutes.js';
 
 const app = express();
 const PORT = 5000;
@@ -28,8 +32,11 @@ app.use(
 // Montar rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/carrito', carritoRoutes);
+app.use('/api/carrito-anonimo', carritoAnonimoRoutes);
+app.use('/api', carritosProductosRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', checkoutRoutes); // Checkout debe ir después de inicializar app y rutas
 
 // Ruta principal
 app.get('/', (req, res) => {
@@ -75,20 +82,29 @@ app.delete('/clean-carrito', async (req, res) => {
   }
 });
 
-// Ruta para generar recibo
+
+// Ruta para generar recibo de usuario registrado (última venta real)
 app.get('/generate-receipt/:idCliente', async (req, res) => {
   try {
     const { idCliente } = req.params;
-    const [productos] = await pool.query(
-      `SELECT p.nombre, p.precio, c.cantidad
-       FROM Carrito_de_Compras c
-       JOIN Productos p ON c.idProducto = p.idProducto
-       WHERE c.idCliente = ?`,
+    // Buscar la última venta del cliente
+    const [ventas] = await pool.query(
+      `SELECT idVenta FROM Ventas WHERE idCliente = ? ORDER BY fecha DESC LIMIT 1`,
       [idCliente]
     );
-
+    if (!ventas.length) {
+      return res.json({ productos: [], total: 0 });
+    }
+    const idVenta = ventas[0].idVenta;
+    // Traer los productos de esa venta
+    const [productos] = await pool.query(
+      `SELECT p.nombre, p.precio, dv.cantidad
+         FROM DetalleVentas dv
+         JOIN Productos p ON dv.idProducto = p.idProducto
+         WHERE dv.idVenta = ?`,
+      [idVenta]
+    );
     const total = productos.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
-
     res.json({ productos, total });
   } catch (error) {
     console.error('Error al generar el recibo:', error);
@@ -96,11 +112,36 @@ app.get('/generate-receipt/:idCliente', async (req, res) => {
   }
 });
 
-// Rutas de la API
-app.use('/api/auth', authRoutes); // Registro e inicio de sesión
-app.use('/api/carrito', carritoRoutes); // Gestión del carrito de compras
-app.use('/api/productos', productosRoutes); // CRUD de productos
-app.use('/api/admin', adminRoutes); // Aseguramos que las rutas de admin estén configuradas
+// Ruta para generar recibo de compra anónima (última venta real asociada al anonId)
+app.get('/api/recibo-anonimo/:anonId', async (req, res) => {
+  try {
+    const { anonId } = req.params;
+    // Buscar la última venta donde infoAnonimo contiene el anonId
+    const [ventas] = await pool.query(
+      `SELECT idVenta FROM Ventas WHERE JSON_EXTRACT(infoAnonimo, '$.anonId') = ? ORDER BY fecha DESC LIMIT 1`,
+      [anonId]
+    );
+    if (!ventas.length) {
+      return res.json({ productos: [], total: 0 });
+    }
+    const idVenta = ventas[0].idVenta;
+    // Traer los productos de esa venta
+    const [productos] = await pool.query(
+      `SELECT p.nombre, p.precio, dv.cantidad
+         FROM DetalleVentas dv
+         JOIN Productos p ON dv.idProducto = p.idProducto
+         WHERE dv.idVenta = ?`,
+      [idVenta]
+    );
+    const total = productos.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
+    res.json({ productos, total });
+  } catch (error) {
+    console.error('Error al generar el recibo anónimo:', error);
+    res.status(500).json({ error: 'Error al generar el recibo anónimo' });
+  }
+});
+
+
 
 // ==========================
 // 🔹 INICIAR EL SERVIDOR

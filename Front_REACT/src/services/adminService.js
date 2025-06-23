@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api';
@@ -48,10 +49,18 @@ const adminService = {
     return response.data;
   },
 
-  // Nuevas funcionalidades
+  // Pedidos management
+  getPedidos: async (page = 1, limit = 10) => {
+    const response = await axios.get(
+      `${API_URL}/admin/pedidos?page=${page}&limit=${limit}`,
+      getAuthConfig()
+    );
+    return response.data;
+  },
+
   updateOrderStatus: async (orderId, newStatus) => {
     const response = await axios.put(
-      `${API_URL}/admin/orden/${orderId}/estado`,
+      `${API_URL}/admin/pedidos/${orderId}/estado`,
       { estado: newStatus },
       getAuthConfig()
     );
@@ -66,9 +75,10 @@ const adminService = {
     return response.data;
   },
 
-  getClientes: async () => {
+  // Clientes management
+  getClientes: async (page = 1, limit = 10) => {
     const response = await axios.get(
-      `${API_URL}/admin/clientes`,
+      `${API_URL}/admin/clientes?page=${page}&limit=${limit}`,
       getAuthConfig()
     );
     return response.data;

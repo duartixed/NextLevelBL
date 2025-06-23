@@ -30,6 +30,11 @@ async function setupDatabase() {
         await connection.query(adminSqlScript);
         console.log('✅ Usuario administrador creado correctamente');
 
+        // Leer y ejecutar el script de carritos anónimos
+        const anonCartsSqlScript = fs.readFileSync(path.join(__dirname, 'init_carritos_anonimos.sql'), 'utf8');
+        await connection.query(anonCartsSqlScript);
+        console.log('✅ Carritos anónimos inicializados correctamente');
+
         console.log('✅ Configuración de la base de datos completada exitosamente');
     } catch (error) {
         console.error('❌ Error durante la configuración de la base de datos:', error);

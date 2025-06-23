@@ -3,13 +3,12 @@ import '../styles/components/_hero.scss';
 import banner1 from '../assets/images/banner.jpg';
 import banner2 from '../assets/images/banner02.jpg';
 import banner3 from '../assets/images/banner03.png';
-import banner4 from '../assets/images/banner4.jpg';
 import banner6 from '../assets/images/banner6.jpg';
 
 const Hero = () => {
   const heroRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const images = [banner1, banner2, banner3, banner4, banner6];
+  const images = [banner1, banner2, banner3, banner6];
   const duplicatedImages = [...images, ...images];
 
   useEffect(() => {

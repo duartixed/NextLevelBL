@@ -6,6 +6,7 @@ import '../styles/components/carrito.scss';
 interface Producto {
   id?: number;
   idCarrito?: number;
+  idProducto?: number; // Para carritos anónimos
   nombre: string;
   precio: number;
   imagen: string;
@@ -23,7 +24,11 @@ const Carrito: React.FC<CarritoProps> = ({ productos, onRemoveFromCart, onUpdate
   const [cantidades, setCantidades] = useState<{ [key: number]: number }>({});
   const [total, setTotal] = useState(0);
 
-  const getProductoKey = (producto: Producto) => producto.idCarrito ?? producto.id ?? 0;
+  // Para usuarios registrados: idCarrito; para anónimos: idProducto
+  const getProductoKey = (producto: Producto) =>
+    producto.idCarrito !== undefined && producto.idCarrito !== null
+      ? producto.idCarrito
+      : (producto.idProducto !== undefined ? producto.idProducto : (producto.id ?? 0));
 
   // Calcular el total cuando cambien los productos o las cantidades
   useEffect(() => {

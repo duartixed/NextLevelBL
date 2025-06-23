@@ -10,7 +10,9 @@ router.get('/stats', authenticateUser, isAdmin, async (req, res) => {
     // Obtener estadísticas de la base de datos
     const [ventasTotal] = await pool.query('SELECT COALESCE(SUM(total), 0) as total FROM Ventas');
     const [productosCount] = await pool.query('SELECT COUNT(*) as total FROM Productos');
-    const [usuariosCount] = await pool.query('SELECT COUNT(*) as total FROM Clientes');
+    // Contar clientes normales y administradores por separado
+    const [clientesCount] = await pool.query('SELECT COUNT(*) as total FROM Clientes WHERE idRol = 1');
+    const [adminsCount] = await pool.query('SELECT COUNT(*) as total FROM Clientes WHERE idRol = 2');
     const [ventasRecientes] = await pool.query(`
       SELECT v.idVenta as id, c.nombre as cliente, v.fecha, v.total, 
              CASE 
@@ -28,7 +30,8 @@ router.get('/stats', authenticateUser, isAdmin, async (req, res) => {
     res.json({
       totalVentas: ventasTotal[0].total || 0,
       totalProductos: productosCount[0].total,
-      totalUsuarios: usuariosCount[0].total,
+      totalClientes: clientesCount[0].total,
+      totalAdmins: adminsCount[0].total,
       ventasRecientes
     });
   } catch (error) {
@@ -111,9 +114,18 @@ router.get('/venta/:id', authenticateUser, isAdmin, async (req, res) => {
   }
 });
 
-// Obtener lista de clientes
+// Obtener lista de clientes con paginación y total
 router.get('/clientes', authenticateUser, isAdmin, async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    // Total de clientes
+    const [totalResult] = await pool.query('SELECT COUNT(*) as total FROM Clientes WHERE idRol = 1');
+    const total = totalResult[0].total;
+
+    // Clientes paginados
     const [clientes] = await pool.query(`
       SELECT idCliente, nombre, email, telefono, direccion, 
              (SELECT COUNT(*) FROM Ventas WHERE idCliente = c.idCliente) as totalCompras,
@@ -121,9 +133,10 @@ router.get('/clientes', authenticateUser, isAdmin, async (req, res) => {
       FROM Clientes c
       WHERE idRol = 1
       ORDER BY totalCompras DESC
-    `);
+      LIMIT ? OFFSET ?
+    `, [limit, offset]);
 
-    res.json(clientes);
+    res.json({ clientes, total });
   } catch (error) {
     console.error('Error al obtener lista de clientes:', error);
     res.status(500).json({ error: 'Error al obtener lista de clientes' });
@@ -156,3 +169,41 @@ router.get('/productos/stats', authenticateUser, isAdmin, async (req, res) => {
 });
 
 export default router;
+
+// Alias temporal para pedidos (devuelve ventas como pedidos)
+// Ruta de pedidos con paginación para el panel admin
+router.get('/pedidos', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    // Traer ventas con info de cliente y estado
+    const [ventas] = await pool.query(`
+      SELECT v.idVenta, v.idCliente, c.nombre as cliente, v.fecha, v.total, p.estado,
+        CASE WHEN v.idCliente IS NULL THEN 'anonimo' ELSE 'registrado' END as tipo
+      FROM Ventas v
+      LEFT JOIN Clientes c ON v.idCliente = c.idCliente
+      LEFT JOIN ProcesoPago p ON v.idVenta = p.idVenta
+      ORDER BY v.fecha DESC
+      LIMIT ? OFFSET ?
+    `, [limit, offset]);
+
+    // Para cada venta, traer los productos asociados
+    for (const venta of ventas) {
+      const [productos] = await pool.query(`
+        SELECT dv.idProducto, COALESCE(p.nombre, 'Eliminado') as nombre, dv.cantidad, dv.subtotal, p.precio, p.imagen
+        FROM DetalleVentas dv
+        LEFT JOIN Productos p ON dv.idProducto = p.idProducto
+        WHERE dv.idVenta = ?
+      `, [venta.idVenta]);
+      venta.productos = productos;
+    }
+
+    const [total] = await pool.query('SELECT COUNT(*) as total FROM Ventas');
+    res.json({ pedidos: ventas, total: total[0].total });
+  } catch (error) {
+    console.error('Error al obtener pedidos:', error);
+    res.status(500).json({ error: 'Error al obtener pedidos' });
+  }
+});

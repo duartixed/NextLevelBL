@@ -25,7 +25,9 @@ const AdminLogin = () => {
 
     setError('');
     setLoading(true);
-
+    let isMounted = true;
+    // Cleanup para evitar memory leak
+    const cleanup = () => { isMounted = false; };
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', {
         correo: email,
@@ -40,16 +42,17 @@ const AdminLogin = () => {
         login(userData);
         navigate('/admin', { replace: true });
       } else {
-        setError('No tienes permisos de administrador');
+        if (isMounted) setError('No tienes permisos de administrador');
       }
     } catch (err) {
-      setError(
+      if (isMounted) setError(
         err.response?.data?.error || 
         'Error al iniciar sesión. Por favor, verifica tus credenciales.'
       );
     } finally {
-      setLoading(false);
+      if (isMounted) setLoading(false);
     }
+    return cleanup;
   };
 
   // Si ya está autenticado como admin, no mostrar el formulario
