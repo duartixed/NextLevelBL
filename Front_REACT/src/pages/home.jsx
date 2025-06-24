@@ -68,13 +68,10 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="hero-welcome">
-        <StylizedTitle 
-          title="Una Aventura Para Tu Paladar" 
-          subtitle="Donde cada bocado cuenta una historia"
-        />
-      </div>
-      
+      <StylizedTitle 
+        title="Una Aventura Para Tu Paladar" 
+        subtitle="Donde cada bocado cuenta una historia"
+      />
       <Hero />
       
       <div className="separator"></div>

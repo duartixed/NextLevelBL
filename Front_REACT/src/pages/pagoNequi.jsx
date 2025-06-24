@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/nequi.scss';
@@ -43,9 +42,12 @@ const PagoNequi = () => {
         productos = anonCarrito.map(p => ({
           idProducto: p.idProducto,
           cantidad: p.cantidad,
-          precio: p.precio
+          precio: p.precio,
+          nombre: p.nombre // para mostrar en recibo
         }));
         total = productos.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+        // Guardar recibo en localStorage antes de limpiar
+        localStorage.setItem('anonReceipt', JSON.stringify({ productos, total }));
         await axiosInstance.post('/api/checkout', {
           productos,
           total,

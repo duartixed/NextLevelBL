@@ -19,6 +19,7 @@ import { AuthProvider } from './context/AuthContext';
 import PagoNequi from './pages/pagoNequi.jsx';
 import Recibo from './pages/Recibo.jsx';
 import ReciboAnonimo from './pages/ReciboAnonimo.jsx';
+import TerminosCondiciones from './pages/TerminosCondiciones.jsx';
 
 const AppContent = () => {
   const location = useLocation();
@@ -49,6 +50,7 @@ const AppContent = () => {
           <Route path="/recibo/:idCliente" element={<Recibo />} />
           <Route path="/recibo-anonimo" element={<ReciboAnonimo />} />
           <Route path="/pago-nequi-info" element={<PagoNequi />} />
+          <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
         </Routes>
       </main>
       {!hideHeaderFooter && !isAuthForm && <Footer />}

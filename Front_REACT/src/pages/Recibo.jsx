@@ -1,14 +1,14 @@
-
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/recibo.scss';
 import { CarritoContext } from '../context/CarritoContext';
-
+import Alert from '../components/Alert.jsx';
 
 const Recibo = () => {
   const { idCliente } = useParams();
   const [productos, setProductos] = useState([]);
   const [total, setTotal] = useState(0);
+  const [alerta, setAlerta] = useState(null);
   const { vaciarCarrito, limpiarCarritoCompleto } = useContext(CarritoContext);
   const navigate = useNavigate();
 
@@ -58,13 +58,19 @@ const Recibo = () => {
       </div>
       <button
         onClick={async () => {
+          vaciarCarrito(); // Limpiar estado visual inmediato
           await limpiarCarritoCompleto();
-          navigate('/');
+          setAlerta({ type: 'success', message: '¡Gracias por tu compra!' });
+          setTimeout(() => {
+            setAlerta(null);
+            navigate('/');
+          }, 1200);
         }}
         style={{ marginTop: '2rem' }}
       >
         Volver al inicio
       </button>
+      {alerta && <Alert type={alerta.type} message={alerta.message} onClose={() => setAlerta(null)} />}
     </div>
   );
 };

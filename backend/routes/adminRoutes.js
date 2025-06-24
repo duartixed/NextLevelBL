@@ -144,7 +144,7 @@ router.get('/clientes', authenticateUser, isAdmin, async (req, res) => {
 });
 
 // Obtener estadísticas detalladas de productos
-router.get('/productos/stats', authenticateUser, isAdmin, async (req, res) => {
+router.get('/productos/stats', async (req, res) => {
   try {
     const [stats] = await pool.query(`
       SELECT 
@@ -154,14 +154,16 @@ router.get('/productos/stats', authenticateUser, isAdmin, async (req, res) => {
         p.stock,
         COUNT(dv.idProducto) as vecesVendido,
         COALESCE(SUM(dv.cantidad), 0) as unidadesVendidas,
-        COALESCE(SUM(dv.subtotal), 0) as ingresosTotales
+        COALESCE(SUM(dv.subtotal), 0) as ingresosTotales,
+        p.imagen,
+        p.descripcion
       FROM Productos p
       LEFT JOIN DetalleVentas dv ON p.idProducto = dv.idProducto
       GROUP BY p.idProducto
       ORDER BY unidadesVendidas DESC
     `);
 
-    res.json(stats);
+    res.json({ productos: stats });
   } catch (error) {
     console.error('Error al obtener estadísticas de productos:', error);
     res.status(500).json({ error: 'Error al obtener estadísticas de productos' });

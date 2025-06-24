@@ -135,7 +135,6 @@ const AdminProductos = () => {
         <textarea name="descripcion" placeholder="Descripción" value={nuevo.descripcion} onChange={handleChange} required />
         <input type="number" name="precio" placeholder="Precio" value={nuevo.precio} onChange={handleChange} required step="0.01" min="0" />
         <input type="number" name="stock" placeholder="Stock" value={nuevo.stock} onChange={handleChange} required min="0" />
-        <input type="text" name="imagen" placeholder="URL de la imagen" value={nuevo.imagen} onChange={handleChange} required />
         <button type="submit" disabled={loading}>{editando ? 'Actualizar Producto' : 'Agregar Producto'}</button>
         {editando && (
           <button type="button" onClick={() => { setEditando(null); setNuevo({ nombre: '', descripcion: '', precio: '', stock: '', imagen: '' }); }}>Cancelar Edición</button>
@@ -160,11 +159,15 @@ const AdminProductos = () => {
               <tr key={producto.idProducto}>
                 <td>{producto.idProducto}</td>
                 <td>
-                  <img src={producto.imagen} alt={producto.nombre} style={{width: '50px', height: '50px', objectFit: 'cover'}} />
+                  {producto.imagen ? (
+                    <img src={producto.imagen} alt={producto.nombre} style={{width: '50px', height: '50px', objectFit: 'cover'}} />
+                  ) : (
+                    <span style={{color: '#888'}}>Sin imagen</span>
+                  )}
                 </td>
                 <td>{producto.nombre}</td>
                 <td>{producto.descripcion}</td>
-                <td>${producto.precio.toFixed(2)}</td>
+                <td>${Number(producto.precio).toFixed(2)}</td>
                 <td>{producto.stock}</td>
                 <td>{producto.unidadesVendidas}</td>
                 <td>

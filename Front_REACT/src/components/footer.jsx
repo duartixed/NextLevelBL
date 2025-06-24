@@ -6,8 +6,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
+    <footer className="footer" style={{height: '56px', fontSize: '0.95rem', padding: '0.5rem 1rem'}}>
+      <div className="footer-content" style={{gap: '1rem'}}>
         <div className="footer-section">
           <h3>Next Level Burger Lab</h3>
           <p className="footer-description">

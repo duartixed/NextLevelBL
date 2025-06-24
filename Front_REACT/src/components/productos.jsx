@@ -68,13 +68,13 @@ const Productos = ({ user, onAddToCart }) => {
   }
 
   return (
-    <div className="productos-container">
+    <div className="productos-list" style={{gap: '1rem'}}>
       {Object.entries(productos).map(([categoria, items]) => (
         <div key={categoria} className="categoria-section">
           <h2>{categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h2>
           <div className="productos-grid">
             {items.map((producto) => (
-              <div key={producto.idProducto} className="producto-card">
+              <div key={producto.idProducto} className="producto-card" style={{padding: '0.7rem', borderRadius: '10px', fontSize: '0.95rem', minWidth: '180px', maxWidth: '220px'}}>
                 <img src={producto.imagen || `/images/${categoria}.png`} alt={producto.nombre} />
                 <h3>{producto.nombre}</h3>
                 <p>{producto.descripcion}</p>

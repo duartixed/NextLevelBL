@@ -52,6 +52,13 @@ const CarritoPage = () => {
     }
   }, [carrito, user]);
 
+  // Asegura que el carrito se limpie visualmente al volver al inicio (como usuarios registrados)
+  useEffect(() => {
+    if (!user && carrito.length === 0) {
+      setProductos([]);
+    }
+  }, [carrito, user]);
+
   // Eliminar producto del carrito
   const handleRemoveFromCart = async (idCarrito) => {
     if (isUnmounted) return;
@@ -73,6 +80,18 @@ const CarritoPage = () => {
       console.error('Error al actualizar cantidad:', error);
     }
   };
+
+  // Escuchar evento de storage para recargar el carrito anónimo tras compra
+  useEffect(() => {
+    const handleStorage = () => {
+      if (!user) {
+        setProductos([]); // Limpia el estado local inmediatamente
+        fetchCarrito();   // Refuerza el refetch del backend
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, [user]);
 
   return (
     <>      <div className="carrito-page">

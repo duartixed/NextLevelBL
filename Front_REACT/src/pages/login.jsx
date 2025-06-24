@@ -39,26 +39,28 @@ const Login = () => {
   return (
     <>
       <Header />
-      <div className="auth-page">
-        <div className="auth-container">
-          <form onSubmit={handleLogin}>
-            <h2>Iniciar Sesión</h2>
-            <div className="form-group">
-              <label>Correo Electrónico</label>
+      <div className="auth-page" style={{padding: '1.5rem 0'}}>
+        <div className="auth-container" style={{maxWidth: '340px', padding: '1.2rem 1.2rem', borderRadius: '10px'}}>
+          <form onSubmit={handleLogin} style={{gap: '0.7rem'}}>
+            <h2 style={{fontSize: '1.2rem', marginBottom: '0.7rem'}}>Iniciar Sesión</h2>
+            <div className="form-group" style={{marginBottom: '0.5rem'}}>
+              <label style={{fontSize: '0.95rem'}}>Correo Electrónico</label>
               <input 
                 type="email" 
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
                 required
+                style={{fontSize: '0.95rem', padding: '0.4rem 0.7rem', borderRadius: '6px'}}
               />
             </div>
-            <div className="form-group">
-              <label>Contraseña</label>
+            <div className="form-group" style={{marginBottom: '0.5rem'}}>
+              <label style={{fontSize: '0.95rem'}}>Contraseña</label>
               <input 
                 type="password" 
                 value={contraseña}
                 onChange={(e) => setContraseña(e.target.value)}
                 required
+                style={{fontSize: '0.95rem', padding: '0.4rem 0.7rem', borderRadius: '6px'}}
               />
             </div>
             {error && <div className="error-message">{error}</div>}

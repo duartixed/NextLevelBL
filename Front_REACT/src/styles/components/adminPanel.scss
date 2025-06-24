@@ -137,6 +137,8 @@
     padding: 2rem;
     min-height: 100vh;
     background: v.$color-dark;
+    overflow-y: auto;
+    max-height: 100vh;
 
     .dashboard-header {
       margin-bottom: 2.5rem;

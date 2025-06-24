@@ -3,13 +3,9 @@
 .stylized-title-container {
   position: relative;
   width: 100%;
-  padding: 0.5rem 0; // Reducido para coincidir con "NUESTRA HISTORIA"
-  margin-top: 3.5rem; // Ajustado para coincidir con "NUESTRA HISTORIA"
-  background: linear-gradient(
-    to bottom,
-    #000000,
-    rgba(0, 0, 0, 0.95)
-  );
+  padding: 0 0 0.1rem 0; // Sin espacio arriba
+  margin-top: 0; // Totalmente pegado al header
+  background: none; // Eliminar fondo negro extra
   overflow: hidden;
   z-index: 10;
   perspective: 1000px;

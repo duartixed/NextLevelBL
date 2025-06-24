@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/recibo.scss';
 import { getAnonId } from '../api/anonCart';
 import { CarritoContext } from '../context/CarritoContext';
+import Alert from '../components/Alert.jsx';
 
 const ReciboAnonimo = () => {
   const [productos, setProductos] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [alerta, setAlerta] = useState(null);
   const navigate = useNavigate();
   const { vaciarCarrito, limpiarCarritoCompleto } = useContext(CarritoContext);
 
@@ -15,6 +17,15 @@ const ReciboAnonimo = () => {
     const fetchRecibo = async () => {
       setLoading(true);
       try {
+        // Intentar leer de localStorage primero
+        const localReceipt = localStorage.getItem('anonReceipt');
+        if (localReceipt) {
+          const { productos: productosLS, total: totalLS } = JSON.parse(localReceipt);
+          setProductos(productosLS || []);
+          setTotal(totalLS || 0);
+          setLoading(false);
+          return;
+        }
         const anonId = getAnonId();
         const res = await fetch(`http://localhost:5000/api/recibo-anonimo/${anonId}`);
         const data = await res.json();
@@ -68,14 +79,23 @@ const ReciboAnonimo = () => {
       )}
       <button
         onClick={async () => {
-          await limpiarCarritoCompleto();
-          alert('¡Bienvenido!');
-          navigate('/');
+          setAlerta({ type: 'success', message: '¡Gracias por tu compra!' });
+          setTimeout(async () => {
+            setAlerta(null);
+            navigate('/');
+            window.dispatchEvent(new Event('storage'));
+            // Limpiar carrito después de volver al inicio
+            vaciarCarrito();
+            await limpiarCarritoCompleto();
+            setProductos([]);
+            localStorage.removeItem('anonReceipt'); // Limpiar recibo guardado
+          }, 1200);
         }}
         style={{ marginTop: '2rem' }}
       >
         Volver al inicio
       </button>
+      {alerta && <Alert type={alerta.type} message={alerta.message} onClose={() => setAlerta(null)} />}
     </div>
   );
 };

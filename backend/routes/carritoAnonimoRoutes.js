@@ -68,7 +68,7 @@ router.delete('/:idAnonimo/:idProducto', async (req, res) => {
   }
 });
 
-// Vaciar carrito anónimo
+// Vaciar carrito anónimo y eliminar productos demo
 router.delete('/vaciar/:idAnonimo', async (req, res) => {
   let { idAnonimo } = req.params;
   if (!idAnonimo || idAnonimo === 'null' || idAnonimo === 'undefined') {
@@ -76,8 +76,11 @@ router.delete('/vaciar/:idAnonimo', async (req, res) => {
   }
   idAnonimo = String(idAnonimo);
   try {
+    // Eliminar todos los productos del carrito anónimo
     await pool.query('DELETE FROM carrito_anonimo WHERE idAnonimo = ?', [idAnonimo]);
-    return res.json({ message: 'Carrito anónimo vaciado' });
+    // Eliminar productos demo (por ejemplo, con nombre que contenga "demo" o idProducto < 0)
+    await pool.query("DELETE FROM Productos WHERE nombre LIKE '%demo%' OR idProducto < 0");
+    return res.json({ message: 'Carrito anónimo y productos demo vaciados' });
   } catch (error) {
     console.error('Error al vaciar carrito anónimo:', error);
     return res.status(500).json({ message: 'Error al vaciar carrito anónimo', error: error.message });

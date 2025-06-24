@@ -47,10 +47,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="hero" ref={heroRef}>
+    <section className="hero" ref={heroRef} style={{padding: '0 0 0.5rem 0', minHeight: 'unset'}}>
       <div className="light-particles"></div>
       <div className="dynamic-glow"></div>
-      <div className="hero-content">
+      <div className="hero-content" style={{fontSize: '1.1rem', padding: '0.5rem 0'}}>
         <div className="hero-horizontal-gallery">
           {duplicatedImages.map((image, index) => (
             <div 

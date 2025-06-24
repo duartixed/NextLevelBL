@@ -26,13 +26,13 @@ const Header = () => {
           <img src={logo} alt="Next Level Logo" />
         </Link>
       </div>
-      <ul className="nav-links">
+      <ul className="nav-links" style={{gap: '1.2rem', fontSize: '0.95rem'}}>
         <li><Link to="/nosotros">NOSOTROS</Link></li>
         <li><Link to="/promociones">PROMOCIONES</Link></li>
         <li><Link to="/menu">MENÚ</Link></li>
         <li><Link to="/contacto">CONTÁCTANOS</Link></li>
       </ul>
-      <div className="icons">
+      <div className="icons" style={{gap: '0.5rem'}}>
         {!user ? (
           <>
             <button onClick={() => navigate('/login')} className="btn-icon">

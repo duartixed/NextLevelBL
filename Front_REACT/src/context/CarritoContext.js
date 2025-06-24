@@ -72,7 +72,10 @@ export const CarritoProvider = ({ children }) => {
       } else {
         // USUARIO ANÓNIMO: usa solo el endpoint de carritos anónimos
         await agregarAlCarritoAnonimo(producto.idProducto, 1);
+        // Refresca el estado igual que usuarios registrados
         await fetchCartCount();
+        const data = await obtenerCarritoAnonimo();
+        setCarrito(data);
         setLoading(false);
         return { message: 'Producto agregado al carrito anónimo' };
       }
@@ -166,6 +169,7 @@ export const CarritoProvider = ({ children }) => {
         }
       } catch (e) { /* ignorar error */ }
       localStorage.removeItem('anonCart');
+      localStorage.removeItem('anonId'); // Elimina el identificador anónimo tras la compra
       setCarrito([]);
       setCartCount(0);
     }

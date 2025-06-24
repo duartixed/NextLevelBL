@@ -21,9 +21,11 @@
     align-items: center;
 
     img {
-      height: 60px;
+      height: v.$logo-header-height;
+      max-width: v.$logo-header-max-width;
       width: auto;
       object-fit: contain;
+      display: block;
     }
   }
 
