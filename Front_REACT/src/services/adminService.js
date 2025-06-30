@@ -1,6 +1,10 @@
 
 import axios from 'axios';
 
+// Actualiza solo el stock de un producto (nuevo endpoint seguro)
+// Debe estar dentro del objeto adminService, no fuera
+
+
 const API_URL = 'http://localhost:5000/api';
 
 const getAuthConfig = () => {
@@ -11,6 +15,15 @@ const getAuthConfig = () => {
 };
 
 const adminService = {
+  // Actualiza solo el stock de un producto (nuevo endpoint seguro)
+  updateProductStock: async (productId, newStock) => {
+    const response = await axios.put(
+      `${API_URL}/admin/producto/${productId}/stock`,
+      { stock: newStock },
+      getAuthConfig()
+    );
+    return response.data;
+  },
   // Dashboard stats
   getStats: async () => {
     const response = await axios.get(`${API_URL}/admin/stats`, getAuthConfig());

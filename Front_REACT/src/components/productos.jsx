@@ -38,26 +38,31 @@ const Productos = ({ user, onAddToCart }) => {
     cargarProductos();
   }, []);
 
+  // Estado para cantidades por producto
+  const [cantidades, setCantidades] = useState({});
+
+  const handleCantidadChange = (idProducto, value, stock) => {
+    let val = parseInt(value, 10);
+    if (isNaN(val) || val < 1) val = 1;
+    if (stock && val > stock) val = stock;
+    setCantidades((prev) => ({ ...prev, [idProducto]: val }));
+  };
+
   const handleAddToCart = async (producto) => {
     if (!producto.idProducto) {
       setError('Error: Producto no válido');
       return;
     }
-
     setError(null);
     try {
-      console.log('Intentando agregar producto:', producto);
-      const result = await agregarAlCarrito(producto);
-      console.log('Respuesta:', result);
-      
+      const cantidad = cantidades[producto.idProducto] || 1;
+      const result = await agregarAlCarrito({ ...producto, cantidad });
       setAddedProduct(producto.nombre);
       if (onAddToCart) onAddToCart();
-      
       setTimeout(() => {
         setAddedProduct(null);
       }, 3000);
     } catch (error) {
-      console.error('Error al agregar al carrito:', error);
       setError(error.message || 'Error al agregar el producto al carrito');
       setAddedProduct(null);
     }
@@ -79,15 +84,25 @@ const Productos = ({ user, onAddToCart }) => {
                 <h3>{producto.nombre}</h3>
                 <p>{producto.descripcion}</p>
                 <p className="precio">${producto.precio.toFixed(2)}</p>
-                <button 
-                  onClick={() => handleAddToCart(producto)}
-                  disabled={loading || addedProduct === producto.nombre}
-                  className={`add-to-cart-btn ${loading ? 'loading' : ''} ${addedProduct === producto.nombre ? 'added' : ''}`}
-                >
-                  {loading ? 'Agregando...' : 
-                   addedProduct === producto.nombre ? '✓ Agregado' : 
-                   'Agregar al Carrito'}
-                </button>
+                <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
+                  <input
+                    type="number"
+                    min={1}
+                    max={producto.stock || 99}
+                    value={cantidades[producto.idProducto] || 1}
+                    onChange={e => handleCantidadChange(producto.idProducto, e.target.value, producto.stock)}
+                    style={{width:'50px', fontSize:'1rem'}}
+                  />
+                  <button 
+                    onClick={() => handleAddToCart(producto)}
+                    disabled={loading || addedProduct === producto.nombre}
+                    className={`add-to-cart-btn ${loading ? 'loading' : ''} ${addedProduct === producto.nombre ? 'added' : ''}`}
+                  >
+                    {loading ? 'Agregando...' : 
+                     addedProduct === producto.nombre ? '✓ Agregado' : 
+                     'Agregar al Carrito'}
+                  </button>
+                </div>
               </div>
             ))}
           </div>

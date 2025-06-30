@@ -49,6 +49,7 @@ export const CarritoProvider = ({ children }) => {
   const agregarAlCarrito = async (producto) => {
     setLoading(true);
     try {
+      const cantidad = producto.cantidad || 1;
       if (user) {
         // USUARIO REGISTRADO: usa el endpoint de clientes
         const clientId = user.idCliente;
@@ -60,33 +61,60 @@ export const CarritoProvider = ({ children }) => {
           body: JSON.stringify({
             idCliente: clientId,
             idProducto: producto.idProducto,
-            cantidad: 1
+            cantidad
           })
         });
         if (!response.ok) {
-          throw new Error('Error al agregar al carrito');
+          // Intenta leer el mensaje de error del backend
+          let errorMsg = 'Error al agregar al carrito';
+          try {
+            const errData = await response.json();
+            if (errData && errData.error && errData.error.includes('Stock insuficiente')) {
+              setLoading(false);
+              window.alert('No hay suficiente stock para agregar más de este producto.');
+              return null;
+            } else if (errData && errData.error) {
+              errorMsg = errData.error;
+            }
+          } catch {}
+          setLoading(false);
+          throw new Error(errorMsg);
         }
         await fetchCartCount(clientId);
         setLoading(false);
-        return await response.json();
+        return { message: 'Producto agregado al carrito correctamente.' };
       } else {
         // USUARIO ANÓNIMO: usa solo el endpoint de carritos anónimos
-        await agregarAlCarritoAnonimo(producto.idProducto, 1);
-        // Refresca el estado igual que usuarios registrados
-        await fetchCartCount();
+        try {
+          await agregarAlCarritoAnonimo(producto.idProducto, cantidad);
+        } catch (error) {
+          setLoading(false);
+          if (error && error.message && error.message.includes('Stock insuficiente')) {
+            window.alert('No hay suficiente stock para agregar más de este producto.');
+            return null;
+          }
+          throw error;
+        }
+        // Refresca el estado solo si se agregó correctamente
         const data = await obtenerCarritoAnonimo();
         setCarrito(data);
+        let total = 0;
+        data.forEach((item) => {
+          total += item.cantidad;
+        });
+        setCartCount(total);
         setLoading(false);
         return { message: 'Producto agregado al carrito anónimo' };
       }
     } catch (error) {
-      console.error('Error en agregarAlCarrito:', error);
       setLoading(false);
+      console.error('Error en agregarAlCarrito:', error);
       throw error;
     }
   };
 
   const actualizarCantidad = async (idCarrito, cantidad) => {
+    setLoading(true);
     try {
       if (user) {
         // Usuario registrado
@@ -97,20 +125,53 @@ export const CarritoProvider = ({ children }) => {
           },
           body: JSON.stringify({ cantidad })
         });
-        if (!response.ok) throw new Error('Error al actualizar cantidad');
+        if (!response.ok) {
+          let errorMsg = 'Error al actualizar cantidad';
+          try {
+            const errData = await response.json();
+            if (errData && errData.error && errData.error.includes('Stock insuficiente')) {
+              alert('No hay suficiente stock para actualizar la cantidad de este producto.');
+              setLoading(false);
+              // Refresca el carrito y el contador para mantener la UI consistente
+              await fetchCartCount(user.idCliente);
+              return;
+            } else if (errData && errData.error) {
+              errorMsg = errData.error;
+            }
+          } catch {}
+          setLoading(false);
+          throw new Error(errorMsg);
+        }
         await fetchCartCount(user.idCliente);
+        setLoading(false);
         return await response.json();
       } else {
         // Anónimo
-        await actualizarCantidadAnonimo(idCarrito, cantidad);
+        try {
+          await actualizarCantidadAnonimo(idCarrito, cantidad);
+        } catch (error) {
+          if (error && error.message && error.message.includes('Stock insuficiente')) {
+            alert('No hay suficiente stock para actualizar la cantidad de este producto.');
+            setLoading(false);
+            // Refresca el carrito y el contador para mantener la UI consistente
+            await fetchCartCount();
+            const data = await obtenerCarritoAnonimo();
+            setCarrito(data);
+            return;
+          }
+          setLoading(false);
+          throw error;
+        }
         await fetchCartCount();
         // Refresca el carrito también
         const data = await obtenerCarritoAnonimo();
         setCarrito(data);
+        setLoading(false);
         return { message: 'Cantidad actualizada en carrito anónimo' };
       }
     } catch (error) {
       console.error('Error al actualizar cantidad:', error);
+      setLoading(false);
       throw error;
     }
   };

@@ -40,11 +40,14 @@ const ProductosCategoria = () => {  const { categoriaId } = useParams();
       });
   }, [categoriaId]);  const handleAddToCart = async (producto) => {
     try {
-      await agregarAlCarrito(producto);
-      alert('✅ Producto agregado al carrito');
+      const result = await agregarAlCarrito(producto);
+      if (result) {
+        window.alert('✅ Producto agregado al carrito');
+      }
+      // Si no hay result, la alerta de stock ya fue mostrada por el contexto
     } catch (error) {
-      alert('❌ Error al agregar al carrito');
-    };
+      window.alert('❌ Error al agregar al carrito');
+    }
   };
 
   if (!categoria) {

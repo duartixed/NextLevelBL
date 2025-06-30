@@ -47,9 +47,11 @@ async function initDatabase() {
     } catch (error) {
         console.error('❌ Error durante la configuración de la base de datos:', error);
         throw error;
-    } finally {
+    finally {
         await connection.end();
     }
 }
 
-initDatabase().catch(console.error);
+// ⚠️ IMPORTANTE: Esta línea está comentada para evitar reinicializar la base de datos automáticamente.
+// Si necesitas reinicializar la base de datos manualmente, descomenta la siguiente línea:
+// initDatabase().catch(console.error);

@@ -34,8 +34,27 @@ router.post('/checkout', async (req, res) => {
       );
     }
     const idVenta = ventaResult.insertId;
-    // Insertar productos en DetalleVentas
+    // Validar y descontar stock antes de insertar productos en DetalleVentas
     for (const prod of productos) {
+      // Validar stock actual
+      const [rows] = await conn.query(
+        'SELECT stock FROM Productos WHERE idProducto = ?',
+        [prod.idProducto]
+      );
+      if (rows.length === 0) {
+        await conn.rollback();
+        return res.status(404).json({ error: `Producto no encontrado: ${prod.idProducto}` });
+      }
+      if (rows[0].stock < prod.cantidad) {
+        await conn.rollback();
+        return res.status(400).json({ error: `Stock insuficiente para el producto ${prod.idProducto}` });
+      }
+      // Descontar stock
+      await conn.query(
+        'UPDATE Productos SET stock = stock - ? WHERE idProducto = ?',
+        [prod.cantidad, prod.idProducto]
+      );
+      // Insertar en DetalleVentas
       await conn.query(
         'INSERT INTO DetalleVentas (idVenta, idProducto, cantidad, subtotal) VALUES (?, ?, ?, ?)',
         [idVenta, prod.idProducto, prod.cantidad, prod.precio * prod.cantidad]

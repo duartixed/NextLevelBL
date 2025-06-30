@@ -33,27 +33,36 @@ router.post('/', async (req, res) => {
     }
     
     console.log('🔍 Verificando producto existente para:', { idCliente, idProducto });
+    // Validar existencia y stock del producto
+    const [productos] = await pool.query(
+      'SELECT stock FROM Productos WHERE idProducto = ?',
+      [idProducto]
+    );
+    if (productos.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado', idProducto });
+    }
+    const stockDisponible = productos[0].stock;
     // Verificar si ya existe ese producto en el carrito
     const [exist] = await pool.query(
-      'SELECT * FROM Carrito_de_Compras WHERE idCliente = ? AND idProducto = ?',
+      'SELECT idCarrito FROM Carrito_de_Compras WHERE idCliente = ? AND idProducto = ?',
       [idCliente, idProducto]
     );
+    // Validar que la cantidad solicitada no supere el stock
+    if (cantidad > stockDisponible) {
+      return res.status(400).json({ error: 'Stock insuficiente para la cantidad solicitada', stockDisponible, solicitado: cantidad });
+    }
     if (exist.length > 0) {
       await pool.query(
-        'UPDATE Carrito_de_Compras SET cantidad = cantidad + ? WHERE idCliente = ? AND idProducto = ?',
+        'UPDATE Carrito_de_Compras SET cantidad = ? WHERE idCliente = ? AND idProducto = ?',
         [cantidad, idCliente, idProducto]
       );
-      // Restar stock
-      await pool.query('UPDATE Productos SET stock = stock - ? WHERE idProducto = ?', [cantidad, idProducto]);
-      return res.json({ message: 'Cantidad actualizada en el carrito y stock actualizado' });
+      return res.json({ message: 'Cantidad actualizada en el carrito' });
     }
     const [result] = await pool.query(
       'INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES (?, ?, ?)',
       [idCliente, idProducto, cantidad]
     );
-    // Restar stock
-    await pool.query('UPDATE Productos SET stock = stock - ? WHERE idProducto = ?', [cantidad, idProducto]);
-    return res.status(201).json({ message: 'Producto agregado al carrito y stock actualizado', idCarrito: result.insertId });
+    return res.status(201).json({ message: 'Producto agregado al carrito', idCarrito: result.insertId });
   } catch (error) {
     return res.status(500).json({ error: 'Error al agregar al carrito' });
   }
@@ -64,6 +73,22 @@ router.put('/:idCarrito', async (req, res) => {
   try {
     const { cantidad } = req.body;
     const { idCarrito } = req.params;
+    // Obtener el producto y cliente del carrito
+    const [carritoRows] = await pool.query('SELECT idProducto, idCliente FROM Carrito_de_Compras WHERE idCarrito = ?', [idCarrito]);
+    if (carritoRows.length === 0) {
+      return res.status(404).json({ error: 'Carrito no encontrado' });
+    }
+    const { idProducto, idCliente } = carritoRows[0];
+    // Obtener el stock disponible
+    const [prodRows] = await pool.query('SELECT stock FROM Productos WHERE idProducto = ?', [idProducto]);
+    if (prodRows.length === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+    const stockDisponible = prodRows[0].stock;
+    // Sumar cantidades de ese producto en el carrito (debería ser solo uno, pero por si acaso)
+    if (cantidad > stockDisponible) {
+      return res.status(400).json({ error: 'Stock insuficiente para la cantidad solicitada', stockDisponible, solicitado: cantidad });
+    }
     await pool.query('UPDATE Carrito_de_Compras SET cantidad = ? WHERE idCarrito = ?', [cantidad, idCarrito]);
     res.json({ message: 'Cantidad actualizada' });
   } catch (error) {

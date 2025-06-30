@@ -1,8 +1,32 @@
+
 import express from 'express';
 import pool from '../db.js';
 import { authenticateUser, isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+// ...existing code...
+
+// Actualizar stock de un producto (endpoint seguro para admin)
+router.put('/producto/:idProducto/stock', authenticateUser, isAdmin, async (req, res) => {
+  try {
+    const { idProducto } = req.params;
+    const { stock } = req.body;
+    // Permitir stock recibido como string numérico (por si el frontend lo envía así)
+    const stockNum = Number(stock);
+    if (isNaN(stockNum) || stockNum < 0) {
+      return res.status(400).json({ error: 'Stock inválido' });
+    }
+    const [result] = await pool.query('UPDATE Productos SET stock = ? WHERE idProducto = ?', [stockNum, idProducto]);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+    res.json({ message: 'Stock actualizado correctamente', idProducto, stock: stockNum });
+  } catch (error) {
+    console.error('Error al actualizar stock:', error);
+    res.status(500).json({ error: 'Error al actualizar stock' });
+  }
+});
 
 // Ruta protegida para obtener estadísticas
 router.get('/stats', authenticateUser, isAdmin, async (req, res) => {
@@ -144,7 +168,7 @@ router.get('/clientes', authenticateUser, isAdmin, async (req, res) => {
 });
 
 // Obtener estadísticas detalladas de productos
-router.get('/productos/stats', async (req, res) => {
+router.get('/productos/stats', authenticateUser, isAdmin, async (req, res) => {
   try {
     const [stats] = await pool.query(`
       SELECT 
@@ -154,9 +178,7 @@ router.get('/productos/stats', async (req, res) => {
         p.stock,
         COUNT(dv.idProducto) as vecesVendido,
         COALESCE(SUM(dv.cantidad), 0) as unidadesVendidas,
-        COALESCE(SUM(dv.subtotal), 0) as ingresosTotales,
-        p.imagen,
-        p.descripcion
+        COALESCE(SUM(dv.subtotal), 0) as ingresosTotales
       FROM Productos p
       LEFT JOIN DetalleVentas dv ON p.idProducto = dv.idProducto
       GROUP BY p.idProducto

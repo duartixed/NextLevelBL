@@ -10,6 +10,10 @@ ON DUPLICATE KEY UPDATE nombre_rol = VALUES(nombre_rol);
 -- Limpiar tabla de productos
 DELETE FROM Productos;
 
+-- Verificar productos de promociones
+-- Puedes ejecutar este SELECT en tu base de datos para ver si existen y tienen stock
+-- SELECT * FROM Productos WHERE nombre IN ('Combo Familiar', 'Combo Amigos');
+
 -- Insertar Hamburguesas
 INSERT INTO Productos (nombre, descripcion, precio, stock, imagen, categoria) VALUES
 ('Hamburguesa Clásica', 'Carne, lechuga, tomate, queso y salsa especial', 10.00, 100, '/images/burgers.png', 'hamburguesas'),
@@ -44,7 +48,11 @@ INSERT INTO Productos (nombre, descripcion, precio, stock, imagen, categoria) VA
 ('Nachos', 'Con guacamole y pico de gallo', 8.00, 100, '/images/entradas.png', 'entradas'),
 ('Aros de Cebolla', 'Crujientes aros de cebolla', 6.00, 100, '/images/entradas.png', 'entradas');
 
--- Insertar Especiales
 INSERT INTO Productos (nombre, descripcion, precio, stock, imagen, categoria) VALUES
 ('Combo Familiar', '4 hamburguesas, 2 papas grandes, 4 bebidas', 35.00, 100, '/images/especiales.png', 'especiales'),
 ('Combo Amigos', '2 hamburguesas, alitas, papas y bebidas', 25.00, 100, '/images/especiales.png', 'especiales');
+
+
+-- Agregar restricción única para evitar duplicados de nombre y categoría
+-- Si ya existe, este comando dará error pero no afecta los datos
+ALTER TABLE Productos ADD UNIQUE(nombre, categoria);

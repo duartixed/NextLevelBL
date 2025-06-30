@@ -168,7 +168,31 @@ const AdminProductos = () => {
                 <td>{producto.nombre}</td>
                 <td>{producto.descripcion}</td>
                 <td>${Number(producto.precio).toFixed(2)}</td>
-                <td>{producto.stock}</td>
+                <td>
+                  <form
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      const nuevoStock = e.target.elements[`stock-${producto.idProducto}`].value;
+                      try {
+                        await adminService.updateProductStock(producto.idProducto, parseInt(nuevoStock));
+                        setMensaje(`Stock actualizado para "${producto.nombre}"`);
+                        await fetchProductos();
+                      } catch (error) {
+                        setMensaje('Error al actualizar stock: ' + (error.response?.data?.message || error.message));
+                      }
+                    }}
+                    style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+                  >
+                    <input
+                      type="number"
+                      name={`stock-${producto.idProducto}`}
+                      defaultValue={producto.stock}
+                      min="0"
+                      style={{ width: '60px' }}
+                    />
+                    <button type="submit" style={{ padding: '2px 8px' }}>Guardar</button>
+                  </form>
+                </td>
                 <td>{producto.unidadesVendidas}</td>
                 <td>
                   <button onClick={() => handleEdit(producto)} className="edit-button">Editar</button>

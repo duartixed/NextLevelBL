@@ -31,16 +31,19 @@ const Promociones = () => {
 
   const handleAgregarAlCarrito = async (promo) => {
     try {
-      await agregarAlCarrito({
+      const result = await agregarAlCarrito({
         idProducto: promo.idProducto,
         nombre: promo.nombre,
         precio: promo.precio,
         imagen: promo.imagen,
         descripcion: promo.descripcion
       });
-      alert('✅ Promoción agregada al carrito');
+      if (result && result.message && result.message.includes('agregado al carrito')) {
+        window.alert('✅ Producto agregado al carrito');
+      }
+      // Si no hay result, la alerta de stock ya fue mostrada por el contexto
     } catch (error) {
-      alert('❌ Error al agregar la promoción al carrito');
+      window.alert('❌ Error al agregar al carrito');
     }
   };
 

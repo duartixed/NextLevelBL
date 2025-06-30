@@ -19,6 +19,12 @@ import carritosProductosRoutes from './routes/carritosProductosRoutes.js';
 const app = express();
 const PORT = 5000;
 
+// Middleware global para loguear todas las peticiones
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.originalUrl} - body:`, req.body);
+  next();
+});
+
 // Configuración de Middlewares
 app.use(express.json());
 app.use(

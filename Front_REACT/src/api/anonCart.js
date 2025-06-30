@@ -11,11 +11,26 @@ export function getAnonId() {
 
 export async function agregarAlCarritoAnonimo(idProducto, cantidad = 1) {
   const idAnonimo = getAnonId();
-  await axios.post('http://localhost:5000/api/carrito-anonimo', {
-    idAnonimo,
-    idProducto,
-    cantidad
-  });
+  try {
+    await axios.post('http://localhost:5000/api/carrito-anonimo', {
+      idAnonimo,
+      idProducto,
+      cantidad
+    });
+    return { success: true };
+  } catch (error) {
+    if (
+      error.response &&
+      error.response.status === 400 &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.includes('Stock insuficiente')
+    ) {
+      // Propaga el error de stock insuficiente de forma controlada
+      throw new Error('Stock insuficiente');
+    }
+    throw error;
+  }
 }
 
 export async function obtenerCarritoAnonimo() {
@@ -33,12 +48,20 @@ export async function eliminarDelCarritoAnonimo(idProducto) {
 // Actualizar cantidad de producto en el carrito anónimo
 export async function actualizarCantidadAnonimo(idProducto, cantidad) {
   const idAnonimo = getAnonId();
-  // Simula actualización: elimina si cantidad <= 0, si no, agrega con la nueva cantidad (reemplaza)
   if (cantidad <= 0) {
     await eliminarDelCarritoAnonimo(idProducto);
-  } else {
-    // Elimina primero el producto y luego lo agrega con la nueva cantidad
+    return;
+  }
+  // Antes de eliminar, verifica si hay stock suficiente
+  try {
+    // Intenta agregar con la cantidad deseada, pero NO elimines el producto original si falla
+    await agregarAlCarritoAnonimo(idProducto, cantidad);
+    // Si se pudo agregar, elimina el anterior (si existe) y deja el nuevo (esto asegura que la cantidad es la correcta)
     await eliminarDelCarritoAnonimo(idProducto);
     await agregarAlCarritoAnonimo(idProducto, cantidad);
+  } catch (error) {
+    // Si hay error de stock, NO elimines el producto existente, solo lanza la alerta
+    // NO hagas nada, solo lanza el error
+    throw error;
   }
 }
