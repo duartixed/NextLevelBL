@@ -1,0 +1,98 @@
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import axios from 'axios';
+import '../styles/components/auth.scss';
+
+const AdminLogin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { login, user } = useContext(AuthContext);
+
+  useEffect(() => {
+    // Si ya está autenticado como admin, redirigir al panel
+    if (user?.idRol === 2) {
+      navigate('/admin', { replace: true });
+    }
+  }, [user, navigate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (loading) return;
+
+    setError('');
+    setLoading(true);
+    let isMounted = true;
+    // Cleanup para evitar memory leak
+    const cleanup = () => { isMounted = false; };
+    try {
+      const res = await axios.post('http://localhost:5000/api/auth/login', {
+        correo: email,
+        contraseña: password
+      });
+
+      const userData = res.data.usuario;
+      const token = res.data.token;
+
+      if (userData?.idRol === 2) {
+        localStorage.setItem('token', token);
+        login(userData);
+        navigate('/admin', { replace: true });
+      } else {
+        if (isMounted) setError('No tienes permisos de administrador');
+      }
+    } catch (err) {
+      if (isMounted) setError(
+        err.response?.data?.error || 
+        'Error al iniciar sesión. Por favor, verifica tus credenciales.'
+      );
+    } finally {
+      if (isMounted) setLoading(false);
+    }
+    return cleanup;
+  };
+
+  // Si ya está autenticado como admin, no mostrar el formulario
+  if (user?.idRol === 2) {
+    return null;
+  }
+
+  return (
+    <div className="auth-page" style={{padding: '1.5rem 0'}}>
+      <div className="auth-container" style={{maxWidth: '340px', padding: '1.2rem 1.2rem', borderRadius: '10px'}}>
+        <form onSubmit={handleSubmit} style={{gap: '0.7rem'}}>
+          <h2 style={{fontSize: '1.2rem', marginBottom: '0.7rem'}}>Iniciar Sesión Administrador</h2>
+          <div className="form-group" style={{marginBottom: '0.5rem'}}>
+            <label style={{fontSize: '0.95rem'}}>Correo Electrónico</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              style={{fontSize: '0.95rem', padding: '0.4rem 0.7rem', borderRadius: '6px'}}
+            />
+          </div>
+          <div className="form-group" style={{marginBottom: '0.5rem'}}>
+            <label style={{fontSize: '0.95rem'}}>Contraseña</label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              style={{fontSize: '0.95rem', padding: '0.4rem 0.7rem', borderRadius: '6px'}}
+            />
+          </div>
+          {error && <div className="error-message">{error}</div>}
+          <button className="submit-btn" type="submit" disabled={loading}>
+            {loading ? 'Iniciando sesión...' : 'Ingresar'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default AdminLogin;

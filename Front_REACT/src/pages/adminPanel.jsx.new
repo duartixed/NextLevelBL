@@ -1,0 +1,57 @@
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import AdminProductos from '../components/AdminProductos';
+import '../styles/components/adminPanel.scss';
+
+const AdminPanel = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [activeSection, setActiveSection] = useState('dashboard');
+
+  useEffect(() => {
+    if (!user || user.idRol !== 2) {
+      navigate('/admin-login');
+    }
+  }, [user, navigate]);
+
+  return (
+    <div className="admin-panel">
+      <nav className="admin-nav">
+        <button
+          className={activeSection === 'dashboard' ? 'active' : ''}
+          onClick={() => setActiveSection('dashboard')}
+        >
+          Dashboard
+        </button>
+        <button
+          className={activeSection === 'productos' ? 'active' : ''}
+          onClick={() => setActiveSection('productos')}
+        >
+          Gestionar Productos
+        </button>
+      </nav>
+
+      <main className="admin-content">
+        {activeSection === 'dashboard' ? (
+          <div className="dashboard-container">
+            <h2>Panel de Administración</h2>
+            <div className="dashboard-content">
+              <p>Bienvenido al panel de administración</p>
+              {user && (
+                <div className="admin-info">
+                  <p>Usuario: {user.nombre}</p>
+                  <p>Rol: {user.rol}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <AdminProductos />
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default AdminPanel;

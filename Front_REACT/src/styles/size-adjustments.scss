@@ -1,0 +1,40 @@
+// Ajustes de tamaño globales
+.titulo-seccion {
+  font-size: 2rem !important;  // Reducido de 2.5rem
+}
+
+.subtitulo-seccion {
+  font-size: 1.2rem !important;  // Reducido de 1.5rem
+}
+
+.container {
+  max-width: 1100px !important;  // Reducido del tamaño original
+  padding: 1rem !important;
+}
+
+// Ajustes para el panel de administrador
+.admin-panel {
+  .sidebar {
+    width: 250px !important;  // Reducido del tamaño original
+  }
+  
+  .main-content {
+    padding: 1.5rem !important;
+  }
+}
+
+// Ajustes para las tarjetas de productos
+.producto-card {
+  max-width: 280px !important;
+  margin: 0.8rem !important;
+}
+
+// Ajustes para los espaciados
+.section {
+  padding: 2rem 0 !important;
+}
+
+// Ajustes para los botones
+.btn {
+  padding: 0.6rem 1.2rem !important;
+}

@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "overrides": [
+    {
+      "files": ["test-db.js"],
+      "env": { "node": true, "es2021": true },
+      "parserOptions": { "ecmaVersion": 2021, "sourceType": "module" },
+      "rules": {}
+    },
+    {
+      "files": ["webpack.config.js"],
+      "env": { "node": true, "es2021": true },
+      "parserOptions": { "ecmaVersion": 2021 },
+      "rules": {}
+    }
+  ]
+}

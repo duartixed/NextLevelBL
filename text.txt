@@ -1,0 +1,303 @@
+-- CREACIÓN DE LA BASE DE DATOS
+-- ==========================
+CREATE DATABASE IF NOT EXISTS nextlevelbl;
+USE nextlevelbl;
+
+-- ==========================
+-- TABLAS PRINCIPALES
+-- ==========================
+CREATE TABLE Roles (
+    idRol INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_rol VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Clientes (
+    idCliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    telefono VARCHAR(20),
+    direccion TEXT,
+    idRol INT NOT NULL,
+    FOREIGN KEY (idRol) REFERENCES Roles(idRol) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Productos (
+    idProducto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    imagen VARCHAR(255)
+);
+
+CREATE TABLE DetalleProductos (
+    idDetalle INT AUTO_INCREMENT PRIMARY KEY,
+    idProducto INT NOT NULL,
+    especificacion TEXT,
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Carrito_de_Compras (
+    idCarrito INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    idProducto INT NOT NULL,
+    cantidad INT NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente) ON DELETE CASCADE,
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto) ON DELETE CASCADE
+);
+
+CREATE TABLE Ventas (
+    idVenta INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente) ON DELETE CASCADE
+);
+
+CREATE TABLE DetalleVentas (
+    idDetalleVenta INT AUTO_INCREMENT PRIMARY KEY,
+    idVenta INT NOT NULL,
+    idProducto INT NOT NULL,
+    cantidad INT NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idVenta) REFERENCES Ventas(idVenta) ON DELETE CASCADE,
+    FOREIGN KEY (idProducto) REFERENCES Productos(idProducto) ON DELETE CASCADE
+);
+
+CREATE TABLE MetodosPago (
+    idMetodoPago INT AUTO_INCREMENT PRIMARY KEY,
+    metodo VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE ProcesoPago (
+    idPago INT AUTO_INCREMENT PRIMARY KEY,
+    idVenta INT NOT NULL,
+    idMetodoPago INT NOT NULL,
+    estado ENUM('Pendiente', 'Completado', 'Cancelado') NOT NULL DEFAULT 'Pendiente',
+    FOREIGN KEY (idVenta) REFERENCES Ventas(idVenta) ON DELETE CASCADE,
+    FOREIGN KEY (idMetodoPago) REFERENCES MetodosPago(idMetodoPago) ON DELETE CASCADE
+);
+
+-- ==========================
+-- DATOS DE PRUEBA
+-- ==========================
+INSERT INTO Roles (nombre_rol) VALUES ('Cliente'), ('Administrador');
+
+INSERT INTO Clientes (nombre, email, contraseña, telefono, direccion, idRol)
+VALUES 
+    ('Juan Perez', 'juan@example.com', '123456', '3001234567', 'Calle 123', 1),
+    ('Ana López', 'ana@example.com', 'abcdef', '3019876543', 'Carrera 456', 2);
+
+INSERT INTO Productos (nombre, descripcion, precio, stock, imagen)
+VALUES 
+    ('Laptop', 'Laptop de última generación', 2500.00, 10, 'laptop.jpg'),
+    ('Mouse', 'Mouse inalámbrico', 20.00, 50, 'mouse.jpg');
+
+INSERT INTO DetalleProductos (idProducto, especificacion) VALUES 
+    (1, '8GB RAM, 512GB SSD'),
+    (2, 'Sensor óptico, inalámbrico');
+
+INSERT INTO Carrito_de_Compras (idCliente, idProducto, cantidad) VALUES 
+    (1, 1, 1),
+    (2, 2, 2);
+
+INSERT INTO Ventas (idCliente, total) VALUES 
+    (1, 2500.00),
+    (2, 40.00);
+
+INSERT INTO DetalleVentas (idVenta, idProducto, cantidad, subtotal) VALUES 
+    (1, 1, 1, 2500.00),
+    (2, 2, 2, 40.00);
+
+INSERT INTO MetodosPago (metodo) VALUES 
+    ('Tarjeta de Crédito'),
+    ('PayPal'),
+    ('Transferencia Bancaria');
+
+INSERT INTO ProcesoPago (idVenta, idMetodoPago, estado) VALUES 
+    (1, 1, 'Completado'),
+    (2, 2, 'Pendiente');
+
+-- ==========================
+-- PROCEDIMIENTOS ALMACENADOS
+-- ==========================
+DELIMITER $$
+
+-- Procedimiento para insertar clientes
+CREATE PROCEDURE InsertarCliente(
+    IN p_nombre VARCHAR(100), 
+    IN p_email VARCHAR(100), 
+    IN p_contraseña VARCHAR(255), 
+    IN p_telefono VARCHAR(20), 
+    IN p_direccion TEXT, 
+    IN p_idRol INT
+)
+BEGIN
+    INSERT INTO Clientes (nombre, email, contraseña, telefono, direccion, idRol)
+    VALUES (p_nombre, p_email, p_contraseña, p_telefono, p_direccion, p_idRol);
+END $$
+
+-- Procedimiento para eliminar un producto
+CREATE PROCEDURE EliminarProducto(IN p_idProducto INT)
+BEGIN
+    DELETE FROM Productos WHERE idProducto = p_idProducto;
+END $$
+
+DELIMITER ;
+
+-- ==========================
+-- TRIGGERS
+-- ==========================
+DELIMITER $$
+
+-- Trigger para actualizar stock cuando se realiza una venta
+CREATE TRIGGER actualizar_stock
+AFTER INSERT ON DetalleVentas
+FOR EACH ROW
+BEGIN
+    UPDATE Productos 
+    SET stock = stock - NEW.cantidad
+    WHERE idProducto = NEW.idProducto;
+END $$
+
+-- Trigger para evitar que el stock sea negativo
+CREATE TRIGGER verificar_stock
+BEFORE INSERT ON DetalleVentas
+FOR EACH ROW
+BEGIN
+    DECLARE stock_actual INT;
+    SELECT stock INTO stock_actual FROM Productos WHERE idProducto = NEW.idProducto;
+    
+    IF stock_actual < NEW.cantidad THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock insuficiente';
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- ==========================
+-- CONSULTAS CRUD
+-- ==========================
+-- Crear un cliente
+INSERT INTO Clientes (nombre, email, contraseña, telefono, direccion, idRol) 
+VALUES ('Carlos Gómez', 'carlos@example.com', 'clave123', '3025678901', 'Calle 789', 1);
+
+-- Leer todos los productos
+SELECT * FROM Productos;
+
+-- Actualizar producto
+UPDATE Productos 
+SET precio = 30.00, stock = 100 
+WHERE idProducto = 2;
+
+-- Eliminar producto
+CALL EliminarProducto(2);
+
+DESCRIBE Clientes;
+
+CREATE TABLE signup (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Campo 1: ID autoincremental
+    nombre_usuario VARCHAR(50) NOT NULL,  -- Campo 2: Nombre de usuario
+    correo VARCHAR(100) NOT NULL UNIQUE,  -- Campo 3: Correo electrónico (único)
+    contraseña VARCHAR(255) NOT NULL  -- Campo 4: Contraseña (se recomienda encriptarla)
+);
+
+CREATE TABLE Usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Campo 1: ID autoincremental
+    nombre VARCHAR(100) NOT NULL,       -- Campo 2: Nombre
+    correo VARCHAR(100) UNIQUE NOT NULL, -- Campo 3: Correo electrónico (único)
+    contraseña VARCHAR(255) NOT NULL    -- Campo 4: Contraseña (se recomienda encriptarla)
+);
+
+
+ALTER TABLE Carrito_de_Compras DROP FOREIGN KEY Carrito_de_Compras_ibfk_1;
+ALTER TABLE Ventas DROP FOREIGN KEY Ventas_ibfk_1;
+ALTER TABLE ProcesoPago DROP FOREIGN KEY ProcesoPago_ibfk_1;
+
+ALTER TABLE Carrito_de_Compras CHANGE idCliente idUsuario INT NOT NULL;
+ALTER TABLE Ventas CHANGE idCliente idUsuario INT NOT NULL;
+ALTER TABLE ProcesoPago CHANGE idCliente idUsuario INT NOT NULL;
+
+ALTER TABLE Carrito_de_Compras ADD CONSTRAINT fk_carrito_usuario FOREIGN KEY (idUsuario) REFERENCES Usuarios(id) ON DELETE CASCADE;
+ALTER TABLE Ventas ADD CONSTRAINT fk_ventas_usuario FOREIGN KEY (idUsuario) REFERENCES Usuarios(id) ON DELETE CASCADE;
+ALTER TABLE ProcesoPago ADD CONSTRAINT fk_procesopago_usuario FOREIGN KEY (idUsuario) REFERENCES Usuarios(id) ON DELETE CASCADE;
+
+
+select * from clientes;
+
+drop table Clientes;
+
+SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE REFERENCED_TABLE_NAME = 'Clientes';
+
+DROP TABLE Clientes;
+
+SELECT TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE REFERENCED_TABLE_NAME = 'Clientes';
+
+ALTER TABLE Ventas DROP FOREIGN KEY ventas_ibfk_1;
+
+
+DROP TABLE Clientes;
+
+CREATE TABLE Clientes (
+    idCliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contraseña VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE Ventas ADD CONSTRAINT fk_ventas_cliente 
+FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente) ON DELETE CASCADE;
+
+
+SELECT DISTINCT idCliente FROM Ventas;
+
+SELECT DISTINCT idCliente FROM Ventas;
+
+INSERT INTO Clientes (idCliente, nombre, email, contraseña)
+SELECT DISTINCT idCliente, 'ClienteTemporal', 'cliente@example.com', 'password123'
+FROM Ventas WHERE idCliente NOT IN (SELECT idCliente FROM Clientes);
+
+
+INSERT INTO Clientes (idCliente, nombre, email, contraseña)
+SELECT DISTINCT idCliente, 
+    CONCAT('ClienteTemporal', idCliente), 
+    CONCAT('cliente', idCliente, '@example.com'), 
+    'password123'
+FROM Ventas 
+WHERE idCliente NOT IN (SELECT idCliente FROM Clientes);
+
+
+ALTER TABLE Ventas 
+ADD CONSTRAINT fk_ventas_cliente  
+FOREIGN KEY (idCliente) 
+REFERENCES Clientes(idCliente) 
+ON DELETE CASCADE;
+
+select * from clientes;
+
+SELECT * FROM Clientes WHERE email = 'quakpets@gmail.com' OR nombre = 'aaa';
+
+
+DESCRIBE Clientes;
+
+SELECT * FROM Clientes WHERE email = 'quakpets@gmail.com' OR nombre = 'aaa';
+
+INSERT INTO Clientes (nombre, email, contraseña)
+VALUES ('aaa', 'quakpets@gmail.com', '1234');
+
+SELECT idCliente, nombre, usuario, email, contraseña, idRol FROM Clientes;
+
+ALTER TABLE Clientes ADD COLUMN usuario VARCHAR(100);
+UPDATE Clientes SET usuario = CONCAT('user', idCliente) WHERE usuario IS NULL;
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE Clientes SET usuario = CONCAT('user', idCliente) WHERE usuario IS NULL;
+
+SELECT idCliente, nombre, usuario, email, contraseña FROM Clientes;

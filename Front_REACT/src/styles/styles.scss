@@ -1,0 +1,150 @@
+@use "sass:color";
+@use 'variables' as v;
+
+// Importaciones de Fuentes
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+// Reset y estilos base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: v.$font-family-primary;
+  background-color: v.$color-black;
+  color: v.$color-light;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: v.$color-background;
+}
+
+a {
+  color: v.$color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: v.$color-secondary-dark;
+  }
+}
+
+// Tipografía
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: v.$font-family-heading;
+  font-weight: 700;
+}
+
+// Contenedores comunes
+.container {
+  max-width: v.$breakpoint-lg;
+  margin: 0 auto;
+  padding: 0 v.$spacing-sm;
+}
+
+// Utilidades
+.text-center { text-align: center; }
+.text-yellow { color: v.$color-secondary; }
+.mb-1 { margin-bottom: v.$spacing-sm; }
+.mb-2 { margin-bottom: v.$spacing-md; }
+.mb-3 { margin-bottom: v.$spacing-lg; }
+
+// Animaciones
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn v.$transition-normal;
+}
+
+// Importa todos los componentes y estilos de páginas
+@import "./components.scss";
+@import "./components/_nosotros";
+@import "./components/promociones";
+@import "./components/menu";
+@import "./components/ubicacion";
+@import "./components/contacto";
+
+// Botones
+.btn {
+  display: inline-block;
+  padding: v.$spacing-xs v.$spacing-md;
+  border-radius: v.$border-radius-sm;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all v.$transition-normal;
+  cursor: pointer;
+  border: none;
+  font-family: v.$font-family-primary;
+
+  &-primary {
+    background-color: v.$color-secondary;
+    color: v.$color-black;
+
+    &:hover {
+      background-color: v.$color-secondary-dark;
+    }
+  }
+
+  &-secondary {
+    background-color: transparent;
+    border: v.$border-card;
+    color: v.$color-secondary;
+
+    &:hover {
+      background-color: v.$color-secondary;
+      color: v.$color-black;
+    }
+  }
+}
+
+// Media queries globales
+@media (max-width: v.$breakpoint-sm) {
+  html {
+    font-size: 14px;
+  }
+}
+
+main {
+  margin-top: v.$header-height;
+  min-height: calc(100vh - #{v.$header-height});
+}
+
+.stylized-title-container {
+  margin-top: v.$header-height;
+}
+
+@import './variables';
+@import './components';
+@import './size-adjustments';  // Agregando los ajustes de tamaño

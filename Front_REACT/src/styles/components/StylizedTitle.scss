@@ -1,0 +1,159 @@
+@use '../variables' as v;
+
+.stylized-title-container {
+  position: relative;
+  width: 100%;
+  padding: 0 0 0.1rem 0; // Sin espacio arriba
+  margin-top: 0; // Totalmente pegado al header
+  background: none; // Eliminar fondo negro extra
+  overflow: hidden;
+  z-index: 10;
+  perspective: 1000px;
+
+  .stylized-title-content {
+    position: relative;
+    text-align: center;
+    padding: 0.5rem;
+    transform-style: preserve-3d;
+
+    // Efecto de líneas doradas dinámicas
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 20%; // Reducido para coincidir con "NUESTRA HISTORIA"
+      background: linear-gradient(
+        90deg,
+        transparent,
+        v.$color-secondary,
+        transparent
+      );
+      animation: lineGlow 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 5px v.$color-secondary);
+    }
+
+    &::before {
+      left: 10%;
+      top: 50%;
+      transform: translateY(-50%) translateZ(20px);
+    }
+
+    &::after {
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%) translateZ(20px);
+    }
+
+    .main-title {
+      font-size: 2rem; // Reducido para coincidir con "NUESTRA HISTORIA"
+      font-weight: 500; // Ajustado para coincidir con "NUESTRA HISTORIA"
+      color: white;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 1px; // Reducido para coincidir con "NUESTRA HISTORIA"
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(252, 227, 3, 0.2),
+        0 0 30px rgba(252, 227, 3, 0.1);
+      transition: transform 0.1s ease-out;
+      animation: titleFloat 6s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    .sub-title {
+      font-size: 1.1rem; // Reducido para coincidir con "NUESTRA HISTORIA"
+      color: v.$color-secondary;
+      margin: 0.25rem 0 0;
+      font-weight: 400; // Ajustado para coincidir con "NUESTRA HISTORIA"
+      letter-spacing: 1px;
+      opacity: 0.9;
+      transform: translateY(-3px) translateZ(10px);
+      animation: subtitlePulse 4s ease-in-out infinite alternate;
+    }
+  }
+}
+
+// Ajustes específicos para la página de contacto
+.contacto-page {
+  .stylized-title-container {
+    .stylized-title-content {
+      .main-title {
+        font-size: 2rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+      .sub-title {
+        font-size: 1.1rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+    }
+  }
+}
+
+// Ajustes específicos para la página de inicio
+.hero-welcome {
+  .stylized-title-container {
+    .stylized-title-content {
+      .main-title {
+        font-size: 2rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+      .sub-title {
+        font-size: 1.1rem !important; // Forzar el tamaño igual a "NUESTRA HISTORIA"
+      }
+    }
+  }
+}
+
+// Mantener las animaciones existentes pero reducir su intensidad
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0) translateZ(30px);
+  }
+  50% {
+    transform: translateY(-5px) translateZ(30px); // Reducido de -10px
+  }
+}
+
+@keyframes subtitlePulse {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes lineGlow {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotateBg {
+  0% {
+    transform: translate(-50%, -50%) translateZ(-10px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(-10px) rotate(360deg);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .stylized-title-container {
+    padding: 0.5rem 0;
+    margin-top: 3rem;
+    
+    .stylized-title-content {
+      .main-title {
+        font-size: 1.5rem !important;
+        letter-spacing: 1px;
+      }
+      
+      .sub-title {
+        font-size: 1rem !important;
+      }
+    }
+  }
+}

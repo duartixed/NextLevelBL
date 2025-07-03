@@ -1,0 +1,318 @@
+@use '../variables' as v;
+
+// Estilos del título hero
+.hero-title-container {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+  background: linear-gradient(
+    to bottom,
+    #000000,
+    rgba(0, 0, 0, 0.95)
+  );
+  overflow: hidden;
+  z-index: 10;
+  perspective: 1000px;
+
+  .hero-title-content {
+    position: relative;
+    text-align: center;
+    padding: 1rem;
+    transform-style: preserve-3d;
+
+    // Efecto de líneas doradas dinámicas
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 30%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        v.$color-secondary,
+        transparent
+      );
+      animation: lineGlow 2s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 5px v.$color-secondary);
+    }
+
+    &::before {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) translateZ(20px);
+    }
+
+    &::after {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) translateZ(20px);
+    }
+
+    .main-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 4px;
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(252, 227, 3, 0.2),
+        0 0 30px rgba(252, 227, 3, 0.1);
+      transition: transform 0.1s ease-out;
+      animation: titleFloat 6s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    .sub-title {
+      font-size: 2.5rem;
+      color: v.$color-secondary;
+      margin: 0.5rem 0 0;
+      font-weight: 600;
+      letter-spacing: 2px;
+      opacity: 0.9;
+      transform: translateY(-5px) translateZ(10px);
+      animation: subtitlePulse 4s ease-in-out infinite alternate;
+    }
+
+    .title-decoration {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(-10px);
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at center, rgba(252, 227, 3, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at center, rgba(252, 227, 3, 0.05) 0%, transparent 30%);
+      animation: rotateBg 20s linear infinite;
+      pointer-events: none;
+    }
+
+    .title-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        circle at var(--glow-x) var(--glow-y),
+        rgba(252, 227, 3, 0.2) 0%,
+        transparent 50%
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 1;
+    }
+
+    .title-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(circle at 50% 50%, white 1px, transparent 1px),
+          radial-gradient(circle at 40% 40%, white 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: particlesFloat 20s linear infinite;
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+// Estilos del hero actualizados
+.hero {
+  position: relative;
+  width: 100%;
+  margin-top: 0;
+  height: calc(90vh - #{v.$header-height});
+  display: flex;
+  align-items: center;
+  background: #000000;
+  overflow: hidden;
+  @include v.lateral-fade;
+
+  .dynamic-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      rgba(252, 227, 3, 0.15) 0%,
+      transparent 50%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transform-style: preserve-3d;
+
+    .hero-horizontal-gallery {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      animation: slideShow 30s linear infinite;
+      will-change: transform;
+      padding: 0 5%;
+
+      .image-container {
+        position: relative;
+        flex: 0 0 auto;
+        height: 100%;
+        padding: 2rem;
+        transform-style: preserve-3d;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          transform: 
+            scale(1.05)
+            translateY(-5px)
+            translateZ(20px)
+            rotateY(calc(var(--mouse-x) * 0.1deg - 5deg));
+
+          .image-glow {
+            opacity: 1;
+          }
+        }
+
+        .horizontal-scroll-image {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+          filter: 
+            contrast(1.1)
+            brightness(1.2)
+            saturate(1.1);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: 
+            rotate(var(--rotation))
+            translateZ(10px);
+        }
+
+        .image-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(
+            circle at center,
+            rgba(252, 227, 3, 0.3) 0%,
+            transparent 70%
+          );
+          mix-blend-mode: screen;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(90deg, #000 0%, transparent 10%, transparent 90%, #000 100%),
+      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+    z-index: 4;
+  }
+}
+
+// Animaciones
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0) translateZ(0);
+  }
+  50% {
+    transform: translateY(-10px) translateZ(20px);
+  }
+}
+
+@keyframes subtitlePulse {
+  from {
+    opacity: 0.7;
+    transform: translateY(-5px) translateZ(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-5px) translateZ(10px) scale(1);
+  }
+}
+
+@keyframes slideShow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes lineGlow {
+  from { 
+    opacity: 0.5;
+    transform: translateY(-50%) translateZ(20px) scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(-50%) translateZ(20px) scale(1);
+  }
+}
+
+@keyframes rotateBg {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes particlesFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-40px); }
+}
+
+// Media queries
+@media (max-width: 768px) {
+  .hero-title-container {
+    .hero-title-content {
+      .main-title {
+        font-size: 2.5rem;
+      }
+      .sub-title {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .hero {
+    height: 70vh;
+    
+    .hero-content {
+      .hero-horizontal-gallery {
+        .image-container {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title-container {
+    .hero-title-content {
+      .main-title {
+        font-size: 2rem;
+      }
+      .sub-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

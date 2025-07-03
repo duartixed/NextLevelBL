@@ -1,0 +1,112 @@
+// Colores principales
+$color-black: #181818;
+$color-dark: #202020;
+$color-darker: #232323;
+$color-light: #fff;
+$color-secondary: #fce303;
+$color-secondary-dark: darken(#fce303, 10%);
+$color-error: #ff4444;
+$color-success: #4caf50;
+$color-border: #333;
+
+// Sombras y efectos
+$shadow-card: 0 0 12px 2px rgba(255, 216, 0, 0.15);
+$shadow-card-hover: 0 0 24px 4px rgba(255, 216, 0, 0.25);
+$border-card: 2px solid $color-secondary;
+$border-radius: 10px;
+$border-radius-sm: 5px;
+
+// Tipografía
+$font-family-primary: 'Poppins', sans-serif;
+$font-family-heading: 'Montserrat', 'Arial', sans-serif;
+$font-size-xs: 0.7rem;
+$font-size-sm: 0.85rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.15rem;
+$font-size-xl: 1.5rem;
+
+// Espaciados
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Layout
+$container-padding: $spacing-lg $spacing-sm;
+$card-padding: $spacing-md;
+$form-padding: $spacing-lg $spacing-md $spacing-md;
+$header-height: 56px;
+$footer-height: 56px;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.4s ease;
+
+// Colors
+$color-primary: #000000;
+$color-secondary: #fce303;
+$color-text: #ffffff;
+$color-background: #000000;
+$color-accent: #333333;
+
+// Sizes
+$header-height: 80px;
+$footer-height: 200px;
+
+// Logo sizes
+$logo-header-height: 80px;
+$logo-header-max-width: 120px;
+
+// Mixins
+@mixin lateral-fade {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+}
+
+@mixin content-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  overflow: hidden;
+}

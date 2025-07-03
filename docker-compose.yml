@@ -1,0 +1,50 @@
+services:
+  frontend:
+    # build:
+    #   context: ./Front_REACT
+    #   dockerfile: Dockerfile
+    image: dcmendozar/front_react:latest
+    container_name: front_react
+    ports:
+      - "13000:80"
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    image: dcmendozar/backend:latest
+    container_name: backend
+    ports:
+      - "15000:5000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=12345
+      - DB_DATABASE=nextlevelbl
+      - DB_PORT=3306
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: nextlevelbl
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./backend/nextlevelbl_db.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./backend/init_roles.sql:/docker-entrypoint-initdb.d/02-roles.sql
+      - ./backend/init_admin.sql:/docker-entrypoint-initdb.d/03-admin.sql
+      - db_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  db_data:
+    driver: local

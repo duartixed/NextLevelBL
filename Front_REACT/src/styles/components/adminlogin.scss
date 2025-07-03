@@ -1,0 +1,99 @@
+@use "../variables" as v;
+
+// Estilos para el login de administrador
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #181818;
+  padding: 0;
+
+  .admin-login-form {
+    background: #202020;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 12px 2px rgba(255, 216, 0, 0.15);
+    border: 2px solid v.$color-secondary;
+    position: relative;
+    margin: 0;
+
+    h2 {
+      color: v.$color-secondary;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.2rem;
+      border: 1.5px solid #333;
+      border-radius: 7px;
+      background-color: #232323;
+      color: #fff;
+      font-size: 1.08rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: v.$color-secondary;
+      }
+
+      &::placeholder {
+        color: #888;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: v.$color-secondary;
+      color: #000;
+      border: none;
+      border-radius: 7px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken(v.$color-secondary, 10%);
+      }
+
+      &:disabled {
+        background-color: #444;
+        cursor: not-allowed;
+      }
+    }
+
+    .error {
+      color: #ff4444;
+      text-align: center;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background-color: rgba(255, 68, 68, 0.1);
+      border-radius: 4px;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .admin-login-container {
+    padding: 1rem 0.2rem;
+
+    .admin-login-form {
+      padding: 1.2rem 0.5rem;
+
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
